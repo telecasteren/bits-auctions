@@ -1,0 +1,95 @@
+import { tasks } from "./helpers/tasks";
+import { renderTaskRow } from "./helpers/render-task-row";
+
+const ListingTable = () => {
+  // Add CSS for animations (only once)
+  if (!document.querySelector("#listing-table-styles")) {
+    const style = document.createElement("style");
+    style.id = "listing-table-styles";
+    style.textContent = `
+      .animate-spin {
+        animation: spin 1s linear infinite;
+      }
+      
+      @keyframes spin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+  const container = document.createElement("div");
+  container.className =
+    "mx-auto max-w-6xl overflow-x-auto rounded-lg border bg-card w-[95%]";
+
+  const table = document.createElement("table");
+  table.className = "w-full caption-bottom text-sm";
+
+  const thead = document.createElement("thead");
+  thead.className = "[&_tr]:border-b";
+
+  const headerRow = document.createElement("tr");
+  headerRow.className = "border-b transition-colors hover:bg-transparent";
+
+  const headers = [
+    {
+      text: "Title",
+      className:
+        "h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0",
+    },
+    {
+      text: "Owner",
+      className:
+        "h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0",
+    },
+    {
+      text: "Status",
+      className:
+        "h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 w-[120px]",
+    },
+    {
+      text: "Added date",
+      className:
+        "h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0",
+    },
+    {
+      text: "Description",
+      className:
+        "h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0",
+    },
+    {
+      text: "Actions",
+      className:
+        "h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 w-[180px]",
+    },
+  ];
+
+  headers.forEach((header) => {
+    const th = document.createElement("th");
+    th.className = header.className;
+    th.textContent = header.text;
+    headerRow.appendChild(th);
+  });
+
+  thead.appendChild(headerRow);
+  table.appendChild(thead);
+
+  const tbody = document.createElement("tbody");
+  tbody.className = "[&_tr:last-child]:border-0";
+
+  tasks.forEach((task) => {
+    tbody.appendChild(renderTaskRow(task));
+  });
+
+  table.appendChild(tbody);
+  container.appendChild(table);
+
+  return container;
+};
+
+export default ListingTable;

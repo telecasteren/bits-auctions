@@ -1,0 +1,48 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import "tailwindcss";
+@import "./shadcn/components/chart.css";
+@import "./shadcn/variables.css";
+@import "./navbar.css";
+
+@layer base {
+  body {
+    @apply font-sans m-0 p-10 bg-[#f9fffc] text-[hsl(var(--foreground))] leading-[1.5];
+  }
+
+  main {
+    @apply mt-20;
+  }
+
+  #content {
+    @apply max-w-[1200px] mx-auto;
+    transition: opacity 0.2s;
+    opacity: 1;
+  }
+
+  #content.fade-out {
+    opacity: 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Montserrat", sans-serif;
+  }
+}
+
+@layer components {
+  .active {
+    @apply underline;
+  }
+
+  #page-title {
+    @apply text-5xl;
+  }
+
+  #page-tagline {
+    @apply italic;
+  }
+}
