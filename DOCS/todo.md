@@ -1,6 +1,5 @@
 ## General
 
-- Github projects
 - Setup github workflows at Github
 - Pull request from dev to main
   - Merge branches for production
@@ -24,6 +23,4 @@
 
 **CRUD:**
 
-- Listings
-- Users
-- Stats (GET)
+- Stats (GET) ??

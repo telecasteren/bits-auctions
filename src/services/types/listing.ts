@@ -9,9 +9,9 @@ export interface Listing {
     url: string;
     alt: string;
   }>;
-  created: string;
-  updated: string;
-  endsAt: string;
+  created: Date;
+  updated: Date;
+  endsAt: Date;
   seller: Profile;
   _count: {
     bids: number;
