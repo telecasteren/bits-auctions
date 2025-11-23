@@ -1,7 +1,14 @@
-import loadDashboard from "@/app/ui/features/Dashboard";
-import ListingsPage from "@/app/ui/features/Listings";
+import Dashboard from "@/app/ui/features/Dashboard";
+import Listings from "@/app/ui/features/Listings";
+import Account from "@/app/ui/features/Account";
+import renderAuthForm from "./features/render-auth-form";
+import type { Profile } from "@/services/types/profile";
+import { loadKey } from "@/utils/storage/storage";
 
 const renderContent = () => {
+  const user = (loadKey("user") as Profile) || "";
+  const username = user.name || "";
+
   const content = document.querySelector<HTMLElement>("#content");
   if (!content) return;
 
@@ -12,11 +19,24 @@ const renderContent = () => {
     function handler() {
       content.removeEventListener("transitionend", handler);
       content.innerHTML = "";
-      if (window.location.pathname === "/") {
-        loadDashboard();
-      } else if (window.location.pathname === "/listings") {
-        ListingsPage();
+
+      switch (window.location.pathname) {
+        case "/":
+          Dashboard();
+          break;
+        case "/listings":
+          Listings();
+          break;
+        case `/account/${username}`:
+          Account();
+          break;
+        case "/auth":
+          renderAuthForm();
+          break;
+        default:
+          break;
       }
+
       void content.offsetWidth;
       content.classList.remove("fade-out");
     },

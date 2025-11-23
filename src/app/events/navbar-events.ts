@@ -1,9 +1,16 @@
+import type { Profile } from "@/services/types/profile";
+import { loadKey } from "@/utils/storage/storage";
+
 const navigation = () => {
   const liItems = document.querySelectorAll("nav ul li");
 
+  const user = (loadKey("user") as Profile) || "";
+  const username = user.name || "";
+
   liItems.forEach((li) => {
     li.addEventListener("click", (event) => {
-      const selectedItem = event.target.id;
+      const target = event.target as HTMLElement | null;
+      const selectedItem = target?.id;
 
       switch (selectedItem) {
         case "nav-overview":
@@ -13,7 +20,10 @@ const navigation = () => {
           window.location.pathname = "/listings";
           break;
         case "nav-account":
-          window.location.pathname = "/account";
+          window.location.pathname = `/account/${username}`;
+          break;
+        case "nav-login":
+          window.location.pathname = "/auth";
           break;
         default:
           break;

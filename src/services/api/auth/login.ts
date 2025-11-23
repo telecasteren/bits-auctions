@@ -14,7 +14,7 @@ export const login = async (email: string, password: string) => {
   if (response.ok) {
     const { accessToken, ...profile } = (await response.json()).data;
     saveKey("token", accessToken);
-    saveKey("profile", profile);
+    saveKey("user", profile);
 
     return profile;
   }

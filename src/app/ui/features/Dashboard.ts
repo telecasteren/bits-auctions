@@ -1,7 +1,16 @@
 import BarChart from "@/app/components/charts/bar-chart";
+import { unAuthenticatedEvents } from "@/app/events/auth/unauthenticated";
+import { isAuthenticated } from "@/utils/config/constants";
 
-const loadDashboard = () => {
+const Dashboard = async () => {
   const container = document.querySelector("#content");
+  if (!container) return;
+
+  if (!isAuthenticated) {
+    const restrictedMessage = unAuthenticatedEvents();
+    container.appendChild(restrictedMessage);
+    return;
+  }
 
   container.innerHTML = "";
 
@@ -20,4 +29,4 @@ const loadDashboard = () => {
   container.appendChild(chartComponent);
 };
 
-export default loadDashboard;
+export default Dashboard;

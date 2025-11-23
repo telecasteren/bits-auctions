@@ -1,4 +1,5 @@
 import navigation from "@/app/events/navbar-events";
+import { isAuthenticated } from "@/utils/config/constants";
 
 const navbar = () => {
   const nav = document.createElement("nav");
@@ -14,14 +15,18 @@ const navbar = () => {
   logoDiv.appendChild(navLogo);
 
   const logoImg = document.createElement("img");
-  logoImg.src = "assets/site-logo.png";
+  logoImg.src = "/assets/site-logo.png";
   logoImg.alt = "Bits Logo";
   logoImg.id = "nav-logo-img";
   logoDiv.appendChild(logoImg);
 
   const navList = document.createElement("ul");
 
-  const navItems = ["Overview", "Listings", "Account"];
+  const navItems = [
+    "Overview",
+    "Listings",
+    isAuthenticated ? "Account" : "Login",
+  ];
   navItems.forEach((item) => {
     const li = document.createElement("li");
     li.id = `nav-${item.toLowerCase()}`;

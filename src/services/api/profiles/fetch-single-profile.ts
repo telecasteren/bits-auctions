@@ -10,6 +10,11 @@ export const fetchSingleProfile = async (username: string) => {
     throw new Error(`Failed to fetch profile: ${response.status}`);
   }
 
+  const contentType = response.headers.get("content-type");
+  if (!contentType || !contentType.includes("application/json")) {
+    throw new Error("API did not return JSON");
+  }
+
   const { data } = await response.json();
   return data;
 };

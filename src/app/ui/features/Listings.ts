@@ -1,7 +1,7 @@
 import ListingCards from "@/app/components/listings/listing-cards";
-import ListingTable from "@/app/components/listings/Listing-table";
+import ListingTable from "@/app/components/listings/listing-table";
 
-const ListingsPage = () => {
+const Listings = () => {
   const container = document.querySelector("#content");
   if (!container) return;
 
@@ -15,6 +15,7 @@ const ListingsPage = () => {
   searchContainer.className = "mb-4";
 
   const searchInput = document.createElement("input");
+  searchInput.id = "listing-search";
   searchInput.type = "text";
   searchInput.placeholder = "Search listings...";
   searchInput.className = `w-full rounded border border-input bg-background px-3 py-2 placeholder:text-muted-foreground
@@ -75,4 +76,4 @@ const ListingsPage = () => {
   container.appendChild(viewsWrapper);
 };
 
-export default ListingsPage;
+export default Listings;
