@@ -7,13 +7,13 @@ const UserDetails = (user: Profile) => {
   function createAddon(content: HTMLElement, align?: string): HTMLElement {
     const addon = document.createElement("span");
     addon.className =
-      "flex items-center px-3 text-sm text-muted-foreground bg-muted border border-input rounded-l-md";
+      "flex items-center px-3 text-sm text-muted-foreground bg-muted rounded-l-md";
     if (align === "inline-end") {
       addon.className += " rounded-r-md rounded-l-none";
     }
     if (align === "block-end") {
       addon.className =
-        "flex items-end px-3 text-sm text-muted-foreground bg-muted border border-input rounded-b-md";
+        "flex items-end px-3 text-sm text-muted-foreground bg-muted rounded-b-md";
     }
     addon.appendChild(content);
     return addon;
@@ -52,11 +52,26 @@ const UserDetails = (user: Profile) => {
   {
     const group = document.createElement("div");
     group.className = "flex w-full";
+    const inputWrapper = document.createElement("div");
+    inputWrapper.className = "relative w-full";
+
+    const input = createInput(user.credits.toString() || "0");
+    input.className += " pl-12 pr-24";
+
     const walletIcon = document.createElement("span");
     walletIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-credit-card-icon lucide-credit-card"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>`;
-    group.appendChild(createAddon(walletIcon));
-    group.appendChild(createInput(user.credits.toString() || "0"));
-    group.appendChild(createAddon(createText("CREDITS"), "inline-end"));
+    walletIcon.className =
+      "absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none";
+
+    const creditsText = document.createElement("span");
+    creditsText.textContent = "CREDITS";
+    creditsText.className =
+      "absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground text-sm pointer-events-none";
+
+    inputWrapper.appendChild(input);
+    inputWrapper.appendChild(walletIcon);
+    inputWrapper.appendChild(creditsText);
+    group.appendChild(inputWrapper);
     container.appendChild(group);
   }
 
