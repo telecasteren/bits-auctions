@@ -2,27 +2,6 @@ import { tasks } from "./helpers/tasks";
 import { renderTaskRow } from "./helpers/render-task-row";
 
 const ListingTable = () => {
-  // Add CSS for animations (only once)
-  if (!document.querySelector("#listing-table-styles")) {
-    const style = document.createElement("style");
-    style.id = "listing-table-styles";
-    style.textContent = `
-      .animate-spin {
-        animation: spin 1s linear infinite;
-      }
-      
-      @keyframes spin {
-        from {
-          transform: rotate(0deg);
-        }
-        to {
-          transform: rotate(360deg);
-        }
-      }
-    `;
-    document.head.appendChild(style);
-  }
-
   const container = document.createElement("div");
   container.className =
     "mx-auto max-w-6xl overflow-x-auto rounded-lg border bg-card w-[95%]";
