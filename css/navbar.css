@@ -28,7 +28,7 @@
   }
 
   #navbar ul li.active {
-    @apply text-[hsl(var(--accent-strong))] border-b-2 border-[hsl(var(--accent-strong))];
+    @apply text-[hsl(var(--accent-strong))] border-b-2 border-[hsl(var(--accent-strong))] no-underline;
   }
 
   @media (max-width: 450px) {

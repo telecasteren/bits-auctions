@@ -8,7 +8,8 @@ const Listings = () => {
   container.innerHTML = "";
 
   const h1 = document.createElement("h1");
-  h1.className = "mb-6 text-2xl font-semibold";
+  h1.id = "page-title";
+  h1.className = "mb-6";
   h1.textContent = "Listings";
 
   const searchContainer = document.createElement("div");

@@ -34,11 +34,15 @@
 }
 
 @layer components {
+  .active {
+    @apply underline;
+  }
+
   #page-title {
     @apply text-5xl;
   }
 
   #page-tagline {
-    @apply italic;
+    @apply italic mb-6;
   }
 }
