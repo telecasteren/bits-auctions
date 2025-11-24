@@ -1,5 +1,6 @@
 import { tasks } from "./helpers/tasks";
 import { renderTaskRow } from "./helpers/render-task-row";
+import type { Listing } from "@/services/types/listing";
 
 const ListingTable = () => {
   const container = document.createElement("div");
@@ -7,7 +8,7 @@ const ListingTable = () => {
     "mx-auto max-w-6xl overflow-x-auto rounded-lg border bg-card w-[95%]";
 
   const table = document.createElement("table");
-  table.className = "w-full caption-bottom text-sm";
+  table.className = "w-full caption-bottom text-sm table-fixed";
 
   const thead = document.createElement("thead");
   thead.className = "[&_tr]:border-b";
@@ -19,32 +20,32 @@ const ListingTable = () => {
     {
       text: "Title",
       className:
-        "h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0",
+        "h-12 px-4 text-center align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0",
     },
     {
-      text: "Owner",
+      text: "Seller",
       className:
-        "h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0",
+        "h-12 px-4 text-center align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0",
     },
     {
       text: "Status",
       className:
-        "h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 w-[120px]",
+        "h-12 px-4 text-center align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 w-[120px]",
     },
     {
       text: "Added date",
       className:
-        "h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0",
+        "h-12 px-4 text-center align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0",
     },
     {
       text: "Description",
       className:
-        "h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0",
+        "h-12 px-4 text-center align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0",
     },
     {
       text: "Actions",
       className:
-        "h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 w-[180px]",
+        "h-12 px-4 text-center align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 w-[180px]",
     },
   ];
 
@@ -62,7 +63,7 @@ const ListingTable = () => {
   tbody.className = "[&_tr:last-child]:border-0";
 
   tasks.forEach((task) => {
-    tbody.appendChild(renderTaskRow(task));
+    tbody.appendChild(renderTaskRow(task as Listing));
   });
 
   table.appendChild(tbody);

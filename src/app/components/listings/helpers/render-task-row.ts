@@ -9,50 +9,45 @@ const renderTaskRow = (task) => {
   const startPending = isTaskActionPending("start", task.id);
   const pausePending = isTaskActionPending("pause", task.id);
   const completePending = isTaskActionPending("complete", task.id);
-  const deletePending = isTaskActionPending("delete", task.id);
 
   const row = document.createElement("tr");
   row.className =
-    "border-b group transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted cursor-pointer";
+    "border-b group transition-colors hover:bg-[#1e293b0f] inner-shadow-md data-[state=selected]:bg-muted cursor-pointer";
 
-  const wrapper = document.createElement("div");
-  wrapper.className = "relative w-full flex items-stretch min-h-[64px]";
+  const titleTd = document.createElement("td");
+  titleTd.className = "pl-10 align-middle px-4 py-4 font-medium";
+  titleTd.textContent = task.title;
+  row.appendChild(titleTd);
 
-  const overlay = document.createElement("div");
-  overlay.className =
-    "absolute inset-0 pointer-events-none bg-[#1e293b0f] opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded-lg";
-  wrapper.appendChild(overlay);
+  const sellerTd = document.createElement("td");
+  sellerTd.className =
+    "text-center align-middle px-4 py-4 text-sm text-muted-foreground";
+  sellerTd.textContent = task.seller;
+  row.appendChild(sellerTd);
 
-  const titleCell = document.createElement("div");
-  titleCell.className = "h-16 px-4 flex-1 flex items-center font-medium";
-  titleCell.textContent = task.title;
+  const statusTd = document.createElement("td");
+  statusTd.className = "text-center align-middle px-4 py-4";
+  statusTd.appendChild(getStatusBadge(task.status));
+  row.appendChild(statusTd);
 
-  const ownerCell = document.createElement("div");
-  ownerCell.className =
-    "h-16 px-4 flex-1 flex items-center text-sm text-muted-foreground";
-  ownerCell.textContent = task.owner;
+  const createdDate = document.createElement("td");
+  createdDate.className =
+    "text-center align-middle px-4 py-4 text-sm text-muted-foreground";
+  createdDate.textContent = task.created;
+  row.appendChild(createdDate);
 
-  const statusCell = document.createElement("div");
-  statusCell.className = "h-16 px-4 flex-1 flex items-center";
-  statusCell.appendChild(getStatusBadge(task.status));
-
-  const dueDateCell = document.createElement("div");
-  dueDateCell.className =
-    "h-16 px-4 flex-1 flex items-center text-sm text-muted-foreground";
-  dueDateCell.textContent = task.dueDate;
-
-  const descriptionCell = document.createElement("div");
-  descriptionCell.className =
-    "h-16 px-4 flex-1 flex items-center max-w-[300px] text-sm text-muted-foreground";
+  const descriptionTd = document.createElement("td");
+  descriptionTd.className =
+    "text-center align-middle px-4 py-4 max-w-[300px] text-sm text-muted-foreground";
   const descriptionSpan = document.createElement("span");
   descriptionSpan.className = "block cursor-help truncate";
   descriptionSpan.textContent = task.description;
   descriptionSpan.title = task.description;
-  descriptionCell.appendChild(descriptionSpan);
+  descriptionTd.appendChild(descriptionSpan);
+  row.appendChild(descriptionTd);
 
-  const actionsCell = document.createElement("div");
-  actionsCell.className = "h-16 px-4 flex items-center";
-
+  const actionsTd = document.createElement("td");
+  actionsTd.className = "text-center align-middle px-6 py-4";
   const actionsDiv = document.createElement("div");
   actionsDiv.className = "flex items-center gap-1";
 
@@ -86,17 +81,6 @@ const renderTaskRow = (task) => {
     actionsDiv.appendChild(completeButton);
   }
 
-  // Delete button (always present)
-  const deleteButton = createButton(
-    deletePending ? icons.loader : icons.trash,
-    "Delete",
-    () => handleAction(task, "delete"),
-    busy,
-    "destructive"
-  );
-  actionsDiv.appendChild(deleteButton);
-
-  // View button (always present)
   const viewButton = createButton(
     icons.file,
     "View Details",
@@ -105,20 +89,8 @@ const renderTaskRow = (task) => {
   );
 
   actionsDiv.appendChild(viewButton);
-  actionsCell.appendChild(actionsDiv);
-
-  wrapper.appendChild(titleCell);
-  wrapper.appendChild(ownerCell);
-  wrapper.appendChild(statusCell);
-  wrapper.appendChild(dueDateCell);
-  wrapper.appendChild(descriptionCell);
-  wrapper.appendChild(actionsCell);
-
-  const cell = document.createElement("td");
-  cell.colSpan = 6;
-  cell.className = "p-0 border-0 bg-transparent";
-  cell.appendChild(wrapper);
-  row.appendChild(cell);
+  actionsTd.appendChild(actionsDiv);
+  row.appendChild(actionsTd);
 
   return row;
 };

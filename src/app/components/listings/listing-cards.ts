@@ -23,18 +23,18 @@ const ListingCards = () => {
 
     const image = document.createElement("img");
     image.className = "mb-2 rounded max-w-40 justify-self-center";
-    image.src = task.media.src;
-    image.alt = task.media.alt;
+    image.src = task.media[0].url;
+    image.alt = task.media[0].alt;
     card.appendChild(image);
 
     const statsWrapper = document.createElement("div");
     statsWrapper.className = "flex flex-col gap-1 mb-4";
     card.appendChild(statsWrapper);
 
-    const price = document.createElement("p");
-    price.className = "mb-2 text-sm font-medium";
-    price.textContent = `Price: ${task.price}`;
-    statsWrapper.appendChild(price);
+    const bids = document.createElement("p");
+    bids.className = "mb-2 text-sm font-medium";
+    bids.textContent = `Bids: ${task._count.bids > 0 ? task._count.bids : "No bids yet"}`;
+    statsWrapper.appendChild(bids);
 
     const status = document.createElement("div");
     status.appendChild(getStatusBadge(task.status));

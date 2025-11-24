@@ -4,91 +4,158 @@ export const tasks = [
     title: "Implement User Authentication",
     owner: "Sarah Chen",
     status: "in-progress",
-    media: {
-      src: "assets/site-logo.png",
-      alt: "Auction item image",
-    },
+    tags: ["backend", "security"],
+    media: [
+      {
+        url: "assets/site-logo.png",
+        alt: "Auction item image",
+      },
+      {
+        url: "",
+        alt: "",
+      },
+    ],
     priority: "high",
-    dueDate: "2024-03-25",
     description: "OAuth 2.0 integration with Google and GitHub providers",
+    created: "2024-03-25",
+    updated: "2024-03-25",
+    endsAt: "2024-03-25",
+    seller: "Sarah Chen",
+    _count: {
+      bids: 4,
+    },
   },
   {
     id: "TASK-002",
     title: "Design Dashboard UI",
     owner: "Michael Torres",
     status: "completed",
-    media: {
-      src: "assets/site-logo.png",
-      alt: "Auction item image",
-    },
+    tags: ["backend", "security"],
+    media: [
+      {
+        url: "assets/site-logo.png",
+        alt: "Auction item image",
+      },
+    ],
     priority: "medium",
-    dueDate: "2024-03-20",
     description: "Finalize dashboard layout with responsive grid system",
+    created: "2024-03-25",
+    updated: "2024-03-25",
+    endsAt: "2024-03-25",
+    seller: "Sarah Chen",
+    _count: {
+      bids: 4,
+    },
   },
   {
     id: "TASK-003",
     title: "API Performance Optimization",
     owner: "Emma Rodriguez",
     status: "pending",
-    media: {
-      src: "assets/site-logo.png",
-      alt: "Auction item image",
-    },
+    tags: ["backend", "security"],
+    media: [
+      {
+        url: "assets/site-logo.png",
+        alt: "Auction item image",
+      },
+    ],
     priority: "urgent",
-    dueDate: "2024-03-22",
     description: "Reduce API response time by implementing caching strategy",
+    created: "2024-03-25",
+    updated: "2024-03-25",
+    endsAt: "2024-03-25",
+    seller: "Sarah Chen",
+    _count: {
+      bids: 0,
+    },
   },
   {
     id: "TASK-004",
     title: "Write Unit Tests",
     owner: "James Wilson",
     status: "in-progress",
-    media: {
-      src: "assets/site-logo.png",
-      alt: "Auction item image",
-    },
+    tags: ["backend", "security"],
+    media: [
+      {
+        url: "assets/site-logo.png",
+        alt: "Auction item image",
+      },
+    ],
     priority: "medium",
-    dueDate: "2024-03-28",
     description: "Achieve 80% code coverage for authentication module",
+    created: "2024-03-25",
+    updated: "2024-03-25",
+    endsAt: "2024-03-25",
+    seller: "Sarah Chen",
+    _count: {
+      bids: 4,
+    },
   },
   {
     id: "TASK-005",
     title: "Database Migration",
     owner: "Olivia Martinez",
     status: "blocked",
-    media: {
-      src: "assets/site-logo.png",
-      alt: "Auction item image",
-    },
+    tags: ["backend", "security"],
+    media: [
+      {
+        url: "assets/site-logo.png",
+        alt: "Auction item image",
+      },
+    ],
     priority: "high",
-    dueDate: "2024-03-24",
     description: "Waiting for infrastructure team approval before proceeding",
+    created: "2024-03-25",
+    updated: "2024-03-25",
+    endsAt: "2024-03-25",
+    seller: "Sarah Chen",
+    _count: {
+      bids: 0,
+    },
   },
   {
     id: "TASK-006",
     title: "Update Documentation",
     owner: "Lucas Anderson",
     status: "pending",
-    media: {
-      src: "assets/site-logo.png",
-      alt: "Auction item image",
-    },
+    tags: ["backend", "security"],
+    media: [
+      {
+        url: "assets/site-logo.png",
+        alt: "Auction item image",
+      },
+    ],
     priority: "low",
-    dueDate: "2024-03-30",
     description: "Document new API endpoints and authentication flow",
+    created: "2024-03-25",
+    updated: "2024-03-25",
+    endsAt: "2024-03-25",
+    seller: "Sarah Chen",
+    _count: {
+      bids: 4,
+    },
   },
   {
     id: "TASK-007",
     title: "Security Audit",
     owner: "Sophia Taylor",
     status: "completed",
-    media: {
-      src: "assets/site-logo.png",
-      alt: "Auction item image",
-    },
+    tags: ["backend", "security"],
+    media: [
+      {
+        url: "assets/site-logo.png",
+        alt: "Auction item image",
+      },
+    ],
     priority: "urgent",
-    dueDate: "2024-03-19",
     description:
       "Conducted comprehensive security review and vulnerability assessment",
+    created: "2024-03-25",
+    updated: "2024-03-25",
+    endsAt: "2024-03-25",
+    seller: "Sarah Chen",
+    _count: {
+      bids: 4,
+    },
   },
 ];

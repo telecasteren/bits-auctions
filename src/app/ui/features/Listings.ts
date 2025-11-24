@@ -29,17 +29,18 @@ const Listings = () => {
   tableView.href = "#";
   tableView.id = "listings-tableView";
   tableView.textContent = "Table view";
-  tableView.className = "active mb-4 flex items-center";
+  tableView.className = "mb-4 flex items-center";
 
   const cardView = document.createElement("a");
   cardView.href = "#";
   cardView.id = "listings-cardView";
   cardView.textContent = "Card view";
-  cardView.className = "mb-4 fit-content flex flex-col gap-6 items-center";
+  cardView.className =
+    "active mb-4 fit-content flex flex-col gap-6 items-center";
 
   const table = ListingTable();
   const cards = ListingCards();
-  cards.classList.add("hidden");
+  table.classList.add("hidden");
 
   const viewsWrapper = document.createElement("div");
   viewsWrapper.className = "flex flex-col mt-12 gap-6 mx-auto max-w-6xl";
@@ -70,8 +71,8 @@ const Listings = () => {
   searchContainer.appendChild(searchInput);
   container.appendChild(searchContainer);
 
-  tabMenu.appendChild(tableView);
   tabMenu.appendChild(cardView);
+  tabMenu.appendChild(tableView);
   container.appendChild(tabMenu);
   container.appendChild(viewsWrapper);
 };
