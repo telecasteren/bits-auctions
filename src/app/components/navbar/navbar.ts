@@ -1,4 +1,4 @@
-import navigation from "@/app/events/navbar-events";
+import navigation from "@/app/events/navbar/navbar-events";
 import { isAuthenticated } from "@/utils/config/constants";
 
 const navbar = () => {

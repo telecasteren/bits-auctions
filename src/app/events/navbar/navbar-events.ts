@@ -1,8 +1,10 @@
 import type { Profile } from "@/services/types/profile";
 import { loadKey } from "@/utils/storage/storage";
+import { setNavItemActive } from "@/app/events/navbar/set-nav-item-active";
 
 const navigation = () => {
   const liItems = document.querySelectorAll("nav ul li");
+  setNavItemActive();
 
   const user = (loadKey("user") as Profile) || "";
   const username = user.name || "";

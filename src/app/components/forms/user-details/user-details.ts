@@ -10,29 +10,22 @@ const UserDetails = (user: Profile) => {
   // USER CREDITS
   {
     const group = document.createElement("div");
-    group.className = "flex w-full";
-    const inputWrapper = document.createElement("div");
-    inputWrapper.className = "relative w-full";
-
-    const input = createInput(user.credits.toString() || "0");
-    input.className +=
-      " pl-12 pr-24 text-right placeholder:text-black font-medium";
-    input.disabled = true;
+    group.className =
+      "flex w-full items-center justify-between mb-2 px-4 py-3 rounded-lg bg-[hsl(var(--background))] border font-medium";
 
     const walletIcon = document.createElement("span");
     walletIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-credit-card-icon lucide-credit-card"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>`;
-    walletIcon.className =
-      "absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none";
+    walletIcon.className = "mr-2";
 
-    const creditsText = document.createElement("span");
-    creditsText.textContent = "CREDITS";
-    creditsText.className =
-      "absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground text-sm pointer-events-none";
+    const creditsValue = document.createElement("span");
+    creditsValue.textContent = user.credits.toString() || "0";
+    creditsValue.className = "flex-1 text-right text-black font-medium";
 
-    inputWrapper.appendChild(input);
-    inputWrapper.appendChild(walletIcon);
-    inputWrapper.appendChild(creditsText);
-    group.appendChild(inputWrapper);
+    const creditsText = createText("CREDITS", "ml-2 text-sm");
+
+    group.appendChild(walletIcon);
+    group.appendChild(creditsValue);
+    group.appendChild(creditsText);
     container.appendChild(group);
   }
 
@@ -60,9 +53,7 @@ const UserDetails = (user: Profile) => {
     const addon = document.createElement("span");
     addon.className =
       "flex mt-6 px-4 py-2 justify-center items-center bg-[hsl(var(--chart-1))] text-white hover:brightness-90 rounded-lg shadow-sm hover:shadow-lg transition-shadow transition-colors cursor-pointer";
-    addon.appendChild(
-      createText("Save details", "text-muted-foreground text-center text-md")
-    );
+    addon.appendChild(createText("Save details", "text-center text-md"));
     group.appendChild(addon);
     container.appendChild(group);
   }

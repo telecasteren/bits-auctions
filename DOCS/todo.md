@@ -11,6 +11,7 @@
 - Auth: login, logout, authentication
   - FIX VALIDATION BUGS: live password and email check prior to signup + fail signup if invalid
 - Write tests for essential logic
+- Centralise branding and styles
 
 ## PAGES
 
