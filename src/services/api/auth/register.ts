@@ -3,7 +3,7 @@ import { authFetch } from "@/services/api/auth/config/auth-fetch";
 export const register = async (
   name: string,
   email: string,
-  password: string
+  password: string,
 ) => {
   const BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const AUTH = import.meta.env.VITE_API_AUTH;

@@ -3,7 +3,7 @@ import { BASE_URL, LISTINGS } from "@/services/api/auth/config/constants";
 
 export const searchListings = async (query: string) => {
   const response = await authFetch(
-    `${BASE_URL}${LISTINGS}/search?q=${query}&_seller=true&_bids=true`
+    `${BASE_URL}${LISTINGS}/search?q=${query}&_seller=true&_bids=true`,
   );
 
   if (!response.ok) {

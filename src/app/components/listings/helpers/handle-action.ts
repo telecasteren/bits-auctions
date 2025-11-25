@@ -25,7 +25,7 @@ const handleAction = (task, actionType) => {
 
     // Update all tables again to remove loading state
     const updatedTables = document.querySelectorAll(
-      ".rounded-lg.border.bg-card"
+      ".rounded-lg.border.bg-card",
     );
     updatedTables.forEach((tableContainer) => {
       const rows = tableContainer.querySelectorAll("tbody tr");

@@ -44,7 +44,7 @@ const renderContent = () => {
       void content.offsetWidth;
       content.classList.remove("fade-out");
     },
-    { once: true }
+    { once: true },
   );
 };
 

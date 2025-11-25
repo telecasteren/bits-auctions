@@ -7,7 +7,7 @@ import {
 
 export const fetchAllListings = async (limit = PER_PAGE, page = 1) => {
   const response = await authFetch(
-    `${BASE_URL}${LISTINGS}?_seller=true&_bids=true&limit=${limit}&page=${page}`
+    `${BASE_URL}${LISTINGS}?_seller=true&_bids=true&limit=${limit}&page=${page}`,
   );
 
   if (!response.ok) {

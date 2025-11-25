@@ -3,7 +3,12 @@ import { authFetch } from "@/services/api/auth/config/auth-fetch";
 
 export const updateProfile = async (
   user: string,
-  newData: Partial<{ name: string; email: string; bio: string; avatar: string }>
+  newData: Partial<{
+    name: string;
+    email: string;
+    bio: string;
+    avatar: string;
+  }>,
 ) => {
   try {
     const response = await authFetch(`${BASE_URL}${USERS}/${user}`, {

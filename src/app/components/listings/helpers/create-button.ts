@@ -3,7 +3,7 @@ const createButton = (
   tooltip: string,
   onClick: (() => void) | null = null,
   disabled = false,
-  variant = "outline"
+  variant = "outline",
 ) => {
   const button = document.createElement("button");
   const baseClasses =

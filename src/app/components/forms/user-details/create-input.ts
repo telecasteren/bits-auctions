@@ -1,6 +1,6 @@
 export const createInput = (
   placeholder: string,
-  extraClass?: string
+  extraClass?: string,
 ): HTMLInputElement => {
   const input = document.createElement("input");
   input.type = "text";

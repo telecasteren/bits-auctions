@@ -11,16 +11,16 @@ export const editProfile = (user: Profile) => {
     e.preventDefault();
 
     const usernameInput = document.getElementById(
-      "username-input"
+      "username-input",
     ) as HTMLInputElement | null;
     const bioInput = document.getElementById(
-      "user-bio-textarea"
+      "user-bio-textarea",
     ) as HTMLTextAreaElement | null;
     const emailInput = document.getElementById(
-      "email-input"
+      "email-input",
     ) as HTMLInputElement | null;
     const avatarInput = document.getElementById(
-      "avatar-url-input"
+      "avatar-url-input",
     ) as HTMLInputElement | null;
 
     const newData: Partial<{

@@ -57,7 +57,7 @@ const renderTaskRow = (task) => {
       startPending ? icons.loader : icons.play,
       "Start",
       () => handleAction(task, "start"),
-      busy
+      busy,
     );
     actionsDiv.appendChild(startButton);
   }
@@ -68,7 +68,7 @@ const renderTaskRow = (task) => {
       pausePending ? icons.loader : icons.pause,
       "Pause",
       () => handleAction(task, "pause"),
-      busy
+      busy,
     );
     actionsDiv.appendChild(pauseButton);
 
@@ -76,7 +76,7 @@ const renderTaskRow = (task) => {
       completePending ? icons.loader : icons.check,
       "Complete",
       () => handleAction(task, "complete"),
-      busy
+      busy,
     );
     actionsDiv.appendChild(completeButton);
   }
@@ -85,7 +85,7 @@ const renderTaskRow = (task) => {
     icons.file,
     "View Details",
     () => handleAction(task, "view"),
-    busy
+    busy,
   );
 
   actionsDiv.appendChild(viewButton);

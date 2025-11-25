@@ -10,10 +10,10 @@ export const getAuthInputs = (isSignup = false): AuthInputs => {
     ? (document.getElementById("username") as HTMLInputElement | null)
     : null;
   const emailInput = document.getElementById(
-    "email"
+    "email",
   ) as HTMLInputElement | null;
   const passwordInput = document.getElementById(
-    "password"
+    "password",
   ) as HTMLInputElement | null;
   const confirmPassInput = isSignup
     ? (document.getElementById("confirm-password") as HTMLInputElement | null)

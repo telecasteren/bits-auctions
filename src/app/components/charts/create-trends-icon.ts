@@ -12,14 +12,14 @@ const createTrendingUpIcon = () => {
 
   const polyline = document.createElementNS(
     "http://www.w3.org/2000/svg",
-    "polyline"
+    "polyline",
   );
   polyline.setAttribute("points", "22,7 13.5,15.5 8.5,10.5 2,17");
   svg.appendChild(polyline);
 
   const polyline2 = document.createElementNS(
     "http://www.w3.org/2000/svg",
-    "polyline"
+    "polyline",
   );
   polyline2.setAttribute("points", "16,7 22,7 22,13");
   svg.appendChild(polyline2);
