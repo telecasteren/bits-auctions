@@ -1,8 +1,5 @@
 import { spinner } from "@/app/components/loaders/spinner";
-import {
-  userMessage,
-  clearUserMessage,
-} from "@/services/helpers/user-messages";
+import { userMessage, clearUserMessage } from "@/app/ui/utils/user-messages";
 import { AuthForm } from "@/app/components/forms/auth-form";
 import { AuthenticateUser } from "./authenticate-user";
 

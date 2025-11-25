@@ -4,7 +4,7 @@
   }
 
   .card {
-    @apply rounded-[calc(var(--radius)-2px)] border border-[--border] bg-[hsl(var(--card))] text-[hsl(var(--card-foreground))] shadow-md;
+    @apply rounded-[calc(var(--radius)-2px)] border border-[--border] text-[hsl(var(--card-foreground))] shadow-md;
   }
 
   .card-header {

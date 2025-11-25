@@ -1,4 +1,4 @@
-import { displayFormErrors } from "@/services/helpers/auth-form-errors";
+import { displayFormErrors } from "@/app/ui/utils/auth-form-errors.js";
 import { login } from "@/services/api/auth/login";
 import { register } from "@/services/api/auth/register";
 import { getAuthInputs } from "./get-auth-inputs.js";

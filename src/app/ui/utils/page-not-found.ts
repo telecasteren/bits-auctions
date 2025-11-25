@@ -6,7 +6,7 @@ const PageNotFound = () => {
     "flex flex-col items-center justify-center h-full py-10";
 
   const header = document.createElement("h1");
-  header.className = "text-4xl font-bold mb-4";
+  header.className = "text-4xl font-bold mb-4 text-[hsl(var(--accent-strong))]";
   header.textContent = "404 - Page Not Found";
 
   const description = document.createElement("p");

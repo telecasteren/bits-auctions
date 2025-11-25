@@ -7,7 +7,7 @@ export const logOutUser = () => {
   logOutButton.addEventListener("click", () => {
     removeKey("token");
     removeKey("user");
-    window.location.pathname = "/listings";
+    window.location.pathname = "/auth";
   });
 
   return logOutButton;

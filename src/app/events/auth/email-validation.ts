@@ -1,7 +1,7 @@
 import {
   displayFormErrors,
   clearFormErrors,
-} from "@/services/helpers/auth-form-errors";
+} from "@/app/ui/utils/auth-form-errors";
 import { getAuthInputs } from "@/app/events/auth/get-auth-inputs";
 
 export const emailValidation = () => {

@@ -1,7 +1,5 @@
 const EmptyListing = () => {
   const container = document.createElement("div");
-  // container.className =
-  //   "flex flex-col items-center justify-center py-16 px-4 text-center";
   container.className =
     "flex flex-col items-center justify-center px-4 text-center";
 
@@ -57,7 +55,7 @@ const EmptyListing = () => {
 
   const createButton = document.createElement("button");
   createButton.className =
-    "inline-flex items-center bg-[hsl(var(--accent-strong))] text-white hover:shadow-lg justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 cursor-pointer";
+    "inline-flex items-center bg-[hsl(var(--accent-strong))] text-white hover:shadow-lg justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 hover:brightness-90 h-10 px-4 py-2 cursor-pointer";
   createButton.textContent = "Create Listing";
 
   content.appendChild(createButton);

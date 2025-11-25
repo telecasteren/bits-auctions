@@ -1,6 +1,6 @@
 import { isAuthenticated, brandName } from "@/utils/config/constants";
 import { AuthenticateUser } from "@/app/events/auth/authenticate-user";
-import Account from "@/app/ui/features/Account";
+import Account from "@/app/ui/features/account/Account";
 import { AuthForm } from "@/app/components/forms/auth-form";
 
 const renderAuthForm = async (isSignup = false) => {
