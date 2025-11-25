@@ -2,6 +2,7 @@ import Dashboard from "@/app/ui/features/Dashboard";
 import Listings from "@/app/ui/features/Listings";
 import Account from "@/app/ui/features/Account";
 import renderAuthForm from "./features/render-auth-form";
+import PageNotFound from "@/app/ui/features/PageNotFound";
 import type { Profile } from "@/services/types/profile";
 import { loadKey } from "@/utils/storage/storage";
 
@@ -32,6 +33,9 @@ const renderContent = () => {
           break;
         case "/auth":
           renderAuthForm();
+          break;
+        case "/404.html":
+          PageNotFound();
           break;
         default:
           break;
