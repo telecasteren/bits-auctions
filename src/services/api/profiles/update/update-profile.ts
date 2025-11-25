@@ -1,11 +1,14 @@
 import { BASE_URL, USERS } from "@/services/api/auth/config/constants";
 import { authFetch } from "@/services/api/auth/config/auth-fetch";
 
-export const updateBio = async (user: string, newBio: string) => {
+export const updateProfile = async (
+  user: string,
+  newData: Partial<{ name: string; email: string; bio: string; avatar: string }>
+) => {
   try {
     const response = await authFetch(`${BASE_URL}${USERS}/${user}`, {
       method: "PUT",
-      body: JSON.stringify({ bio: newBio }),
+      body: JSON.stringify(newData),
     });
 
     if (!response.ok) {
@@ -19,8 +22,6 @@ export const updateBio = async (user: string, newBio: string) => {
     const result = await response.json();
     return result;
   } catch (error) {
-    const errorMessage = error instanceof Error ? error.message : String(error);
-    console.error("Error updating user bio:", errorMessage);
-    throw new Error("Updating profile bio failed.");
+    throw new Error("Updating profile failed.", { cause: error });
   }
 };

@@ -33,7 +33,9 @@ const UserDetails = (user: Profile) => {
   {
     const group = document.createElement("div");
     group.className = "flex w-full";
-    group.appendChild(createInput(user.name || "Enter your username"));
+    const input = createInput(user.name || "Enter your username");
+    input.id = "username-input";
+    group.appendChild(input);
     container.appendChild(group);
   }
 
@@ -41,16 +43,22 @@ const UserDetails = (user: Profile) => {
   {
     const group = document.createElement("div");
     group.className = "flex w-full";
-    group.appendChild(createInput(user.email || "Enter your email"));
+    const input = createInput(user.email || "Enter your email");
+    input.id = "user-email-input";
+    group.appendChild(input);
     container.appendChild(group);
   }
 
-  // USER BIO
+  // USER BIO + SAVE BUTTON
   {
     const group = document.createElement("div");
     group.className = "flex flex-col w-full";
-    group.appendChild(createTextarea(user.bio || "Enter your bio"));
+    const bioTextArea = createTextarea(user.bio || "Enter your bio");
+    bioTextArea.id = "user-bio-textarea";
+    group.appendChild(bioTextArea);
+
     const addon = document.createElement("span");
+    addon.id = "save-btn";
     addon.className =
       "flex mt-6 px-4 py-2 justify-center items-center bg-[hsl(var(--chart-1))] text-white hover:brightness-90 rounded-lg shadow-sm hover:shadow-lg transition-shadow transition-colors cursor-pointer";
     addon.appendChild(createText("Save details", "text-center text-md"));

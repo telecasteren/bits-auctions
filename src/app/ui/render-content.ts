@@ -1,7 +1,7 @@
 import Dashboard from "@/app/ui/features/Dashboard";
 import Listings from "@/app/ui/features/Listings";
 import Account from "@/app/ui/features/account/Account";
-import renderAuthForm from "./features/render-auth-form";
+import renderAuthForm from "./features/auth/render-auth-form";
 import PageNotFound from "@/app/ui/utils/page-not-found";
 import type { Profile } from "@/services/types/profile";
 import { loadKey } from "@/utils/storage/storage";

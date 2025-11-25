@@ -10,7 +10,7 @@ const navigation = () => {
   const username = user.name || "";
 
   liItems.forEach((li) => {
-    li.addEventListener("click", (event) => {
+    li.addEventListener("click", (event: Event) => {
       const target = event.target as HTMLElement | null;
       const selectedItem = target?.id;
 
