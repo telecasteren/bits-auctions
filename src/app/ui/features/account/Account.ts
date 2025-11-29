@@ -5,7 +5,8 @@ import { isAuthenticated } from "@/utils/config/constants";
 import { fetchSingleProfile } from "@/services/api/profiles/fetch-single-profile";
 import { editProfile } from "@/app/events/profile/edit-profile";
 import Header from "@/app/ui/features/account/header";
-import AccountDetails from "@/app/ui/features/account/details";
+import AccountListings from "@/app/ui/features/account/account-listings";
+import { logOutUser } from "@/services/helpers/logout-user";
 
 const Account = async () => {
   const container = document.querySelector("#content");
@@ -24,10 +25,14 @@ const Account = async () => {
   container.innerHTML = "";
 
   const header = await Header(user);
-  const accountDetails = await AccountDetails(user);
+  const accountListings = await AccountListings(user);
+
+  const logOutButton = logOutUser();
+  logOutButton.classList.add("justify-self-end");
 
   container.appendChild(header);
-  container.appendChild(accountDetails);
+  container.appendChild(accountListings);
+  container.appendChild(logOutButton);
 
   // editAvatarEvent(user);
   editProfile(user);

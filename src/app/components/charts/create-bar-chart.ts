@@ -33,7 +33,7 @@ const createBarChart = (data) => {
     z-index: 1;
   `;
 
-  data.forEach((item, index) => {
+  data.forEach((item) => {
     const barContainer = document.createElement("div");
     barContainer.style.cssText = `
       display: flex;

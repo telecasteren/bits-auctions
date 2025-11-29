@@ -1,13 +1,16 @@
 import type { Profile } from "@/services/types/profile";
 import UserDetails from "@/app/components/forms/user-details/user-details";
+import { previewProfile } from "@/services/helpers/preview-profile";
 
 const Header = async (user: Profile) => {
   const container = document.createElement("div");
   const username = user.name || "";
-  const userAvatar = user.avatar.url || "/no-avatar-img.jpg";
+  const userAvatar =
+    user.avatar.url ||
+    user.name.charAt(0).toUpperCase() ||
+    "/no-avatar-img.jpg";
   const userAvatarAlt = `${user.avatar.alt || `${username}'s avatar`}`;
   const userEmail = user.email || "";
-  const userBio = `${user.bio || "No bio available"}`;
 
   const h1 = document.createElement("h1");
   h1.id = "page-title";
@@ -32,11 +35,20 @@ const Header = async (user: Profile) => {
 
   const info = document.createElement("p");
   info.id = "account-info";
-  info.innerHTML = `<b>Email:</b> ${userEmail}`;
+  info.innerHTML = userEmail;
 
-  const bio = document.createElement("p");
-  bio.id = "account-bio";
-  bio.innerHTML = `<b>Bio:</b> ${userBio}`;
+  const verifiedContainer = document.createElement("div");
+  verifiedContainer.id = "account-verified-container";
+  verifiedContainer.className = "flex flex-row items-center gap-2";
+
+  const verifiedBadge = document.createElement("p");
+  verifiedBadge.id = "account-verified-badge";
+  verifiedBadge.innerHTML = `<span style="color:#096C3B;">&#10004;</span>`; // Use proper checkmark icon
+
+  const verifiedText = document.createElement("p");
+  verifiedText.id = "account-verified-text";
+  verifiedText.className = "font-bold";
+  verifiedText.textContent = "Verified user";
 
   const details = document.createElement("div");
   details.className = "w-full justify-self-center transition-all duration-300";
@@ -44,24 +56,27 @@ const Header = async (user: Profile) => {
   const userDetailsForm = UserDetails(user);
   userDetailsForm.classList.add("hidden");
 
-  const settings = document.createElement("a");
-  settings.href = "#";
-  settings.className =
+  const profile = document.createElement("a");
+  profile.href = "#";
+  profile.className =
     "justify-self-center lg:justify-self-start text-md text-[hsl(var(--accent-strong))] hover:underline mb-4";
-  settings.textContent = "Settings";
+  profile.textContent = "Profile";
 
-  settings.addEventListener("click", (e) => {
+  profile.addEventListener("click", async (e) => {
     e.preventDefault();
-    details.scrollIntoView({ behavior: "smooth" });
-    userDetailsForm.classList.remove("hidden");
+    previewProfile(user);
   });
 
   container.appendChild(h1);
   container.appendChild(p);
   infoWrapper.appendChild(avatar);
   infoBioWrapper.appendChild(info);
-  infoBioWrapper.appendChild(bio);
-  infoBioWrapper.appendChild(settings);
+
+  verifiedContainer.appendChild(verifiedText);
+  verifiedContainer.appendChild(verifiedBadge);
+  infoBioWrapper.appendChild(verifiedContainer);
+
+  infoBioWrapper.appendChild(profile);
   infoWrapper.appendChild(infoBioWrapper);
 
   container.appendChild(infoWrapper);

@@ -1,6 +1,7 @@
-import Dashboard from "@/app/ui/features/Dashboard";
-import Listings from "@/app/ui/features/Listings";
-import Account from "@/app/ui/features/account/Account";
+import Dashboard from "@/app/ui/features/dashboard";
+import Listings from "@/app/ui/features/listings";
+import Account from "@/app/ui/features/account/account";
+import Landing from "@/app/ui/features/landing";
 import renderAuthForm from "./features/auth/render-auth-form";
 import PageNotFound from "@/app/ui/utils/page-not-found";
 import type { Profile } from "@/services/types/profile";
@@ -23,6 +24,9 @@ const renderContent = () => {
 
       switch (window.location.pathname) {
         case "/":
+          Landing();
+          break;
+        case "/overview":
           Dashboard();
           break;
         case "/listings":
@@ -31,8 +35,11 @@ const renderContent = () => {
         case `/account/${username}`:
           Account();
           break;
-        case "/auth":
-          renderAuthForm();
+        case "/login":
+          renderAuthForm(false);
+          break;
+        case "/signup":
+          renderAuthForm(true);
           break;
         case "/404.html":
           PageNotFound();

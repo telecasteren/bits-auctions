@@ -15,10 +15,8 @@ export const AuthenticateUser = async (isSignup = false) => {
     return;
   }
 
-  console.log("AuthenticateUser: attaching submit handler to form", form);
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
-    console.log("AuthenticateUser: submit event triggered");
     await handleAuth(isSignup);
   });
 };

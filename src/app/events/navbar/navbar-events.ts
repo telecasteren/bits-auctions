@@ -15,8 +15,11 @@ const navigation = () => {
       const selectedItem = target?.id;
 
       switch (selectedItem) {
-        case "nav-overview":
+        case "nav-landing":
           window.location.pathname = "/";
+          break;
+        case "nav-overview":
+          window.location.pathname = "/overview";
           break;
         case "nav-listings":
           window.location.pathname = "/listings";
@@ -25,7 +28,10 @@ const navigation = () => {
           window.location.pathname = `/account/${username}`;
           break;
         case "nav-login":
-          window.location.pathname = "/auth";
+          window.location.pathname = "/login";
+          break;
+        case "nav-signup":
+          window.location.pathname = "/signup";
           break;
         default:
           break;

@@ -1,10 +1,9 @@
 import type { Profile } from "@/services/types/profile";
 import ListingTable from "@/app/components/listings/listing-table";
 import EmptyListing from "@/app/components/listings/empty-listing";
-import { logOutUser } from "@/services/helpers/logout-user";
 import { fetchListingsByProfile } from "@/services/api/listings/fetch/fetch-profile-listings";
 
-const AccountDetails = async (user: Profile) => {
+const AccountListings = async (user: Profile) => {
   const container = document.createElement("div");
   const username = user.name || "";
 
@@ -12,9 +11,6 @@ const AccountDetails = async (user: Profile) => {
   accountGrid.className = "grid grid-cols-1 gap-6 mt-20 mb-20";
 
   const table = ListingTable();
-
-  const logOutButton = logOutUser();
-  logOutButton.classList.add("justify-self-end");
 
   const listings = await fetchListingsByProfile(username);
   const totalListings = listings.length || 0;
@@ -27,9 +23,8 @@ const AccountDetails = async (user: Profile) => {
   }
 
   container.appendChild(accountGrid);
-  container.appendChild(logOutButton);
 
   return container;
 };
 
-export default AccountDetails;
+export default AccountListings;

@@ -17,7 +17,10 @@ export const setNavItemActive = () => {
         if (path.startsWith("/account")) li.classList.add("active");
         break;
       case "nav-login":
-        if (path.startsWith("/auth")) li.classList.add("active");
+        if (path.startsWith("/login")) li.classList.add("active");
+        break;
+      case "nav-signup":
+        if (path.startsWith("/signup")) li.classList.add("active");
         break;
       default:
         break;

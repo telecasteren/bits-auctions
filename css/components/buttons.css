@@ -1,0 +1,25 @@
+@layer components {
+  .btn {
+    @apply w-40 h-10 px-4 py-2 justify-center whitespace-nowrap rounded-sm text-sm font-medium transition-all duration-200 ease-in-out shadow-[2px_5px_0_0_black] cursor-pointer;
+  }
+
+  .btn:hover {
+    @apply scale-95 brightness-105 shadow-none border-[hsl(var(--muted-foreground))];
+  }
+
+  .btn-primary {
+    @apply bg-[hsl(var(--accent-strong))] text-white;
+  }
+
+  .btn-secondary {
+    @apply bg-[hsl(var(--background))] text-black border border-black;
+  }
+
+  .btn-tertiary {
+    @apply bg-[#7aed07e7] text-green-950 hover:text-[#559f0be7] brightness-90 hover:brightness-100;
+  }
+
+  .btn-danger {
+    @apply bg-red-600 hover:bg-red-700 hover:brightness-90 text-white;
+  }
+}

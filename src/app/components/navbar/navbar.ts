@@ -5,29 +5,34 @@ const navbar = () => {
   const nav = document.createElement("nav");
   nav.id = "navbar";
 
-  const logoDiv = document.createElement("div");
-  logoDiv.id = "nav-logo-container";
-  nav.appendChild(logoDiv);
+  const logoLink = document.createElement("a");
+  logoLink.href = "/";
+  logoLink.id = "nav-logo-container";
+  nav.appendChild(logoLink);
 
   const navLogo = document.createElement("div");
   navLogo.id = "nav-logo";
+  navLogo.className = "lemon-font";
   navLogo.textContent = "Bits";
-  logoDiv.appendChild(navLogo);
+  logoLink.appendChild(navLogo);
 
   const logoImg = document.createElement("img");
   logoImg.src = "/assets/site-logo.png";
   logoImg.alt = "Bits Logo";
   logoImg.id = "nav-logo-img";
-  logoDiv.appendChild(logoImg);
+  logoLink.appendChild(logoImg);
 
   const navList = document.createElement("ul");
 
   const navItems = [
-    "Overview",
+    isAuthenticated ? "Overview" : null,
     "Listings",
     isAuthenticated ? "Account" : "Login",
+    !isAuthenticated ? "Signup" : null,
   ];
+
   navItems.forEach((item) => {
+    if (!item) return;
     const li = document.createElement("li");
     li.id = `nav-${item.toLowerCase()}`;
     li.textContent = item;

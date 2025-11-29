@@ -1,8 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("../assets/Typography/Lemon/Web-TT/Lemon-Black.css");
+@import url("../assets/Typography/Lemon/Web-TT/Lemon-Bold.css");
+@import url("../assets/Typography/Lemon/Web-TT/Lemon-BoldWide.css");
+@import url("../assets/Typography/Lemon/Web-TT/Lemon-ExtraBold.css");
 @import "tailwindcss";
 @import "./shadcn/components/chart.css";
 @import "./shadcn/variables.css";
-@import "./navbar.css";
+@import "./components/navbar.css";
+@import "./components/buttons.css";
 
 @layer base {
   body {
@@ -11,6 +16,11 @@
 
   main {
     @apply mt-20;
+  }
+
+  ::selection {
+    background: #7aed07e7;
+    color: #beff7ce7;
   }
 
   #content {
@@ -30,6 +40,31 @@
   h5,
   h6 {
     font-family: "Montserrat", sans-serif;
+  }
+
+  .lemon-font {
+    font-family: "Lemon", "Montserrat", sans-serif;
+    font-weight: 400;
+  }
+
+  .lemon-bold {
+    font-family: "Lemon", "Montserrat", sans-serif;
+    font-weight: 700;
+  }
+
+  .lemon-extrabold {
+    font-family: "Lemon ExtraBold", "Lemon", "Montserrat", sans-serif;
+    font-weight: 800;
+  }
+
+  .lemon-wide {
+    font-family: "Lemon Wide", "Lemon", "Montserrat", sans-serif;
+    font-weight: 700;
+  }
+
+  .lemon-font-alt {
+    font-family: "Lemon", "Montserrat", sans-serif;
+    font-feature-settings: "salt" 1;
   }
 }
 

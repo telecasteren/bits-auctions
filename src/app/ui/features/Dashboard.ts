@@ -16,11 +16,11 @@ const Dashboard = async () => {
 
   const h1 = document.createElement("h1");
   h1.id = "page-title";
-  h1.textContent = "Bits Auction-house";
+  h1.textContent = "Bits Auctions";
 
   const p = document.createElement("p");
   p.id = "page-tagline";
-  p.textContent = "Monitor your auctions and bids in real-time.";
+  p.textContent = "Monitor your listings and bids in real-time.";
 
   container.appendChild(h1);
   container.appendChild(p);
