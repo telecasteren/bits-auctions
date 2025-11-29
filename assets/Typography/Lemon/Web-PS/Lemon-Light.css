@@ -1,0 +1,10 @@
+/* Webfont: Lemon-Light */
+@font-face {
+  font-family: "Lemon";
+  src:
+    url("Lemon-Light.woff2") format("woff2"),
+    /* Modern Browsers */ url("Lemon-Light.otf") format("opentype"); /* Safari, Android, iOS */
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}

@@ -1,0 +1,10 @@
+/* Webfont: Lemon-MediumWide */
+@font-face {
+  font-family: "LemonWide";
+  src:
+    url("Lemon-MediumWide.woff2") format("woff2"),
+    /* Modern Browsers */ url("Lemon-MediumWide.otf") format("opentype"); /* Safari, Android, iOS */
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
