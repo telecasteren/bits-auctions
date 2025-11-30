@@ -1,9 +1,11 @@
-export const isDark =
-  window.matchMedia &&
-  window.matchMedia("(prefers-color-scheme: dark)").matches;
+export const setThemeListener = (onChange: (isDark: boolean) => void) => {
+  const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+  const updateTheme = () => onChange(mediaQuery.matches);
 
-if (isDark) {
-  document.body.classList.add("dark");
-} else {
-  document.body.classList.remove("dark");
-}
+  mediaQuery.addEventListener("change", updateTheme);
+  updateTheme();
+
+  return () => mediaQuery.removeEventListener("change", updateTheme);
+};
+
+export const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
