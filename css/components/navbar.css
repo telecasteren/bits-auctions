@@ -1,6 +1,6 @@
 @layer components {
   #navbar {
-    @apply fixed flex flex-wrap justify-between items-center w-full top-0 left-0 z-1000 bg-[rgba(250,255,252,0.8)] backdrop-blur border-b border-b-[rgba(255,255,255,0.2)];
+    @apply fixed flex flex-wrap justify-between items-center w-full top-0 left-0 z-1000 bg-[var(--navbar-background)] backdrop-blur border-b border-b-[var(--navbar-border)];
   }
 
   #nav-logo-container {
@@ -20,15 +20,15 @@
   }
 
   #navbar ul li {
-    @apply transition duration-400;
+    @apply transition duration-400 text-[var(--text-foreground)];
   }
 
   #navbar ul li:hover {
-    @apply cursor-pointer text-[hsl(var(--accent-strong))] border-b-2 border-[hsl(var(--accent-strong))];
+    @apply cursor-pointer text-[var(--accent-strong)] border-b-2 border-[var(--accent-strong)];
   }
 
   #navbar ul li.active {
-    @apply text-[hsl(var(--accent-strong))] border-b-2 border-[hsl(var(--accent-strong))] no-underline;
+    @apply text-[var(--accent-strong)] border-b-2 border-[var(--accent-strong)] no-underline;
   }
 
   @media (max-width: 450px) {

@@ -18,7 +18,7 @@ const ViewProfile = async (user: Profile) => {
   backBtn.id = "back-button";
   backBtn.textContent = "← Back";
   backBtn.className =
-    "mb-6 text-[hsl(var(--accent-strong))] hover:underline cursor-pointer justify-self-start";
+    "mb-6 text-[var(--accent-strong)] hover:underline cursor-pointer justify-self-start";
   backBtn.addEventListener("click", () => {
     window.location.pathname = `/account/${username}`;
   });
@@ -60,7 +60,7 @@ const ViewProfile = async (user: Profile) => {
 
   const verifiedBadge = document.createElement("p");
   verifiedBadge.id = "account-verified-badge";
-  verifiedBadge.innerHTML = `<span style="color:#096C3B;">&#10004;</span>`; // Use proper checkmark icon
+  verifiedBadge.innerHTML = `<span style="color:var(--selector-background);">&#10004;</span>`; // Use proper checkmark icon
 
   const bio = document.createElement("p");
   bio.id = "account-bio";
@@ -68,6 +68,11 @@ const ViewProfile = async (user: Profile) => {
 
   const hr = document.createElement("hr");
   hr.className = "my-4 border-gray-300";
+
+  const listingsContainer = document.createElement("div");
+  listingsContainer.id = "account-listings-container";
+  listingsContainer.className = "mt-6";
+  listingsContainer.innerHTML = `<h2 class="text-xl font-bold mb-4">Listings</h2><p>The listings to be displayed here.</p>`;
 
   container.appendChild(backBtn);
   container.appendChild(wrapper);
@@ -81,6 +86,7 @@ const ViewProfile = async (user: Profile) => {
   infoWrapper.appendChild(infoBioWrapper);
   container.appendChild(infoWrapper);
   container.appendChild(hr);
+  container.appendChild(listingsContainer);
 
   return container;
 };

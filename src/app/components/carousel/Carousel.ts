@@ -4,7 +4,7 @@ const Carousel = () => {
   const carousel = document.createElement("div");
   carousel.id = "carousel-placeholder";
   carousel.className =
-    "mt-20 w-full border-t border-b border-t-12 border-b-12 border-[#7aed07e7] rounded-sm";
+    "mt-20 w-full border-t border-b border-t-12 border-b-12 border-[var(--selector-background)] rounded-sm";
 
   const carouselImgs = document.createElement("div");
   carouselImgs.className = "flex flex-row gap-4 overflow-x-auto py-2";
@@ -13,7 +13,7 @@ const Carousel = () => {
   text.href = "/listings";
   text.textContent = "See all listings";
   text.className =
-    "flex justify-end py-2 text-md font-semibold text-black hover:underline cursor-pointer";
+    "flex justify-self-end justify-end w-40 py-2 text-md font-semibold text-black hover:underline cursor-pointer";
 
   for (let i = 1; i <= 10; i++) {
     const img = document.createElement("div");

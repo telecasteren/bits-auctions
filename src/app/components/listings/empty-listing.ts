@@ -23,13 +23,13 @@ const EmptyListing = () => {
 
   const iconPath1 = document.createElementNS(
     "http://www.w3.org/2000/svg",
-    "path",
+    "path"
   );
   iconPath1.setAttribute("d", "M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z");
 
   const iconPath2 = document.createElementNS(
     "http://www.w3.org/2000/svg",
-    "path",
+    "path"
   );
   iconPath2.setAttribute("d", "M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z");
 
@@ -56,13 +56,14 @@ const EmptyListing = () => {
   const createButton = document.createElement("button");
   // createButton.className =
   //   "inline-flex items-center bg-[hsl(var(--accent-strong))] text-white hover:shadow-lg justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 hover:brightness-90 h-10 px-4 py-2 cursor-pointer";
-  createButton.className = "btn bg-[hsl(var(--accent-strong))] text-white";
+  createButton.className = "btn bg-[var(--accent-strong)] text-white";
   createButton.textContent = "Create Listing";
 
   content.appendChild(createButton);
 
   // Learn more - FAQ?
   const learnMoreLink = document.createElement("a");
+  learnMoreLink.id = "learn-more-link";
   learnMoreLink.href = "/404.html";
   learnMoreLink.className =
     "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 text-primary underline-offset-4 hover:underline h-9 px-4 py-2 text-muted-foreground";
@@ -72,7 +73,7 @@ const EmptyListing = () => {
 
   const arrowIcon = document.createElementNS(
     "http://www.w3.org/2000/svg",
-    "svg",
+    "svg"
   );
   arrowIcon.setAttribute("width", "16");
   arrowIcon.setAttribute("height", "16");
@@ -86,13 +87,13 @@ const EmptyListing = () => {
 
   const arrowPath1 = document.createElementNS(
     "http://www.w3.org/2000/svg",
-    "path",
+    "path"
   );
   arrowPath1.setAttribute("d", "M7 17L17 7");
 
   const arrowPath2 = document.createElementNS(
     "http://www.w3.org/2000/svg",
-    "path",
+    "path"
   );
   arrowPath2.setAttribute("d", "M7 7h10v10");
 

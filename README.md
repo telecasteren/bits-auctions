@@ -102,6 +102,14 @@ npx playwright install
 
 ### Environment variables
 
+See the [.env.example](.env.example) file for how to use.
+
+### CSS Variables
+
+**These file centralise the themes:**<br/>
+[App](css/variables.css)<br/>
+[shadcn components](css/shadcn/variables.css)
+
 ### Resources
 
 [void element.offsetWidth](https://stackoverflow.com/questions/60686489/what-purpose-does-void-element-offsetwidth-serve)

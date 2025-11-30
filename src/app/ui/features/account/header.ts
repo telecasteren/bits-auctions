@@ -43,7 +43,7 @@ const Header = async (user: Profile) => {
 
   const verifiedBadge = document.createElement("p");
   verifiedBadge.id = "account-verified-badge";
-  verifiedBadge.innerHTML = `<span style="color:#096C3B;">&#10004;</span>`; // Use proper checkmark icon
+  verifiedBadge.innerHTML = `<span style="color:var(--selector-background);">&#10004;</span>`; // Use proper checkmark icon
 
   const verifiedText = document.createElement("p");
   verifiedText.id = "account-verified-text";
@@ -59,7 +59,7 @@ const Header = async (user: Profile) => {
   const profile = document.createElement("a");
   profile.href = "#";
   profile.className =
-    "justify-self-center lg:justify-self-start text-md text-[hsl(var(--accent-strong))] hover:underline mb-4";
+    "justify-self-center lg:justify-self-start text-md text-[var(--accent-strong)] hover:underline mb-4";
   profile.textContent = "Profile";
 
   profile.addEventListener("click", async (e) => {
