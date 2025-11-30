@@ -26,12 +26,6 @@
 
   #content {
     @apply max-w-[1200px] mx-auto;
-    transition: opacity 0.2s;
-    opacity: 1;
-  }
-
-  #content.fade-out {
-    opacity: 0;
   }
 
   h1,
