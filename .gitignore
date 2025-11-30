@@ -6,3 +6,4 @@ dist/
 .eslintcache
 playwright-report/
 test/results/
+test-results/

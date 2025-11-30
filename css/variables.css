@@ -1,6 +1,30 @@
-/* :root {
-  --background: 210, 20%, 95%;
-  --foreground: 210, 10%, 20%;
-  --muted-foreground: 210, 10%, 40%;
-  --accent-strong: 220, 90%, 56%;
-} */
+:root {
+  --background: #f9fffc;
+  --text-foreground: #0a1626;
+
+  --navbar-background: #fafffccc;
+  --navbar-border: #ffffff33;
+
+  --accent: #f3f8fc;
+  --accent-foreground: #0a1626;
+  --accent-strong: #f25a2b;
+  --selector-background: #7aed07e7;
+  --selector-foreground: #beff7ce7;
+}
+
+.dark {
+  /* --background: #0a0a0a; */
+  --background: #0a1a2a;
+  --text-foreground: #f4f4f4;
+
+  --navbar-background: #0a1a2af8;
+  --navbar-border: #0a1a2ae4;
+
+  --accent-strong: #90a900;
+  /* --accent-strong: #804d00; ------ ORANGE */
+
+  --selector-background: #90a900;
+  --selector-foreground: #daf53f;
+  /* --selector-background: #8b5cf6de;
+  --selector-foreground: #a55df7; ----- PURPLE */
+}
