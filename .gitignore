@@ -5,5 +5,4 @@ dist/
 .vscode/
 .eslintcache
 playwright-report/
-src/utils/tests
 test/results/

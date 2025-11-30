@@ -1,5 +1,6 @@
 import navigation from "@/app/events/navbar/navbar-events";
 import { isAuthenticated } from "@/utils/config/constants";
+import { logoText, logoImg } from "../branding/brand-logo";
 
 const navbar = () => {
   const nav = document.createElement("nav");
@@ -10,17 +11,11 @@ const navbar = () => {
   logoLink.id = "nav-logo-container";
   nav.appendChild(logoLink);
 
-  const navLogo = document.createElement("div");
-  navLogo.id = "nav-logo";
-  navLogo.className = "lemon-font";
-  navLogo.textContent = "Bits";
-  logoLink.appendChild(navLogo);
+  const logoTextElement = logoText(true);
+  logoLink.appendChild(logoTextElement);
 
-  const logoImg = document.createElement("img");
-  logoImg.src = "/assets/site-logo.png";
-  logoImg.alt = "Bits Logo";
-  logoImg.id = "nav-logo-img";
-  logoLink.appendChild(logoImg);
+  const logoImgElement = logoImg();
+  logoLink.appendChild(logoImgElement);
 
   const navList = document.createElement("ul");
 

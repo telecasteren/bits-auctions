@@ -5,7 +5,7 @@ import type { Listing } from "@/services/types/listing";
 const ListingTable = () => {
   const container = document.createElement("div");
   container.className =
-    "mx-auto max-w-6xl overflow-x-auto rounded-lg border bg-card w-[95%]";
+    "mx-auto max-w-6xl overflow-x-auto rounded-lg border bg-card w-full";
 
   const table = document.createElement("table");
   table.className = "w-full caption-bottom text-sm table-fixed";

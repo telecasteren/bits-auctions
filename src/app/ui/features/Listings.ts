@@ -3,7 +3,9 @@ import ListingTable from "@/app/components/listings/listing-table";
 
 const Listings = () => {
   const container = document.querySelector("#content");
+  container?.classList.add("max-w-[1000px]");
   if (!container) return;
+
   container.innerHTML = "";
 
   const h1 = document.createElement("h1");

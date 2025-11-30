@@ -4,7 +4,7 @@ import { getStatusBadge } from "./helpers/get-status-badge";
 const ListingCards = () => {
   const container = document.createElement("div");
   container.className =
-    "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mx-auto max-w-6xl w-[95%]";
+    "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mx-auto max-w-6xl w-full";
 
   tasks.forEach((task) => {
     const card = document.createElement("div");

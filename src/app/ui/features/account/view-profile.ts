@@ -20,7 +20,7 @@ const ViewProfile = async (user: Profile) => {
   backBtn.className =
     "mb-6 text-[hsl(var(--accent-strong))] hover:underline cursor-pointer justify-self-start";
   backBtn.addEventListener("click", () => {
-    window.history.back();
+    window.location.pathname = `/account/${username}`;
   });
 
   const wrapper = document.createElement("div");

@@ -12,6 +12,7 @@
   - FIX VALIDATION BUGS: live password and email check prior to signup + fail signup if invalid
 - Write tests for essential logic
 - Centralise branding and styles
+- BackBtn centralise for reusability with path as param: /account/view-profile.ts
 
 ## PAGES
 

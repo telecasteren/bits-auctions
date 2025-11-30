@@ -1,3 +1,4 @@
+import { logoImg, logoText } from "@/app/components/branding/brand-logo";
 import Carousel from "@/app/components/carousel/Carousel";
 
 const Landing = async () => {
@@ -14,42 +15,38 @@ const Landing = async () => {
 
   const header = document.createElement("header");
 
-  const h1 = document.createElement("h1");
-  h1.className = "lemon-font-alt text-[80px] lg:text-[200px]";
-  h1.textContent = "Bits AuctiOns";
+  const h1 = logoText(false);
+  h1.classList.add("text-[80px]", "md:text-[120px]", "lg:text-[162px]");
 
   const p = document.createElement("p");
   p.id = "page-tagline";
   p.className = "mt-[-6%]";
   p.textContent = "Monitor your listings and bids in real-time.";
 
-  const logo = document.createElement("img");
-  logo.id = "landing-logo";
-  logo.src = "assets/site-logo.png";
-  logo.alt = "Bits Auctions Logo";
-  logo.className = "w-48 mb-6";
+  const logo = logoImg();
+  logo.className = "w-58 mb-6";
 
-  const buttonsWrapper = document.createElement("div");
-  buttonsWrapper.className = "flex flex-row gap-16 mt-25 justify-center";
+  // const buttonsWrapper = document.createElement("div");
+  // buttonsWrapper.className = "flex flex-row gap-16 mt-25 justify-center";
 
-  const listingsBtn = document.createElement("button");
-  listingsBtn.id = "landing-listings-button";
-  listingsBtn.className = "btn btn-secondary";
-  listingsBtn.textContent = "See Listings";
-  buttonsWrapper.appendChild(listingsBtn);
+  // const listingsBtn = document.createElement("button");
+  // listingsBtn.id = "landing-listings-button";
+  // listingsBtn.className = "btn btn-secondary";
+  // listingsBtn.textContent = "See Listings";
+  // buttonsWrapper.appendChild(listingsBtn);
 
-  const loginBtn = document.createElement("button");
-  loginBtn.id = "landing-login-button";
-  loginBtn.className = "btn btn-primary";
-  loginBtn.textContent = "Log in";
-  buttonsWrapper.appendChild(loginBtn);
+  // const loginBtn = document.createElement("button");
+  // loginBtn.id = "landing-login-button";
+  // loginBtn.className = "btn btn-primary";
+  // loginBtn.textContent = "Log in";
+  // buttonsWrapper.appendChild(loginBtn);
 
-  const signupBtn = document.createElement("button");
-  signupBtn.id = "landing-signup-button";
-  signupBtn.className = "btn btn-tertiary";
+  // const signupBtn = document.createElement("button");
+  // signupBtn.id = "landing-signup-button";
+  // signupBtn.className = "btn btn-tertiary";
 
-  signupBtn.textContent = "Create Account";
-  buttonsWrapper.appendChild(signupBtn);
+  // signupBtn.textContent = "Create Account";
+  // buttonsWrapper.appendChild(signupBtn);
 
   const carouselEl = Carousel();
 

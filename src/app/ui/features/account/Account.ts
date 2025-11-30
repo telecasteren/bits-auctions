@@ -10,6 +10,7 @@ import { logOutUser } from "@/services/helpers/logout-user";
 
 const Account = async () => {
   const container = document.querySelector("#content");
+  container?.classList.add("max-w-[1000px]");
   if (!container) return;
 
   if (!isAuthenticated) {
@@ -27,7 +28,7 @@ const Account = async () => {
   const header = await Header(user);
   const accountListings = await AccountListings(user);
 
-  const logOutButton = logOutUser();
+  const logOutButton = logOutUser(false);
   logOutButton.classList.add("justify-self-end");
 
   container.appendChild(header);

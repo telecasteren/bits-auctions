@@ -7,8 +7,11 @@ export const setNavItemActive = () => {
   liItems.forEach((li) => {
     li.classList.remove("active");
     switch (li.id) {
-      case "nav-overview":
+      case "nav-landing":
         if (path === "/") li.classList.add("active");
+        break;
+      case "nav-overview":
+        if (path === "/overview") li.classList.add("active");
         break;
       case "nav-listings":
         if (path.startsWith("/listings")) li.classList.add("active");

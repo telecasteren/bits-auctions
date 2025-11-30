@@ -1,6 +1,6 @@
-import { isAuthenticated, brandName } from "@/utils/config/constants";
+import { isAuthenticated, brandShortName } from "@/utils/config/constants";
 import { AuthenticateUser } from "@/app/events/auth/authenticate-user";
-import Account from "@/app/ui/features/account/Account";
+import Account from "@/app/ui/features/account/account";
 import { AuthForm } from "@/app/components/forms/auth-form";
 
 const renderAuthForm = async (isSignup = false) => {
@@ -17,7 +17,7 @@ const renderAuthForm = async (isSignup = false) => {
 
   const h1 = document.createElement("h1");
   h1.id = "page-title";
-  h1.textContent = `Welcome to ${brandName}`;
+  h1.textContent = `Welcome to ${brandShortName}`;
 
   const p = document.createElement("p");
   p.id = "page-tagline";
