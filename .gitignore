@@ -1,0 +1,9 @@
+node_modules
+dist/
+.env
+.DS_Store
+.vscode/
+.eslintcache
+playwright-report/
+test/results/
+test-results/
