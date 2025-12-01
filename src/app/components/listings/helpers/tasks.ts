@@ -1,3 +1,5 @@
+import placeholderImg from "@/assets/site-logo.png";
+
 export const tasks = [
   {
     id: "TASK-001",
@@ -7,7 +9,7 @@ export const tasks = [
     tags: ["backend", "security"],
     media: [
       {
-        url: "assets/site-logo.png",
+        url: placeholderImg,
         alt: "Auction item image",
       },
       {
@@ -33,7 +35,7 @@ export const tasks = [
     tags: ["backend", "security"],
     media: [
       {
-        url: "assets/site-logo.png",
+        url: placeholderImg,
         alt: "Auction item image",
       },
     ],
@@ -55,7 +57,7 @@ export const tasks = [
     tags: ["backend", "security"],
     media: [
       {
-        url: "assets/site-logo.png",
+        url: placeholderImg,
         alt: "Auction item image",
       },
     ],
@@ -77,7 +79,7 @@ export const tasks = [
     tags: ["backend", "security"],
     media: [
       {
-        url: "assets/site-logo.png",
+        url: placeholderImg,
         alt: "Auction item image",
       },
     ],
@@ -99,7 +101,7 @@ export const tasks = [
     tags: ["backend", "security"],
     media: [
       {
-        url: "assets/site-logo.png",
+        url: placeholderImg,
         alt: "Auction item image",
       },
     ],
@@ -121,7 +123,7 @@ export const tasks = [
     tags: ["backend", "security"],
     media: [
       {
-        url: "assets/site-logo.png",
+        url: placeholderImg,
         alt: "Auction item image",
       },
     ],
@@ -143,7 +145,7 @@ export const tasks = [
     tags: ["backend", "security"],
     media: [
       {
-        url: "assets/site-logo.png",
+        url: placeholderImg,
         alt: "Auction item image",
       },
     ],
