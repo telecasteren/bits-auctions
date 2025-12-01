@@ -15,7 +15,6 @@ A modular Auction house site where users can manage and display items (listings)
 - [Technologies](#technologies-and-tools)
 - [Get started](#get-started)
 - [Workflow and Testing](#workflow-and-testing)
-- [Scripts](#scripts)
 - [.env](#environment-variables)
 - [Github project](https://github.com/users/telecasteren/projects/3)
 - [Acknowledgements](#acknowledgements)
@@ -112,7 +111,7 @@ npm run build
 npm run deploy
 ```
 
-See [workflow file](.github/workflows/workflow.yml) for all automated jobs.
+See [workflow file](.github/workflows/workflow.yml) for all automated jobs.<br/>
 See [here](package.json) for all available scripts.
 
 #### Testing
@@ -148,5 +147,4 @@ Lemon font by [Rajesh Rajput](https://rajputrajesh-448.gumroad.com/l/Lemon9)
 
 ### Resources
 
-[void element.offsetWidth](https://stackoverflow.com/questions/60686489/what-purpose-does-void-element-offsetwidth-serve)<br/>
-[playwright config](https://playwright.dev/docs/test-configuration)
+[playwright config](https://playwright.dev/docs/test-configuration)<br/>
