@@ -7,7 +7,7 @@ const navbar = () => {
   nav.id = "navbar";
 
   const logoLink = document.createElement("a");
-  logoLink.href = "/";
+  logoLink.href = "/bits-auctions/";
   logoLink.id = "nav-logo-container";
   nav.appendChild(logoLink);
 

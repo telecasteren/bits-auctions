@@ -18,7 +18,7 @@ export const logOutUser = (isLoading = false) => {
     removeKey("user");
 
     setTimeout(() => {
-      window.location.pathname = "/";
+      window.location.pathname = "/bits-auctions/";
     }, 500);
   });
 

@@ -16,22 +16,22 @@ const navigation = () => {
 
       switch (selectedItem) {
         case "nav-landing":
-          window.location.pathname = "/";
+          window.location.pathname = "/bits-auctions/";
           break;
         case "nav-overview":
-          window.location.pathname = "/overview";
+          window.location.pathname = "/bits-auctions/overview";
           break;
         case "nav-listings":
-          window.location.pathname = "/listings";
+          window.location.pathname = "/bits-auctions/listings";
           break;
         case "nav-account":
-          window.location.pathname = `/account/${username}`;
+          window.location.pathname = `/bits-auctions/account/${username}`;
           break;
         case "nav-login":
-          window.location.pathname = "/login";
+          window.location.pathname = "/bits-auctions/login";
           break;
         case "nav-signup":
-          window.location.pathname = "/signup";
+          window.location.pathname = "/bits-auctions/signup";
           break;
         default:
           break;

@@ -17,25 +17,25 @@ const renderContent = () => {
   content.innerHTML = "";
 
   switch (window.location.pathname) {
-    case "/":
+    case "/bits-auctions/":
       Landing();
       break;
-    case "/overview":
+    case "/bits-auctions/overview":
       Dashboard();
       break;
-    case "/listings":
+    case "/bits-auctions/listings":
       Listings();
       break;
-    case `/account/${username}`:
+    case `/bits-auctions/account/${username}`:
       Account();
       break;
-    case "/login":
+    case "/bits-auctions/login":
       renderAuthForm(false);
       break;
-    case "/signup":
+    case "/bits-auctions/signup":
       renderAuthForm(true);
       break;
-    case "/404.html":
+    case "/bits-auctions/404.html":
       PageNotFound();
       break;
     default:

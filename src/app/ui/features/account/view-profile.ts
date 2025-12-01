@@ -20,7 +20,7 @@ const ViewProfile = async (user: Profile) => {
   backBtn.className =
     "mb-6 text-[var(--accent-strong)] hover:underline cursor-pointer justify-self-start";
   backBtn.addEventListener("click", () => {
-    window.location.pathname = `/account/${username}`;
+    window.location.pathname = `/bits-auctions/account/${username}`;
   });
 
   const wrapper = document.createElement("div");

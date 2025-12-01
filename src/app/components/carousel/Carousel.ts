@@ -10,7 +10,7 @@ const Carousel = () => {
   carouselImgs.className = "flex flex-row gap-4 overflow-x-auto py-2";
 
   const text = document.createElement("a");
-  text.href = "/listings";
+  text.href = "/bits-auctions/listings";
   text.textContent = "See all listings";
   text.className =
     "flex justify-self-end justify-end w-40 py-2 text-md font-semibold text-black hover:underline cursor-pointer";

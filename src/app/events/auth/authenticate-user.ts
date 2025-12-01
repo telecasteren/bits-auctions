@@ -3,7 +3,7 @@ import { handleAuth } from "@/app/events/auth/handle-auth";
 
 export const AuthenticateUser = async (isSignup = false) => {
   if (isAuthenticated) {
-    window.location.pathname = "/";
+    window.location.pathname = "/bits-auctions/";
     return;
   }
 

@@ -5,7 +5,7 @@ import { AuthForm } from "@/app/components/forms/auth-form";
 
 const renderAuthForm = async (isSignup = false) => {
   if (isAuthenticated) {
-    window.location.pathname = "/account";
+    window.location.pathname = "/bits-auctions/account";
     Account();
     return;
   }

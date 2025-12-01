@@ -10,7 +10,7 @@ export const unAuthenticatedEvents = () => {
   }
 
   loginMessage.addEventListener("click", () => {
-    window.location.pathname = "/auth";
+    window.location.pathname = "/bits-auctions/login";
   });
 
   return loginMessage;
