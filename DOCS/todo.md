@@ -1,18 +1,14 @@
 ## General
 
-- Setup github workflows at Github
-- Pull request from dev to main
-  - Merge branches for production
 - Host site on Github pages / Netlify
 - Figma design prototype
+- Write tests for essential logic
 
 ## APP
 
 - Auth: login, logout, authentication
   - FIX VALIDATION BUGS: live password and email check prior to signup + fail signup if invalid
-- Write tests for essential logic
 - Centralise branding and styles
-- BackBtn centralise for reusability with path as param: /account/view-profile.ts
 
 ## PAGES
 
@@ -23,6 +19,6 @@
 
 ## API
 
-**CRUD:**
-
-- Stats (GET) ??
+- Create Listing module
+- Edit avatar in account
+- See bids on Listings
