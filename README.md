@@ -1,16 +1,27 @@
 # Bits Action House
 
-A modular Auction house site where users can manage and display items for auction and view charts with stats. The codebase is set up for scalability, using a clear folder structure and helper utilities.
+![image](src/assets/readme-logo.png)
+**Live site:** [bits-auctions](https://telecasternilsen.com/bits-auctions/)
+
+A modular Auction house site where users can manage and display items (listings) for auction and view charts with stats. The codebase is set up for scalability, using a clear folder structure and helper utilities.
+
+**Author:** Tele Caster Nilsen<br/>
+**Website:** [www.telecasternilsen.com](https://telecasternilsen.com)
+
+---
 
 ### Table of contents
 
 - [Technologies](#technologies-and-tools)
-- [Get started](#dependencies-and-setup)
+- [Get started](#get-started)
 - [Workflow and Testing](#workflow-and-testing)
 - [Scripts](#scripts)
 - [.env](#environment-variables)
 - [Github project](https://github.com/users/telecasteren/projects/3)
+- [Acknowledgements](#acknowledgements)
 - [Resources](#resources)
+
+---
 
 ## Project Structure
 
@@ -19,13 +30,12 @@ src/
   app/
     script.ts
     components/
-      charts/
-      listings/
-        helpers/
       navbar/
     events/
     ui/
       features/
+  assets/
+    Typography/
   services/
     api/
     helpers/
@@ -46,13 +56,15 @@ src/
 - Tailwind (styles)
 - Shadcn (components)
 
-### Dependencies and setup
+### Get started
+
+#### Dependencies and setup
 
 1. **Clone the repository**
 
    ```bash
-   git clone XXX
-   cd XXX
+   git clone https://github.com/telecasteren/bits-auctions.git
+   cd bits-auctions
    git switch dev
    ```
 
@@ -78,39 +90,63 @@ If you add any libraries that require type definitions, install them using:
 npm install --save-dev @types/<library>
 ```
 
+---
+
 ### Workflow and testing
 
-```bash
-npm install --save-dev husky
-npx husky install
-```
+#### Workflow
 
-```js
-"scripts": {
-  "prepare": "husky install"
-}
-```
+This site is deployed with Github Pages.<br/>
+Some jobs like formatting with Prettier and linting with Eslint is automated with a [workflow](.github/workflows/workflow.yml) upon release.
+
+When developing, use
 
 ```bash
-npm install --save-dev vitest
-
-npm install --save-dev playwright
-npx playwright install
+npm run dev
 ```
 
-### Scripts
+When building for production, use
+
+```bash
+npm run build
+npm run deploy
+```
+
+See [workflow file](.github/workflows/workflow.yml) for all automated jobs.
+See [here](package.json) for all available scripts.
+
+#### Testing
+
+The project use Vitest and Playwright for testing.
+
+```bash
+npm run test:unit # Vitest
+npm run test:e2e # Playwright test
+```
+
+Tests can be found [here](src/utils/tests)
+
+---
 
 ### Environment variables
 
 See the [.env.example](.env.example) file for how to use.
 
-### CSS Variables
+### Branding / CSS Variables
 
 **These file centralise the themes:**<br/>
 [App](css/variables.css)<br/>
 [shadcn components](css/shadcn/variables.css)
 
+## Acknowledgements
+
+### Typography
+
+Lemon font by [Rajesh Rajput](https://rajputrajesh-448.gumroad.com/l/Lemon9)
+
+---
+
 ### Resources
 
-[void element.offsetWidth](https://stackoverflow.com/questions/60686489/what-purpose-does-void-element-offsetwidth-serve)
+[void element.offsetWidth](https://stackoverflow.com/questions/60686489/what-purpose-does-void-element-offsetwidth-serve)<br/>
 [playwright config](https://playwright.dev/docs/test-configuration)
