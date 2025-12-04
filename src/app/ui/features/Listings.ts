@@ -1,7 +1,7 @@
 import ListingCards from "@/app/components/listings/listing-cards";
 import ListingTable from "@/app/components/listings/listing-table";
 
-const Listings = () => {
+const Listings = async () => {
   const container = document.querySelector("#content");
   container?.classList.add("max-w-[1000px]");
   if (!container) return;
@@ -40,8 +40,8 @@ const Listings = () => {
   cardView.className =
     "active mb-4 fit-content flex flex-col gap-6 items-center";
 
-  const table = ListingTable();
-  const cards = ListingCards();
+  const table = await ListingTable();
+  const cards = await ListingCards();
   table.classList.add("hidden");
 
   const viewsWrapper = document.createElement("div");

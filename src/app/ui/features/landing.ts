@@ -48,7 +48,7 @@ const Landing = async () => {
   // signupBtn.textContent = "Create Account";
   // buttonsWrapper.appendChild(signupBtn);
 
-  const carouselEl = Carousel();
+  const carouselEl = await Carousel();
 
   header.appendChild(h1);
   header.appendChild(p);
