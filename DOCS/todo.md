@@ -1,6 +1,5 @@
 ## General
 
-- Host site on Github pages / Netlify
 - Figma design prototype
 - Write tests for essential logic
 
