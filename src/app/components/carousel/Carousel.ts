@@ -1,4 +1,7 @@
-const Carousel = () => {
+import { fetchAllListings } from "@/services/api/listings/fetch/fetch-all-listings";
+import type { Listing } from "@/services/types/listing";
+
+const Carousel = async () => {
   const container = document.createElement("div");
 
   const carousel = document.createElement("div");
@@ -13,19 +16,23 @@ const Carousel = () => {
   text.href = "/bits-auctions/listings";
   text.textContent = "See all listings";
   text.className =
-    "flex justify-self-end justify-end w-40 py-2 text-md font-semibold text-black hover:underline cursor-pointer";
+    "flex justify-self-end justify-end w-40 py-2 text-md font-semibold text-black dark:text-white hover:underline cursor-pointer";
 
-  for (let i = 1; i <= 10; i++) {
-    const img = document.createElement("div");
+  const response = await fetchAllListings(10, 1);
+  const listings = response.data as Listing[];
+
+  listings.forEach((listing) => {
+    const img = document.createElement("img");
+    img.src = listing.media.length > 0 ? listing.media[0].url : "";
+    img.alt = listing.title || "Listing image";
     img.className =
-      "flex-shrink-0 flex items-center justify-center w-58 h-58 bg-gray-200 rounded-sm";
-    img.textContent = `Item ${i}`;
+      "flex-shrink-0 flex items-center justify-center w-58 h-58 bg-gray-200 rounded-sm object-cover";
     carouselImgs.appendChild(img);
-  }
+  });
 
   carousel.appendChild(carouselImgs);
-  carousel.appendChild(text);
   container.appendChild(carousel);
+  container.appendChild(text);
 
   return container;
 };

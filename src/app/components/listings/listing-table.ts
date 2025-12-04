@@ -1,8 +1,8 @@
-import { tasks } from "./helpers/tasks";
+import { fetchAllListings } from "@/services/api/listings/fetch/fetch-all-listings";
 import { renderTaskRow } from "./helpers/render-task-row";
 import type { Listing } from "@/services/types/listing";
 
-const ListingTable = () => {
+const ListingTable = async () => {
   const container = document.createElement("div");
   container.className =
     "mx-auto max-w-6xl overflow-x-auto rounded-lg border bg-card w-full";
@@ -49,6 +49,9 @@ const ListingTable = () => {
     },
   ];
 
+  const response = await fetchAllListings(100, 1);
+  const listings = response.data as Listing[];
+
   headers.forEach((header) => {
     const th = document.createElement("th");
     th.className = header.className;
@@ -62,8 +65,8 @@ const ListingTable = () => {
   const tbody = document.createElement("tbody");
   tbody.className = "[&_tr:last-child]:border-0";
 
-  tasks.forEach((task) => {
-    tbody.appendChild(renderTaskRow(task as Listing));
+  listings.forEach((listing) => {
+    tbody.appendChild(renderTaskRow(listing));
   });
 
   table.appendChild(tbody);
