@@ -1,4 +1,6 @@
 import type { Profile } from "@/services/types/profile";
+import { fetchListingsByProfile } from "@/services/api/listings/fetch/fetch-profile-listings";
+import ListingCards from "@/app/components/listings/listing-cards";
 
 const ViewProfile = async (user: Profile) => {
   const username = user.name || "John Doe";
@@ -72,7 +74,18 @@ const ViewProfile = async (user: Profile) => {
   const listingsContainer = document.createElement("div");
   listingsContainer.id = "account-listings-container";
   listingsContainer.className = "mt-6";
-  listingsContainer.innerHTML = `<h2 class="text-xl font-bold mb-4">Listings</h2><p>The listings to be displayed here.</p>`;
+  listingsContainer.innerHTML = `<h2 class="text-xl font-bold mb-4">Listings</h2>`;
+
+  const listings = await fetchListingsByProfile(username);
+
+  if (listings.length === 0) {
+    const noListingsText = document.createElement("p");
+    noListingsText.textContent = "This user has no listings.";
+    listingsContainer.appendChild(noListingsText);
+  } else {
+    const listingsList = await ListingCards();
+    listingsContainer.appendChild(listingsList);
+  }
 
   container.appendChild(backBtn);
   container.appendChild(wrapper);

@@ -24,7 +24,8 @@ export const handleAuth = async (isSignup = false) => {
     } catch (error) {
       displayFormErrors(
         emailInput,
-        "Registration failed. Email may be in use.",
+        `Registration failed. Email may be in use or wrong.
+        Valid email domains: @stud.noroff.no`
       );
       throw error;
     }

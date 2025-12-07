@@ -42,13 +42,18 @@ const ListingCards = async () => {
 
     const status = document.createElement("div");
     status.appendChild(
-      getStatusBadge(listing.endsAt > new Date() ? "active" : "ended"),
+      getStatusBadge(listing.endsAt > new Date() ? "active" : "ended")
     );
     statsWrapper.appendChild(status);
 
     const endsAt = document.createElement("div");
     endsAt.className = "text-sm italic";
     endsAt.textContent = `Last call: ${new Date(listing.endsAt).toLocaleDateString()}`;
+
+    const seller = document.createElement("p");
+    seller.className = "mb-2 text-sm";
+    seller.innerHTML = `<span style="font-weight: bold;">Seller:</span> ${listing.seller.name || "Unknown"}`;
+    card.appendChild(seller);
 
     const description = document.createElement("p");
     description.className = "text-sm text-muted-foreground";
