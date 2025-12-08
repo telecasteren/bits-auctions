@@ -80,7 +80,7 @@ const Header = async (user: Profile) => {
   infoWrapper.appendChild(infoBioWrapper);
 
   container.appendChild(infoWrapper);
-  details.appendChild(userDetailsForm);
+  // details.appendChild(userDetailsForm);
   container.appendChild(details);
 
   return container;

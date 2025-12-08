@@ -5,8 +5,8 @@ import { isAuthenticated } from "@/utils/config/constants";
 import { fetchSingleProfile } from "@/services/api/profiles/fetch-single-profile";
 import { editProfile } from "@/app/events/profile/edit-profile";
 import Header from "@/app/ui/features/account/header";
-import AccountListings from "@/app/ui/features/account/account-listings";
 import { logOutUser } from "@/services/helpers/logout-user";
+import { profileCards } from "./info-cards";
 
 const Account = async () => {
   const container = document.querySelector("#content");
@@ -26,13 +26,13 @@ const Account = async () => {
   container.innerHTML = "";
 
   const header = await Header(user);
-  const accountListings = await AccountListings(user);
+  const infoCards = profileCards(user);
 
   const logOutButton = logOutUser(false);
-  logOutButton.classList.add("justify-self-end");
+  logOutButton.classList.add("mt-60", "justify-self-end");
 
   container.appendChild(header);
-  container.appendChild(accountListings);
+  container.appendChild(infoCards);
   container.appendChild(logOutButton);
 
   // editAvatarEvent(user);
