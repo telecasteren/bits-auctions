@@ -1,5 +1,6 @@
 import ListingCards from "@/app/components/listings/listing-cards";
 import ListingTable from "@/app/components/listings/listing-table";
+import { fetchAllListings } from "@/services/api/listings/fetch/fetch-all-listings";
 
 const Listings = async () => {
   const container = document.querySelector("#content");
@@ -40,8 +41,11 @@ const Listings = async () => {
   cardView.className =
     "active mb-4 fit-content flex flex-col gap-6 items-center";
 
+  const listingsResponse = await fetchAllListings();
+  const listings = listingsResponse.data ?? [];
+
   const table = await ListingTable();
-  const cards = await ListingCards();
+  const cards = ListingCards(listings);
   table.classList.add("hidden");
 
   const viewsWrapper = document.createElement("div");

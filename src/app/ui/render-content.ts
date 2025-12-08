@@ -1,15 +1,18 @@
 import Dashboard from "@/app/ui/features/Dashboard";
 import Listings from "@/app/ui/features/Listings";
 import Account from "@/app/ui/features/account/Account";
-import Landing from "@/app/ui/features/landing";
+import UserProfile from "@/app/ui/features/account/UserProfile";
+import Landing from "@/app/ui/features/Landing";
 import renderAuthForm from "./features/auth/render-auth-form";
 import PageNotFound from "@/app/ui/utils/page-not-found";
+import { getCurrentUser } from "@/services/helpers/get-current-user";
 import type { Profile } from "@/services/types/profile";
 import { loadKey } from "@/utils/storage/storage";
 
-const renderContent = () => {
+const renderContent = async () => {
   const user = (loadKey("user") as Profile) || "";
   const username = user.name || "";
+  const seller = ((await getCurrentUser())?.profile as Profile) || null;
 
   const content = document.querySelector<HTMLElement>("#content");
   if (!content) return;
@@ -28,6 +31,9 @@ const renderContent = () => {
       break;
     case `/bits-auctions/account/${username}`:
       Account();
+      break;
+    case `/bits-auctions/profile/${seller?.name}`:
+      UserProfile(seller);
       break;
     case "/bits-auctions/login":
       renderAuthForm(false);

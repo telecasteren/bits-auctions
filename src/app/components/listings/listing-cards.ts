@@ -1,16 +1,25 @@
 import { getStatusBadge } from "./helpers/get-status-badge";
-import { fetchAllListings } from "@/services/api/listings/fetch/fetch-all-listings";
 import type { Listing } from "@/services/types/listing";
+import renderContent from "@/app/ui/render-content";
+import { getCurrentUser } from "@/services/helpers/get-current-user";
+import type { Profile } from "@/services/types/profile";
 
-const ListingCards = async () => {
+const ListingCards = (listings: Listing[]) => {
   const container = document.createElement("div");
   container.className =
     "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mx-auto max-w-6xl w-full";
 
-  const response = await fetchAllListings(100, 1);
-  const listings = response.data as Listing[];
+  listings.forEach(async (listing) => {
+    const listingsSeller = listing.seller;
+    const listingSellerName = listingsSeller?.name || "Unknown seller";
+    const sellerObject = ((await getCurrentUser())?.profile as Profile) || null;
+    const sellerName = sellerObject?.name || listingSellerName;
+    const endingDate = new Date(listing.endsAt).toLocaleDateString();
+    const listingTitle = listing.title || "Untitled listing";
+    const listingDescription = listing.description || "No description";
+    const listingBidsCount =
+      listing._count.bids > 0 ? listing._count.bids : "No bids yet";
 
-  listings.forEach((listing) => {
     const card = document.createElement("div");
     card.className =
       "relative group rounded-lg border bg-card p-4 shadow-sm hover:shadow-lg transition-shadow cursor-pointer overflow-hidden";
@@ -22,13 +31,13 @@ const ListingCards = async () => {
 
     const title = document.createElement("h3");
     title.className = "mb-2 text-lg font-semibold";
-    title.textContent = listing.title;
+    title.textContent = listingTitle;
     card.appendChild(title);
 
     const image = document.createElement("img");
     image.className = "mb-2 rounded max-w-40 justify-self-center";
     image.src = listing.media.length > 0 ? listing.media[0].url : "";
-    image.alt = listing.title || "Listing image";
+    image.alt = listingTitle || "Listing image";
     card.appendChild(image);
 
     const statsWrapper = document.createElement("div");
@@ -37,7 +46,7 @@ const ListingCards = async () => {
 
     const bids = document.createElement("p");
     bids.className = "mb-2 text-sm font-medium";
-    bids.textContent = `Bids: ${listing._count.bids > 0 ? listing._count.bids : "No bids yet"}`;
+    bids.textContent = `Bids: ${listingBidsCount}`;
     statsWrapper.appendChild(bids);
 
     const status = document.createElement("div");
@@ -48,16 +57,21 @@ const ListingCards = async () => {
 
     const endsAt = document.createElement("div");
     endsAt.className = "text-sm italic";
-    endsAt.textContent = `Last call: ${new Date(listing.endsAt).toLocaleDateString()}`;
+    endsAt.textContent = `Last call: ${endingDate}`;
 
     const seller = document.createElement("p");
     seller.className = "mb-2 text-sm";
-    seller.innerHTML = `<span style="font-weight: bold;">Seller:</span> ${listing.seller.name || "Unknown"}`;
+    seller.innerHTML = `<span style="font-weight: bold;">Seller:</span> ${sellerName}`;
     card.appendChild(seller);
+
+    seller.addEventListener("click", () => {
+      window.location.pathname = `/bits-auctions/profile/${sellerName}`;
+      renderContent();
+    });
 
     const description = document.createElement("p");
     description.className = "text-sm text-muted-foreground";
-    description.textContent = listing.description;
+    description.textContent = listingDescription;
     card.appendChild(description);
     card.appendChild(endsAt);
 
