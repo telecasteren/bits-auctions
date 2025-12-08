@@ -1,4 +1,5 @@
 import type { Profile } from "@/services/types/profile";
+import { backButton } from "@/app/components/back-button";
 import { fetchListingsByProfile } from "@/services/api/listings/fetch/fetch-profile-listings";
 import ListingCards from "@/app/components/listings/listing-cards";
 
@@ -18,14 +19,7 @@ const UserProfile = async (user: Profile) => {
 
   container.innerHTML = "";
 
-  const backBtn = document.createElement("button");
-  backBtn.id = "back-button";
-  backBtn.textContent = "← Back";
-  backBtn.className =
-    "mb-6 text-[var(--accent-strong)] hover:underline cursor-pointer justify-self-start";
-  backBtn.addEventListener("click", () => {
-    window.history.back();
-  });
+  const backBtn = backButton(user);
 
   const wrapper = document.createElement("div");
   wrapper.className = "flex flex-rows gap-4 items-center";
