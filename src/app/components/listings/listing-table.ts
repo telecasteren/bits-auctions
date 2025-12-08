@@ -1,8 +1,7 @@
-import { fetchAllListings } from "@/services/api/listings/fetch/fetch-all-listings";
 import { renderTaskRow } from "./helpers/render-task-row";
 import type { Listing } from "@/services/types/listing";
 
-const ListingTable = async () => {
+const ListingTable = async (listings: Listing[]) => {
   const container = document.createElement("div");
   container.className =
     "mx-auto max-w-6xl overflow-x-auto rounded-lg border bg-card w-full";
@@ -48,9 +47,6 @@ const ListingTable = async () => {
         "h-12 px-4 text-center align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 w-[180px]",
     },
   ];
-
-  const response = await fetchAllListings(100, 1);
-  const listings = response.data as Listing[];
 
   headers.forEach((header) => {
     const th = document.createElement("th");

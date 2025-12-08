@@ -1,4 +1,4 @@
-import UserProfile from "@/app/ui/features/account/UserProfile";
+import UserProfile from "@/app/ui/features/account/user-profile";
 import type { Profile } from "@/services/types/profile";
 
 export const previewProfile = async (user: Profile) => {

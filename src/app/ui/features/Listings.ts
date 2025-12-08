@@ -41,10 +41,10 @@ const Listings = async () => {
   cardView.className =
     "active mb-4 fit-content flex flex-col gap-6 items-center";
 
-  const listingsResponse = await fetchAllListings();
+  const listingsResponse = await fetchAllListings(100, 1);
   const listings = listingsResponse.data ?? [];
 
-  const table = await ListingTable();
+  const table = await ListingTable(listings);
   const cards = ListingCards(listings);
   table.classList.add("hidden");
 
