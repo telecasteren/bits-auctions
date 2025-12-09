@@ -28,7 +28,7 @@ const renderTaskRow = (listing: Listing) => {
   const statusTd = document.createElement("td");
   statusTd.className = "text-center align-middle px-4 py-4";
   statusTd.appendChild(
-    getStatusBadge(listing.endsAt > new Date() ? "active" : "ended")
+    getStatusBadge(listing.endsAt > new Date() ? "active" : "ended"),
   );
   row.appendChild(statusTd);
 
