@@ -3,7 +3,7 @@ import { Profile } from "@/services/types/profile";
 
 export const getCurrentUser = async () => {
   const userFromPath = window.location.pathname.split(
-    "/bits-auctions/profile/"
+    "/bits-auctions/profile/",
   )[1];
 
   if (userFromPath) {
