@@ -2,9 +2,11 @@ import { getStatusBadge } from "./get-status-badge";
 import { icons } from "./icons";
 import createButton from "./create-button";
 import type { Listing } from "@/services/types/listing";
+import SingleListing from "@/app/ui/features/single-listing";
 
 const renderTaskRow = (listing: Listing) => {
   const row = document.createElement("tr");
+  row.setAttribute("data-id", listing.id);
   row.className =
     "border-b group transition-colors hover:bg-[#1e293b0f] inner-shadow-md data-[state=selected]:bg-muted cursor-pointer";
 
@@ -26,7 +28,7 @@ const renderTaskRow = (listing: Listing) => {
   const statusTd = document.createElement("td");
   statusTd.className = "text-center align-middle px-4 py-4";
   statusTd.appendChild(
-    getStatusBadge(listing.endsAt > new Date() ? "active" : "ended"),
+    getStatusBadge(listing.endsAt > new Date() ? "active" : "ended")
   );
   row.appendChild(statusTd);
 
@@ -56,6 +58,11 @@ const renderTaskRow = (listing: Listing) => {
   actionsDiv.appendChild(viewButton);
   actionsTd.appendChild(actionsDiv);
   row.appendChild(actionsTd);
+
+  row.addEventListener("click", async () => {
+    SingleListing(listing);
+    window.history.pushState({}, "", `/bits-auctions/listings/${listing.id}`);
+  });
 
   return row;
 };

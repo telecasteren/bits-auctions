@@ -26,28 +26,6 @@ const Landing = async () => {
   const logo = logoImg();
   logo.className = "w-58 mb-6";
 
-  // const buttonsWrapper = document.createElement("div");
-  // buttonsWrapper.className = "flex flex-row gap-16 mt-25 justify-center";
-
-  // const listingsBtn = document.createElement("button");
-  // listingsBtn.id = "landing-listings-button";
-  // listingsBtn.className = "btn btn-secondary";
-  // listingsBtn.textContent = "See Listings";
-  // buttonsWrapper.appendChild(listingsBtn);
-
-  // const loginBtn = document.createElement("button");
-  // loginBtn.id = "landing-login-button";
-  // loginBtn.className = "btn btn-primary";
-  // loginBtn.textContent = "Log in";
-  // buttonsWrapper.appendChild(loginBtn);
-
-  // const signupBtn = document.createElement("button");
-  // signupBtn.id = "landing-signup-button";
-  // signupBtn.className = "btn btn-tertiary";
-
-  // signupBtn.textContent = "Create Account";
-  // buttonsWrapper.appendChild(signupBtn);
-
   const carouselEl = await Carousel();
 
   header.appendChild(h1);
@@ -55,7 +33,6 @@ const Landing = async () => {
   wrapper.appendChild(header);
   wrapper.appendChild(logo);
   container.appendChild(wrapper);
-  // container.appendChild(buttonsWrapper);
   container.appendChild(carouselEl);
 };
 export default Landing;

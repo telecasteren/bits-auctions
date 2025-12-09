@@ -1,8 +1,8 @@
 import { getStatusBadge } from "./helpers/get-status-badge";
-import type { Listing } from "@/services/types/listing";
 import renderContent from "@/app/ui/render-content";
 import { getCurrentUser } from "@/services/helpers/get-current-user";
 import type { Profile } from "@/services/types/profile";
+import type { Listing } from "@/services/types/listing";
 
 const ListingCards = (listings: Listing[]) => {
   const container = document.createElement("div");
@@ -51,7 +51,7 @@ const ListingCards = (listings: Listing[]) => {
 
     const status = document.createElement("div");
     status.appendChild(
-      getStatusBadge(listing.endsAt > new Date() ? "active" : "ended"),
+      getStatusBadge(listing.endsAt > new Date() ? "active" : "ended")
     );
     statsWrapper.appendChild(status);
 
@@ -68,6 +68,21 @@ const ListingCards = (listings: Listing[]) => {
       window.location.pathname = `/bits-auctions/profile/${sellerName}`;
       renderContent();
     });
+
+    image.addEventListener("click", async () => {
+      window.location.pathname = `/bits-auctions/listings/${listing.id}`;
+      renderContent();
+    });
+
+    // seller.addEventListener("click", () => {
+    //   window.history.pushState({}, "", `/bits-auctions/profile/${sellerName}`);
+    //   renderContent();
+    // });
+
+    // image.addEventListener("click", async () => {
+    //   window.history.pushState({}, "", `/bits-auctions/listings/${listing.id}`);
+    //   renderContent();
+    // });
 
     const description = document.createElement("p");
     description.className = "text-sm text-muted-foreground";

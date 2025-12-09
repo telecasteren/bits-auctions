@@ -1,18 +1,23 @@
 import Dashboard from "@/app/ui/features/Dashboard";
 import Listings from "@/app/ui/features/Listings";
+import SingleListing from "./features/single-listing";
 import Account from "@/app/ui/features/account/Account";
 import UserProfile from "@/app/ui/features/account/user-profile";
 import Landing from "@/app/ui/features/Landing";
 import renderAuthForm from "./features/auth/render-auth-form";
 import PageNotFound from "@/app/ui/utils/page-not-found";
-import { getCurrentUser } from "@/services/helpers/get-current-user";
-import type { Profile } from "@/services/types/profile";
 import { loadKey } from "@/utils/storage/storage";
+import { getCurrentUser } from "@/services/helpers/get-current-user";
+import { getCurrentListing } from "@/services/helpers/get-current-listing";
+import type { Profile } from "@/services/types/profile";
+import type { Listing } from "@/services/types/listing";
 
 const renderContent = async () => {
   const user = (loadKey("user") as Profile) || "";
   const username = user.name || "";
   const seller = ((await getCurrentUser())?.profile as Profile) || null;
+  const listingId = (await getCurrentListing())?.listingId || "";
+  const listing = ((await getCurrentListing())?.listing as Listing) || null;
 
   const content = document.querySelector<HTMLElement>("#content");
   if (!content) return;
@@ -28,6 +33,9 @@ const renderContent = async () => {
       break;
     case "/bits-auctions/listings":
       Listings();
+      break;
+    case `/bits-auctions/listings/${listingId}`:
+      SingleListing(listing);
       break;
     case `/bits-auctions/account/${username}`:
       Account();
