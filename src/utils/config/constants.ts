@@ -10,3 +10,18 @@ export const isAuthenticated = loadKey("token") !== null;
 export const brandShortName = "Bits";
 export const brandFullName = "Bits AuctiOns";
 export const brandLogoImg = isDark ? logoDark : logoLight;
+
+export const MONTHS = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];

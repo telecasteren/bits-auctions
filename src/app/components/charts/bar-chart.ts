@@ -1,12 +1,12 @@
 import createBarChart from "@/app/components/charts/create-bar-chart";
-import chartData from "@/app/components/charts/chart-data";
+import { getBidsPerMonth } from "@/app/components/charts/get-monthly-bids.ts";
 import createTrendingUpIcon from "@/app/components/charts/create-trends-icon";
 import {
   currentMonths,
   currentYear,
 } from "@/services/helpers/calculate-months";
 
-const BarChart = () => {
+const BarChart = async () => {
   const card = document.createElement("div");
   card.className = "card";
 
@@ -27,7 +27,7 @@ const BarChart = () => {
   const cardContent = document.createElement("div");
   cardContent.className = "card-content";
 
-  const chart = createBarChart(chartData);
+  const chart = createBarChart(await getBidsPerMonth());
   cardContent.appendChild(chart);
 
   const cardFooter = document.createElement("div");

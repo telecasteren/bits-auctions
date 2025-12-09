@@ -13,9 +13,17 @@ export interface Listing {
   updated: Date;
   endsAt: Date;
   seller: Profile;
+  bids: Bid[];
   _count: {
     bids: number;
   };
   _seller?: boolean;
   _bids?: boolean;
+}
+
+export interface Bid {
+  id: string;
+  amount: number;
+  bidder: Profile;
+  created: Date;
 }

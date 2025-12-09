@@ -24,7 +24,7 @@ const Dashboard = async () => {
   container.appendChild(h1);
   container.appendChild(p);
 
-  const chartComponent = BarChart();
+  const chartComponent = await BarChart();
   container.appendChild(chartComponent);
 };
 
