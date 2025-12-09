@@ -45,12 +45,12 @@ export const popUpModal = (image: string) => {
 
     modalContent.innerHTML = "";
     modalContent.appendChild(closeButton);
-    const postImage = document.createElement("img");
-    postImage.className =
-      "w-full h-auto justify-self-center self-center rounded-[8px] opacity-100";
-    postImage.src = image;
-    postImage.alt = "Modal postImage";
-    modalContent.appendChild(postImage);
+    const imageElement = document.createElement("img");
+    imageElement.className =
+      "w-full h-auto justify-self-center self-center rounded-sm opacity-100";
+    imageElement.src = image;
+    imageElement.alt = "Modal image";
+    modalContent.appendChild(imageElement);
 
     modal.style.display = "block";
     modal.focus();

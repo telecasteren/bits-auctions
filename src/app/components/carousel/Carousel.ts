@@ -1,3 +1,4 @@
+import renderContent from "@/app/ui/render-content";
 import { fetchAllListings } from "@/services/api/listings/fetch/fetch-all-listings";
 import type { Listing } from "@/services/types/listing";
 
@@ -26,8 +27,13 @@ const Carousel = async () => {
     img.src = listing.media.length > 0 ? listing.media[0].url : "";
     img.alt = listing.title || "Listing image";
     img.className =
-      "flex-shrink-0 flex items-center justify-center w-58 h-58 bg-gray-200 rounded-sm object-cover";
+      "flex-shrink-0 flex items-center justify-center w-58 h-58 bg-gray-200 rounded-sm object-cover cursor-pointer hover:scale-102 transition-transform";
     carouselImgs.appendChild(img);
+
+    img.addEventListener("click", async () => {
+      window.location.pathname = `/bits-auctions/listings/${listing.id}`;
+      renderContent();
+    });
   });
 
   carousel.appendChild(carouselImgs);

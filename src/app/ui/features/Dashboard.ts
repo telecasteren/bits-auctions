@@ -7,8 +7,7 @@ const Dashboard = async () => {
   if (!container) return;
 
   if (!isAuthenticated) {
-    const restrictedMessage = unAuthenticatedEvents();
-    container.appendChild(restrictedMessage);
+    unAuthenticatedEvents();
     return;
   }
 

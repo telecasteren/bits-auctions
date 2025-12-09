@@ -7,8 +7,13 @@ import {
 
 export const fetchAllListings = async (limit = PER_PAGE, page = 1) => {
   const response = await authFetch(
-    `${BASE_URL}${LISTINGS}?_seller=true&_bids=true&limit=${limit}&page=${page}`,
+    `${BASE_URL}${LISTINGS}?_seller=true&_bids=true&limit=${limit}&page=${page}`
   );
+
+  if (response.status === 404) {
+    window.location.pathname = "/bits-auctions/404.html";
+    throw new Error("Listings not found.");
+  }
 
   if (!response.ok) {
     throw new Error(`Fetching listings failed.`);

@@ -3,7 +3,7 @@ import Listings from "@/app/ui/features/Listings";
 import SingleListing from "./features/single-listing";
 import Account from "@/app/ui/features/account/Account";
 import UserProfile from "@/app/ui/features/account/user-profile";
-import Landing from "@/app/ui/features/Landing";
+import Landing from "@/app/ui/features/landing";
 import renderAuthForm from "./features/auth/render-auth-form";
 import PageNotFound from "@/app/ui/utils/page-not-found";
 import { loadKey } from "@/utils/storage/storage";

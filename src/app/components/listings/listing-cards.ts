@@ -21,8 +21,8 @@ const ListingCards = (listings: Listing[]) => {
       listing._count.bids > 0 ? listing._count.bids : "No bids yet";
 
     const card = document.createElement("div");
-    card.className =
-      "relative group rounded-lg border bg-card p-4 shadow-sm hover:shadow-lg transition-shadow cursor-pointer overflow-hidden";
+    card.className = `relative group rounded-lg border bg-card p-4 shadow-sm hover:shadow-lg transition-shadow
+    cursor-pointer overflow-hidden cursor-pointer hover:scale-102 transition-transform`;
 
     const overlay = document.createElement("div");
     overlay.className =
@@ -51,7 +51,7 @@ const ListingCards = (listings: Listing[]) => {
 
     const status = document.createElement("div");
     status.appendChild(
-      getStatusBadge(listing.endsAt > new Date() ? "active" : "ended"),
+      getStatusBadge(listing.endsAt > new Date() ? "active" : "ended")
     );
     statsWrapper.appendChild(status);
 
@@ -73,16 +73,6 @@ const ListingCards = (listings: Listing[]) => {
       window.location.pathname = `/bits-auctions/listings/${listing.id}`;
       renderContent();
     });
-
-    // seller.addEventListener("click", () => {
-    //   window.history.pushState({}, "", `/bits-auctions/profile/${sellerName}`);
-    //   renderContent();
-    // });
-
-    // image.addEventListener("click", async () => {
-    //   window.history.pushState({}, "", `/bits-auctions/listings/${listing.id}`);
-    //   renderContent();
-    // });
 
     const description = document.createElement("p");
     description.className = "text-sm text-muted-foreground";
