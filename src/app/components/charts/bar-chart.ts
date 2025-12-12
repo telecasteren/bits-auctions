@@ -1,12 +1,13 @@
 import createBarChart from "@/app/components/charts/create-bar-chart";
-import { getBidsPerMonth } from "@/app/components/charts/get-monthly-bids.ts";
+import { getBidsPerMonth } from "@/app/components/charts/get-monthly-bids";
+import { getMonthlyTrends } from "@/app/components/charts/get-monthly-trends";
 import createTrendingUpIcon from "@/app/components/charts/create-trends-icon";
 import {
   currentMonths,
   currentYear,
 } from "@/services/helpers/calculate-months";
 
-const BarChart = async () => {
+const BarChart = async (userName?: string) => {
   const card = document.createElement("div");
   card.className = "card";
 
@@ -27,15 +28,58 @@ const BarChart = async () => {
   const cardContent = document.createElement("div");
   cardContent.className = "card-content";
 
-  const chart = createBarChart(await getBidsPerMonth());
+  const bidsChart = document.createElement("div");
+  bidsChart.className = "flex flex-row gap-4 mb-4 text-sm";
+
+  const allBidsChart = document.createElement("p");
+  allBidsChart.className = "hover:underline cursor-pointer";
+  allBidsChart.textContent = "All bids";
+
+  const userBidsChart = document.createElement("p");
+  userBidsChart.id = "user-bids-btn";
+  userBidsChart.className = "hover:underline cursor-pointer";
+  userBidsChart.textContent = "My bids";
+
+  let chart = createBarChart(
+    await getBidsPerMonth({ onlyCurrentUser: false, currentUserName: userName })
+  );
+
+  allBidsChart.addEventListener("click", async () => {
+    chart.innerHTML = "";
+    const newChart = createBarChart(
+      await getBidsPerMonth({
+        onlyCurrentUser: false,
+        currentUserName: userName,
+      })
+    );
+    chart.replaceWith(newChart);
+    chart = newChart;
+  });
+
+  userBidsChart.addEventListener("click", async () => {
+    chart.innerHTML = "";
+    const newChart = createBarChart(
+      await getBidsPerMonth({
+        onlyCurrentUser: true,
+        currentUserName: userName,
+      })
+    );
+    chart.replaceWith(newChart);
+    chart = newChart;
+  });
+
+  cardContent.appendChild(bidsChart);
+  bidsChart.appendChild(allBidsChart);
+  bidsChart.appendChild(userBidsChart);
   cardContent.appendChild(chart);
 
   const cardFooter = document.createElement("div");
   cardFooter.className = "card-footer";
 
+  const trends = await getMonthlyTrends();
   const trendingDiv = document.createElement("div");
   trendingDiv.className = "trending-up";
-  trendingDiv.textContent = `Trending up by ${5.2}% this month `; // Make dynamic
+  trendingDiv.textContent = trends.text;
   trendingDiv.appendChild(createTrendingUpIcon());
 
   const descriptionDiv = document.createElement("div");

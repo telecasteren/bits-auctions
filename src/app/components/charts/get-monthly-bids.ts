@@ -3,7 +3,16 @@ import { MONTHS } from "@/utils/config/constants";
 import type { Listing, Bid } from "@/services/types/listing";
 import type { MonthIndex, ChartItems } from "@/app/components/charts/types";
 
-export async function getBidsPerMonth(): Promise<ChartItems[]> {
+type BidsOptions = {
+  onlyCurrentUser?: boolean;
+  currentUserName?: string;
+};
+
+export const getBidsPerMonth = async (
+  options: BidsOptions = {}
+): Promise<ChartItems[]> => {
+  const { onlyCurrentUser = false, currentUserName } = options;
+
   const response = await fetchAllListings();
   const listings: Listing[] = response.data;
 
@@ -26,6 +35,11 @@ export async function getBidsPerMonth(): Promise<ChartItems[]> {
     const bids: Bid[] = listing?.bids ?? [];
 
     for (const bid of bids) {
+      if (onlyCurrentUser) {
+        if (!currentUserName) continue;
+        if (bid.bidder.name !== currentUserName) continue;
+      }
+
       const bidDate = new Date(bid.created);
       const month = bidDate.getMonth() as MonthIndex;
 
@@ -43,4 +57,4 @@ export async function getBidsPerMonth(): Promise<ChartItems[]> {
   }));
 
   return chartData;
-}
+};

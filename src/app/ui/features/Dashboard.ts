@@ -1,6 +1,7 @@
 import BarChart from "@/app/components/charts/bar-chart";
 import { unAuthenticatedEvents } from "@/app/events/auth/unauthenticated";
 import { isAuthenticated } from "@/utils/config/constants";
+import { getCurrentUser } from "@/services/helpers/get-current-user";
 
 const Dashboard = async () => {
   const container = document.querySelector("#content");
@@ -15,7 +16,7 @@ const Dashboard = async () => {
 
   const h1 = document.createElement("h1");
   h1.id = "page-title";
-  h1.textContent = "Bits Auctions";
+  h1.textContent = "Overview";
 
   const p = document.createElement("p");
   p.id = "page-tagline";
@@ -24,7 +25,10 @@ const Dashboard = async () => {
   container.appendChild(h1);
   container.appendChild(p);
 
-  const chartComponent = await BarChart();
+  const currentUser = await getCurrentUser();
+  const currentUserName = currentUser?.profile?.name;
+
+  const chartComponent = await BarChart(currentUserName);
   container.appendChild(chartComponent);
 };
 
