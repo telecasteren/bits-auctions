@@ -1,7 +1,7 @@
 import navigation from "@/app/events/navbar/navbar-events";
-import renderContent from "@/app/ui/render-content";
 import { isAuthenticated } from "@/utils/config/constants";
 import { logoText, logoImg } from "../branding/brand-logo";
+import { renderApp } from "@/services/helpers/render-app";
 
 const navbar = () => {
   const nav = document.createElement("nav");
@@ -13,7 +13,7 @@ const navbar = () => {
 
   logoLink.addEventListener("click", () => {
     history.pushState(null, "", "/bits-auctions/");
-    renderContent();
+    renderApp();
   });
 
   const logoTextElement = logoText(true);

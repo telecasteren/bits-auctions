@@ -1,6 +1,6 @@
 import type { Listing } from "@/services/types/listing";
 import type { Profile } from "@/services/types/profile";
-import renderContent from "../render-content";
+import { renderApp } from "@/services/helpers/render-app";
 import { popUpModal } from "@/app/components/modal/modal";
 import { getStatusBadge } from "@/app/components/listings/helpers/get-status-badge";
 import { userMessage } from "@/app/ui/utils/user-messages";
@@ -59,7 +59,7 @@ const SingleListing = async (listing: Listing) => {
   const status = document.createElement("p");
   status.className = "text-sm";
   status.appendChild(
-    getStatusBadge(listing.endsAt > new Date() ? "active" : "ended"),
+    getStatusBadge(listing.endsAt > new Date() ? "active" : "ended")
   );
 
   const bids = document.createElement("p");
@@ -82,13 +82,13 @@ const SingleListing = async (listing: Listing) => {
     // + confirmation on bid placed
     userMessage(
       "success",
-      `You placed a bid of ${usedCredits || "200 credits"}!`,
+      `You placed a bid of ${usedCredits || "200 credits"}!`
     );
   });
 
   seller.addEventListener("click", () => {
-    window.location.pathname = `/bits-auctions/profile/${listing.seller.name}`;
-    renderContent();
+    history.pushState({}, "", `/bits-auctions/profile/${listing.seller.name}`);
+    renderApp();
   });
 
   textSection.appendChild(title);

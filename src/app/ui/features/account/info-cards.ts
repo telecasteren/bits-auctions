@@ -1,5 +1,6 @@
+import { renderApp } from "@/services/helpers/render-app";
 import AccountListings from "@/app/ui/features/account/account-listings";
-import { Profile } from "@/services/types/profile";
+import type { Profile } from "@/services/types/profile";
 
 export const profileCards = (user: Profile) => {
   const container = document.createElement("div");
@@ -25,7 +26,7 @@ export const profileCards = (user: Profile) => {
     const card = document.createElement("div");
     card.setAttribute(
       "data-card-id",
-      item.title.toLowerCase().replace(" ", "-"),
+      item.title.toLowerCase().replace(" ", "-")
     );
     card.className =
       "relative group rounded-lg border bg-card mb-20 mt-20 p-4 shadow-sm hover:shadow-lg hover:scale-105 duration-300 transition-all cursor-pointer overflow-hidden";
@@ -75,7 +76,7 @@ export const profileCards = (user: Profile) => {
       wrapper.appendChild(closeBtn);
 
       closeBtn.addEventListener("click", () => {
-        window.location.reload();
+        renderApp();
       });
 
       const cardId = card.getAttribute("data-card-id");

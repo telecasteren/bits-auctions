@@ -5,9 +5,6 @@ const Landing = async () => {
   const container = document.querySelector("#content");
   if (!container) return;
 
-  // const navLogo = document.getElementById("nav-logo-container");
-  // if (navLogo) navLogo.classList.add("opacity-0");
-
   container.innerHTML = "";
 
   const wrapper = document.createElement("div");

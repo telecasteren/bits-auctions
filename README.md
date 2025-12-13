@@ -127,6 +127,27 @@ Tests can be found [here](src/utils/tests)
 
 ---
 
+### Nice to know
+
+There are some factors that is good to be aware of.
+
+Since this is a SPA with client side rendering using `history.pushState`, the UI updates by two calls:
+
+```js
+renderContent(); // renders content
+setNavItemActive(); // highlights active nav li
+```
+
+/render-app.ts is a helper function that handles any such calls:
+
+```js
+renderApp();
+```
+
+This function should be called together after any navigation that use `history.pushState` or `popstate` events.
+
+---
+
 ### Environment variables
 
 See the [.env.example](.env.example) file for how to use.

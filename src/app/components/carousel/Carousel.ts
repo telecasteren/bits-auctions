@@ -1,4 +1,4 @@
-import renderContent from "@/app/ui/render-content";
+import { renderApp } from "@/services/helpers/render-app";
 import { fetchAllListings } from "@/services/api/listings/fetch/fetch-all-listings";
 import type { Listing } from "@/services/types/listing";
 
@@ -13,11 +13,15 @@ const Carousel = async () => {
   const carouselImgs = document.createElement("div");
   carouselImgs.className = "flex flex-row gap-4 overflow-x-auto py-2";
 
-  const text = document.createElement("a");
-  text.href = "/bits-auctions/listings";
+  const text = document.createElement("p");
   text.textContent = "See all listings";
   text.className =
     "flex justify-self-end justify-end w-40 py-2 text-md font-semibold text-black dark:text-white hover:underline cursor-pointer";
+
+  text.addEventListener("click", async () => {
+    history.pushState({}, "", "/bits-auctions/listings");
+    renderApp();
+  });
 
   const response = await fetchAllListings(10, 1);
   const listings = response.data as Listing[];
@@ -31,8 +35,8 @@ const Carousel = async () => {
     carouselImgs.appendChild(img);
 
     img.addEventListener("click", async () => {
-      window.location.pathname = `/bits-auctions/listings/${listing.id}`;
-      renderContent();
+      history.pushState({}, "", `/bits-auctions/listings/${listing.id}`);
+      renderApp();
     });
   });
 

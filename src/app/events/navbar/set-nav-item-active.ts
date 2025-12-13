@@ -6,6 +6,7 @@ export const setNavItemActive = () => {
 
   liItems.forEach((li) => {
     li.classList.remove("active");
+
     switch (li.id) {
       case "nav-landing":
         if (path === "/bits-auctions/") li.classList.add("active");
@@ -15,8 +16,7 @@ export const setNavItemActive = () => {
           li.classList.add("active");
         break;
       case "nav-listings":
-        if (path.startsWith("/bits-auctions/listings"))
-          li.classList.add("active");
+        if (path === "/bits-auctions/listings") li.classList.add("active");
         break;
       case "nav-account":
         if (path.startsWith("/bits-auctions/account"))

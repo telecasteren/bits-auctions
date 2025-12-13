@@ -1,5 +1,5 @@
 import { getStatusBadge } from "./helpers/get-status-badge";
-import renderContent from "@/app/ui/render-content";
+import { renderApp } from "@/services/helpers/render-app";
 import { getCurrentUser } from "@/services/helpers/get-current-user";
 import type { Profile } from "@/services/types/profile";
 import type { Listing } from "@/services/types/listing";
@@ -51,7 +51,7 @@ const ListingCards = (listings: Listing[]) => {
 
     const status = document.createElement("div");
     status.appendChild(
-      getStatusBadge(listing.endsAt > new Date() ? "active" : "ended"),
+      getStatusBadge(listing.endsAt > new Date() ? "active" : "ended")
     );
     statsWrapper.appendChild(status);
 
@@ -65,13 +65,13 @@ const ListingCards = (listings: Listing[]) => {
     card.appendChild(seller);
 
     seller.addEventListener("click", () => {
-      window.location.pathname = `/bits-auctions/profile/${sellerName}`;
-      renderContent();
+      window.history.pushState({}, "", `/bits-auctions/profile/${sellerName}`);
+      renderApp();
     });
 
     image.addEventListener("click", async () => {
-      window.location.pathname = `/bits-auctions/listings/${listing.id}`;
-      renderContent();
+      window.history.pushState({}, "", `/bits-auctions/listings/${listing.id}`);
+      renderApp();
     });
 
     const description = document.createElement("p");
