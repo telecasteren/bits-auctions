@@ -51,7 +51,7 @@ const ListingCards = (listings: Listing[]) => {
 
     const status = document.createElement("div");
     status.appendChild(
-      getStatusBadge(listing.endsAt > new Date() ? "active" : "ended")
+      getStatusBadge(listing.endsAt > new Date() ? "active" : "ended"),
     );
     statsWrapper.appendChild(status);
 

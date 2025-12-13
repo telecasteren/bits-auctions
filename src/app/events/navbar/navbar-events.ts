@@ -27,7 +27,7 @@ const navigation = () => {
           window.history.pushState(
             {},
             "",
-            `/bits-auctions/account/${username}`
+            `/bits-auctions/account/${username}`,
           );
           break;
         case "nav-login":

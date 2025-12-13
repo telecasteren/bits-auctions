@@ -59,7 +59,7 @@ const SingleListing = async (listing: Listing) => {
   const status = document.createElement("p");
   status.className = "text-sm";
   status.appendChild(
-    getStatusBadge(listing.endsAt > new Date() ? "active" : "ended")
+    getStatusBadge(listing.endsAt > new Date() ? "active" : "ended"),
   );
 
   const bids = document.createElement("p");
@@ -82,7 +82,7 @@ const SingleListing = async (listing: Listing) => {
     // + confirmation on bid placed
     userMessage(
       "success",
-      `You placed a bid of ${usedCredits || "200 credits"}!`
+      `You placed a bid of ${usedCredits || "200 credits"}!`,
     );
   });
 
