@@ -41,7 +41,10 @@ const BarChart = async (userName?: string) => {
   userBidsChart.textContent = "My bids";
 
   let chart = createBarChart(
-    await getBidsPerMonth({ onlyCurrentUser: false, currentUserName: userName })
+    await getBidsPerMonth({
+      onlyCurrentUser: false,
+      currentUserName: userName,
+    }),
   );
 
   allBidsChart.addEventListener("click", async () => {
@@ -50,7 +53,7 @@ const BarChart = async (userName?: string) => {
       await getBidsPerMonth({
         onlyCurrentUser: false,
         currentUserName: userName,
-      })
+      }),
     );
     chart.replaceWith(newChart);
     chart = newChart;
@@ -62,7 +65,7 @@ const BarChart = async (userName?: string) => {
       await getBidsPerMonth({
         onlyCurrentUser: true,
         currentUserName: userName,
-      })
+      }),
     );
     chart.replaceWith(newChart);
     chart = newChart;

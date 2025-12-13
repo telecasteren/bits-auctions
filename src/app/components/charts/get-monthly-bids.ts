@@ -9,7 +9,7 @@ type BidsOptions = {
 };
 
 export const getBidsPerMonth = async (
-  options: BidsOptions = {}
+  options: BidsOptions = {},
 ): Promise<ChartItems[]> => {
   const { onlyCurrentUser = false, currentUserName } = options;
 

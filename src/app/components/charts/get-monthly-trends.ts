@@ -85,7 +85,7 @@ export const getMonthlyTrends = async (): Promise<Trend> => {
 // helper for later finding trends between specified monthts
 export const getTrendsBetweenMonths = async (
   previousIndex: number,
-  currentIndex: number
+  currentIndex: number,
 ): Promise<Trend> => {
   const data: ChartItems[] = await getBidsPerMonth();
   const previous = data[previousIndex]?.desktop ?? 0;

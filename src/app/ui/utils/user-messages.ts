@@ -34,7 +34,9 @@ export const userMessage = (type: string, message: string) => {
     },
   };
 
-  const { text, bg, darkText } = alertTypes[type] || alertTypes.dark;
+  type AlertKey = keyof typeof alertTypes;
+  const key: AlertKey = (type in alertTypes ? type : "alert") as AlertKey;
+  const { text, bg, darkText } = alertTypes[key];
 
   const div = document.createElement("div");
   div.setAttribute("role", "alert");
@@ -49,8 +51,8 @@ export const userMessage = (type: string, message: string) => {
   div.appendChild(document.createTextNode(message));
   document.body.prepend(div);
 
-  const closeAlert = (event) => {
-    if (!div.contains(event.target)) {
+  const closeAlert = (event: MouseEvent) => {
+    if (!div.contains(event.target as Node)) {
       div.remove();
       document.removeEventListener("click", closeAlert);
     }

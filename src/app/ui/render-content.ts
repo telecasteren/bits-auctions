@@ -18,14 +18,17 @@ const renderContent = async () => {
   const seller = ((await getCurrentUser())?.profile as Profile) || null;
   const listingId = (await getCurrentListing())?.listingId || "";
   const listing = ((await getCurrentListing())?.listing as Listing) || null;
+  const body = document.body;
 
   const content = document.querySelector<HTMLElement>("#content");
   if (!content) return;
 
   content.innerHTML = "";
+  body.classList.remove("route-landing");
 
   switch (window.location.pathname) {
     case "/bits-auctions/":
+      body.classList.add("route-landing");
       Landing();
       break;
     case "/bits-auctions/overview":
