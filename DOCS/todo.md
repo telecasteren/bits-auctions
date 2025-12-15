@@ -7,7 +7,6 @@
 
 - Auth: login, logout, authentication
   - FIX VALIDATION BUGS: live password and email check prior to signup + fail signup if invalid
-- Centralise branding and styles
 
 ## PAGES
 
@@ -20,4 +19,4 @@
 
 - Create Listing module
 - Edit avatar in account
-- See bids on Listings
+- Can place bids when authenticated
