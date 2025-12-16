@@ -4,7 +4,7 @@ import { unAuthenticatedEvents } from "@/app/events/auth/unauthenticated";
 
 export const fetchSingleProfile = async (username: string) => {
   const response = await authFetch(
-    `${BASE_URL}${USERS}/${username}?_listings=true&_wins=true`,
+    `${BASE_URL}${USERS}/${username}?_listings=true&_wins=true`
   );
 
   if (response.status === 401) {

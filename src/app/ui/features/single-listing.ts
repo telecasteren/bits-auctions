@@ -3,10 +3,20 @@ import type { Profile } from "@/services/types/profile";
 import { renderApp } from "@/services/helpers/render-app";
 import { popUpModal } from "@/app/components/modal/modal";
 import { getStatusBadge } from "@/app/components/listings/helpers/get-status-badge";
-import { userMessage } from "@/app/ui/utils/user-messages";
 import { isAuthenticated } from "@/utils/config/constants";
+import { submitUserBid } from "@/app/events/listing/submit-bid";
+import { clearUserMessage, userMessage } from "@/app/ui/utils/user-messages";
+import { loadKey } from "@/utils/storage/storage";
 
 const SingleListing = async (listing: Listing) => {
+  const endsAt = new Date(listing.endsAt);
+  const today = new Date();
+  const isActive = endsAt > today;
+
+  const listingTitle = listing.title || "Untitled listing";
+  const listingDescription = listing.description || "No description";
+  const listingSeller = (listing.seller as Profile)?.name || "Unknown seller";
+
   const container = document.getElementById("content");
   if (!container) return;
 
@@ -21,9 +31,9 @@ const SingleListing = async (listing: Listing) => {
 
   listing.media.forEach((media) => {
     const img = document.createElement("img");
-    img.setAttribute("id", `media-${listing.title}`);
+    img.setAttribute("id", `media-${listingTitle}`);
     img.src = media.url;
-    img.alt = listing.title || "Listing image";
+    img.alt = listingTitle;
     img.className =
       "flex-shrink-0 flex items-center justify-center w-58 h-58 md:w-80 md:h-80 rounded-sm object-cover cursor-pointer";
     mediaImages.appendChild(img);
@@ -42,25 +52,23 @@ const SingleListing = async (listing: Listing) => {
 
   const title = document.createElement("h1");
   title.className = "text-3xl font-bold mb-2";
-  title.textContent = listing.title || "Untitled listing";
+  title.textContent = listingTitle || "Untitled listing";
 
   const description = document.createElement("p");
   description.className = "text-black dark:text-gray-200 text-md mb-4";
-  description.textContent = listing.description || "No description";
+  description.textContent = listingDescription;
 
   const seller = document.createElement("p");
   seller.className =
     "w-40 text-gray-600 dark:text-gray-300 text-sm mb-4 hover:underline hover:text-[var(--accent-strong)] cursor-pointer";
-  seller.textContent = (listing.seller as Profile)?.name || "Unknown seller";
+  seller.textContent = listingSeller;
 
   const actionCenter = document.createElement("div");
   actionCenter.className = "flex flex-row items-center justify-end gap-4";
 
   const status = document.createElement("p");
   status.className = "text-sm";
-  status.appendChild(
-    getStatusBadge(listing.endsAt > new Date() ? "active" : "ended"),
-  );
+  status.appendChild(getStatusBadge(isActive ? "active" : "ended"));
 
   const bids = document.createElement("p");
   bids.className = "text-sm";
@@ -72,22 +80,52 @@ const SingleListing = async (listing: Listing) => {
   placeBidButton.className = "btn btn-primary";
   placeBidButton.textContent = "Place Bid";
 
-  if (new Date(listing.endsAt) > new Date() && isAuthenticated) {
+  if (isActive && isAuthenticated) {
     actionCenter.appendChild(placeBidButton);
   }
 
-  let usedCredits; // profile.credits - bid amount = creditsLeft
+  const userCredits = loadKey("credits");
+  const bidForm = document.createElement("div");
+  bidForm.className = "flex flex-col gap-4";
+
+  const bidLabel = document.createElement("label");
+  bidLabel.textContent = `You have ${userCredits} credits available.`;
+
+  const bidInput = document.createElement("input");
+  bidInput.type = "number";
+  bidInput.placeholder = "Enter credit amount";
+  bidInput.className =
+    "input input-bordered border border-[var(--accent-strong)] p-2 rounded w-full";
+
+  const submitBid = document.createElement("button");
+  submitBid.className = "btn btn-primary";
+  submitBid.textContent = "Submit your bid";
+
+  bidForm.appendChild(bidLabel);
+  bidForm.appendChild(bidInput);
+  bidForm.appendChild(submitBid);
+
   placeBidButton.addEventListener("click", () => {
-    // implement bidding logic --> set actual amount, e.g. 200 credits
-    // + confirmation on bid placed
-    userMessage(
-      "success",
-      `You placed a bid of ${usedCredits || "200 credits"}!`,
-    );
+    if (!userCredits || userCredits === "0") {
+      userMessage("error", "You don't have any credits.");
+      return;
+    } else {
+      popUpModal("", bidForm);
+    }
+    setTimeout(() => {
+      clearUserMessage();
+    }, 4000);
+  });
+
+  submitBid.addEventListener("click", async () => {
+    const bidAmount = Number(bidInput.value);
+    const listingId = listing.id;
+
+    await submitUserBid(bidAmount, listingId);
   });
 
   seller.addEventListener("click", () => {
-    history.pushState({}, "", `/bits-auctions/profile/${listing.seller.name}`);
+    history.pushState({}, "", `/bits-auctions/profile/${listingSeller}`);
     renderApp();
   });
 

@@ -1,6 +1,6 @@
 import type { Profile } from "@/services/types/profile";
-import UserDetails from "@/app/components/forms/user-details/user-details";
 import { previewProfile } from "@/services/helpers/preview-profile";
+import { saveKey } from "@/utils/storage/storage";
 
 const Header = async (user: Profile) => {
   const container = document.createElement("div");
@@ -37,13 +37,31 @@ const Header = async (user: Profile) => {
   info.id = "account-info";
   info.innerHTML = userEmail;
 
+  const creditsWrapper = document.createElement("div");
+  creditsWrapper.id = "account-credits-wrapper";
+  creditsWrapper.className = "flex flex-row items-center gap-2";
+
+  const walletIcon = document.createElement("span");
+  walletIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-credit-card-icon lucide-credit-card"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>`;
+  creditsWrapper.appendChild(walletIcon);
+
+  const creditsLabel = document.createElement("p");
+  creditsLabel.textContent = "Credits:";
+  creditsWrapper.appendChild(creditsLabel);
+
+  const credits = document.createElement("p");
+  credits.id = "account-credits";
+  credits.textContent = (user.credits || 0).toString();
+  saveKey("credits", user.credits || 0);
+  creditsWrapper.appendChild(credits);
+
   const verifiedContainer = document.createElement("div");
   verifiedContainer.id = "account-verified-container";
   verifiedContainer.className = "flex flex-row items-center gap-2";
 
   const verifiedBadge = document.createElement("p");
   verifiedBadge.id = "account-verified-badge";
-  verifiedBadge.innerHTML = `<span style="color:var(--selector-background);">&#10004;</span>`; // Use proper checkmark icon
+  verifiedBadge.innerHTML = `<span style="color:var(--selector-background);">&#10004;</span>`;
 
   const verifiedText = document.createElement("p");
   verifiedText.id = "account-verified-text";
@@ -52,9 +70,6 @@ const Header = async (user: Profile) => {
 
   const details = document.createElement("div");
   details.className = "w-full justify-self-center transition-all duration-300";
-
-  const userDetailsForm = UserDetails(user);
-  userDetailsForm.classList.add("hidden");
 
   const profile = document.createElement("a");
   profile.href = "#";
@@ -71,6 +86,7 @@ const Header = async (user: Profile) => {
   container.appendChild(p);
   infoWrapper.appendChild(avatar);
   infoBioWrapper.appendChild(info);
+  infoBioWrapper.appendChild(creditsWrapper);
 
   verifiedContainer.appendChild(verifiedText);
   verifiedContainer.appendChild(verifiedBadge);
@@ -80,7 +96,6 @@ const Header = async (user: Profile) => {
   infoWrapper.appendChild(infoBioWrapper);
 
   container.appendChild(infoWrapper);
-  // details.appendChild(userDetailsForm);
   container.appendChild(details);
 
   return container;

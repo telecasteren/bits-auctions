@@ -2,10 +2,12 @@ import type { Profile } from "@/services/types/profile";
 import { createText } from "@/app/components/forms/user-details/create-text";
 import { createInput } from "@/app/components/forms/user-details/create-input";
 import { createTextarea } from "@/app/components/forms/user-details/create-textarea";
+import { editProfile } from "@/app/events/profile/edit-profile";
+import { userMessage } from "@/app/ui/utils/user-messages";
 
 const UserDetails = (user: Profile) => {
   const container = document.createElement("div");
-  container.className = "grid mt-20 w-full max-w-sm gap-6";
+  container.className = "grid mt-20 w-full max-w-sm gap-6 mx-auto";
 
   // USER CREDITS
   {
@@ -19,7 +21,8 @@ const UserDetails = (user: Profile) => {
 
     const creditsValue = document.createElement("span");
     creditsValue.textContent = user.credits.toString() || "0";
-    creditsValue.className = "flex-1 text-right text-black font-medium";
+    creditsValue.className =
+      "flex-1 text-right text-black dark:text-gray-200 font-medium";
 
     const creditsText = createText("CREDITS", "ml-2 text-sm");
 
@@ -29,33 +32,30 @@ const UserDetails = (user: Profile) => {
     container.appendChild(group);
   }
 
-  // USERNAME
+  // USER AVATAR
   {
     const group = document.createElement("div");
     group.className = "flex w-full";
-    const input = createInput(user.name || "Enter your username");
-    input.id = "username-input";
+    const input = createInput(user.avatar?.url || "");
+    input.id = "user-avatar-input";
     group.appendChild(input);
     container.appendChild(group);
   }
 
-  // USER EMAIL
-  {
-    const group = document.createElement("div");
-    group.className = "flex w-full";
-    const input = createInput(user.email || "Enter your email");
-    input.id = "user-email-input";
-    group.appendChild(input);
-    container.appendChild(group);
-  }
-
-  // USER BIO + SAVE BUTTON
+  // USER BIO
   {
     const group = document.createElement("div");
     group.className = "flex flex-col w-full";
     const bioTextArea = createTextarea(user.bio || "Enter your bio");
     bioTextArea.id = "user-bio-textarea";
     group.appendChild(bioTextArea);
+    container.appendChild(group);
+  }
+
+  // SAVE USER DETAILS BUTTON
+  {
+    const group = document.createElement("div");
+    group.className = "flex flex-col w-full";
 
     const addon = document.createElement("span");
     addon.id = "save-btn";
@@ -64,6 +64,16 @@ const UserDetails = (user: Profile) => {
     addon.appendChild(createText("Save details", "text-center text-md"));
     group.appendChild(addon);
     container.appendChild(group);
+
+    addon.addEventListener("click", () => {
+      if (!user.bio && !user.avatar.url) {
+        userMessage("warning", "User bio and avatar cannot be empty.");
+        return;
+      } else {
+        editProfile(user);
+        userMessage("success", "Profile updated!");
+      }
+    });
   }
 
   return container;

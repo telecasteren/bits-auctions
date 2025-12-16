@@ -1,15 +1,17 @@
 import { authFetch } from "@/services/api/auth/config/auth-fetch";
 import { BASE_URL, LISTINGS } from "@/services/api/auth/config/constants";
 
-export const placeBid = async (bid: number, listingId: string) => {
+export const placeBid = async (bidAmount: number, listingId: string) => {
   const response = await authFetch(`${BASE_URL}${LISTINGS}/${listingId}/bids`, {
     method: "POST",
-    body: JSON.stringify(bid),
+    body: JSON.stringify({ amount: bidAmount }),
   });
 
   if (!response.ok) {
     throw new Error("Failed to place bid");
   }
+
+  console.log("Bid placed successfully", response);
 
   return await response.json();
 };

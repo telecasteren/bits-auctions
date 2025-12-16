@@ -3,7 +3,7 @@ import Listings from "@/app/ui/features/Listings";
 import SingleListing from "./features/single-listing";
 import Account from "@/app/ui/features/account/Account";
 import UserProfile from "@/app/ui/features/account/user-profile";
-import Landing from "@/app/ui/features/landing";
+import Landing from "@/app/ui/features/Landing";
 import renderAuthForm from "./features/auth/render-auth-form";
 import PageNotFound from "@/app/ui/utils/page-not-found";
 import { loadKey } from "@/utils/storage/storage";
@@ -20,7 +20,7 @@ const renderContent = async () => {
   const listing = ((await getCurrentListing())?.listing as Listing) || null;
   const body = document.body;
 
-  const content = document.querySelector<HTMLElement>("#content");
+  const content = document.getElementById("content");
   if (!content) return;
 
   content.innerHTML = "";

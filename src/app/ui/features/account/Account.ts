@@ -3,7 +3,6 @@ import { loadKey } from "@/utils/storage/storage";
 import { unAuthenticatedEvents } from "@/app/events/auth/unauthenticated";
 import { isAuthenticated } from "@/utils/config/constants";
 import { fetchSingleProfile } from "@/services/api/profiles/fetch-single-profile";
-import { editProfile } from "@/app/events/profile/edit-profile";
 import Header from "@/app/ui/features/account/header";
 import { logOutUser } from "@/services/helpers/logout-user";
 import { profileCards } from "./info-cards";
@@ -35,7 +34,6 @@ const Account = async () => {
   container.appendChild(logOutButton);
 
   // editAvatarEvent(user);
-  editProfile(user);
 };
 
 export default Account;

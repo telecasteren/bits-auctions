@@ -1,4 +1,4 @@
-export const popUpModal = (image: string) => {
+export const popUpModal = (image?: string, form?: HTMLElement) => {
   const container = document.getElementById("content");
   if (!container) return;
 
@@ -45,12 +45,18 @@ export const popUpModal = (image: string) => {
 
     modalContent.innerHTML = "";
     modalContent.appendChild(closeButton);
-    const imageElement = document.createElement("img");
-    imageElement.className =
-      "w-full h-auto justify-self-center self-center rounded-sm opacity-100";
-    imageElement.src = image;
-    imageElement.alt = "Modal image";
-    modalContent.appendChild(imageElement);
+
+    if (image) {
+      const imageElement = document.createElement("img");
+      imageElement.className =
+        "w-full h-auto justify-self-center self-center rounded-sm opacity-100";
+      imageElement.src = image;
+      imageElement.alt = "Modal image";
+      modalContent.appendChild(imageElement);
+    } else if (form) {
+      const formElement = form;
+      modalContent.appendChild(formElement);
+    }
 
     modal.style.display = "block";
     modal.focus();
