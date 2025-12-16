@@ -8,9 +8,11 @@ const Landing = async () => {
   container.innerHTML = "";
 
   const wrapper = document.createElement("div");
-  wrapper.className = "flex flex-rows items-center justify-center mt-20 gap-4";
+  wrapper.className =
+    "sm:grid sm:grid-cols-2 md:flex md:flex-row items-center justify-center mt-20 gap-4";
 
   const header = document.createElement("header");
+  header.className = "justify-self-center md:justify-self-start";
 
   const h1 = logoText(false);
   h1.classList.add("text-[80px]", "md:text-[120px]", "lg:text-[162px]");

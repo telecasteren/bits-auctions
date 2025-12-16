@@ -12,7 +12,7 @@
   }
 
   #nav-logo-img {
-    @apply w-[50px] h-auto ml-2;
+    @apply w-[50px] h-auto mx-auto md:ml-2;
   }
 
   #nav-logo {
