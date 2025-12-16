@@ -1,78 +1,47 @@
-const createBarChart = (data) => {
-  const chartContainer = document.createElement("div");
-  chartContainer.className = "chart-container";
-  chartContainer.style.cssText = `
-    width: 100%;
-    height: 350px;
-    position: relative;
-    padding: 20px;
-    background: transparent;
-  `;
+const createBarChart = (data: { month: string; desktop: number }[]) => {
+  const isMobile = window.innerWidth <= 640;
+  const filteredMonths = isMobile ? data.slice(-6) : data;
+  const maxValue = Math.max(...filteredMonths.map((d) => d.desktop));
 
-  const maxValue = Math.max(...data.map((d) => d.desktop));
+  const chartContainer = document.createElement("div");
+  chartContainer.className =
+    "chart-container w-full h-[350px] p-5 relative p-5 bg-transparent";
 
   const chartWrapper = document.createElement("div");
-  chartWrapper.style.cssText = `
-    display: flex;
-    align-items: end;
-    justify-content: space-around;
-    height: 280px;
-    position: relative;
-    gap: 8px;
-    padding: 0 20px;
+  chartWrapper.className = `
+    flex items-end justify-around h-[280px] relative gap-2 px-5
+    sm:gap-4 sm:px-8
   `;
 
   const baseline = document.createElement("div");
-  baseline.style.cssText = `
-    position: absolute;
-    bottom: 30px;
-    left: 20px;
-    right: 20px;
-    height: 1px;
-    background: hsl(var(--border));
-    z-index: 1;
+  baseline.className = `
+    absolute bottom-[30px] left-5 right-5 h-[1px] bg-[hsl(var(--border))] z-10
   `;
 
-  data.forEach((item) => {
+  filteredMonths.forEach((item) => {
     const barContainer = document.createElement("div");
-    barContainer.style.cssText = `
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      flex: 1;
-      max-width: 60px;
+    barContainer.className = `
+      flex flex-col items-center flex-1 max-w-[60px]
+      sm:max-w-[40px]
     `;
 
     const bar = document.createElement("div");
     const height = (item.desktop / maxValue) * 240;
-    bar.style.cssText = `
-      width: 100%;
-      height: ${height}px;
-      background: hsl(var(--chart-1));
-      border-radius: 8px 8px 0 0;
-      transition: opacity 0.2s;
-      margin-bottom: 10px;
-      position: relative;
+    bar.className = `
+      w-full bg-[hsl(var(--chart-1))] rounded-t-lg transition-opacity duration-200 mb-2 relative
+      hover:opacity-80
     `;
+    bar.style.height = `${height}px`;
 
     bar.addEventListener("mouseenter", () => {
       bar.style.opacity = "0.8";
       // Show tooltip when hovering bar
       const tooltip = document.createElement("div");
-      tooltip.style.cssText = `
-        position: absolute;
-        top: -30px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: hsl(var(--popover));
-        border: 1px solid hsl(var(--border));
-        border-radius: 6px;
-        padding: 4px 8px;
-        font-size: 12px;
-        white-space: nowrap;
-        z-index: 10;
-        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+      tooltip.className = `
+        absolute top-[-30px] left-1/2 transform -translate-x-1/2 bg-[hsl(var(--popover))] border border-[hsl(var(--border))]
+        rounded-md px-2 py-1 text-xs whitespace-nowrap z-10 shadow-md
       `;
+
       tooltip.textContent = item.desktop.toString();
       bar.appendChild(tooltip);
     });
@@ -84,11 +53,9 @@ const createBarChart = (data) => {
     });
 
     const label = document.createElement("div");
-    label.style.cssText = `
-      font-size: 12px;
-      color: hsl(var(--muted-foreground));
-      text-align: center;
-      margin-top: 8px;
+    label.className = `
+      text-xs text-[hsl(var(--muted-foreground))] text-center mt-2
+      sm:text-[10px]
     `;
     label.textContent = item.month.slice(0, 3);
 
@@ -98,8 +65,8 @@ const createBarChart = (data) => {
   });
 
   chartWrapper.appendChild(baseline);
-
   chartContainer.appendChild(chartWrapper);
+
   return chartContainer;
 };
 
