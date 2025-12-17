@@ -7,6 +7,10 @@
 
 - Auth: login, logout, authentication
   - FIX VALIDATION BUGS: live password and email check prior to signup + fail signup if invalid
+- Single Listing
+  - Fix responsiveness with 'Place bid' button on auth
+- Overview
+  - Fix number of bids rendered
 
 ## PAGES
 
@@ -19,4 +23,3 @@
 
 - Create Listing module
 - Edit avatar in account
-- Can place bids when authenticated

@@ -1,29 +1,29 @@
 import { getStatusBadge } from "./get-status-badge";
-import { icons } from "./icons";
-import createButton from "./create-button";
 import type { Listing } from "@/services/types/listing";
 import SingleListing from "@/app/ui/features/single-listing";
 
-const renderTaskRow = (listing: Listing) => {
+const renderRow = (listing: Listing) => {
   const row = document.createElement("tr");
   row.setAttribute("data-id", listing.id);
   row.className =
     "border-b group transition-colors hover:bg-[#1e293b0f] inner-shadow-md data-[state=selected]:bg-muted cursor-pointer";
+
+  const coverImageTd = document.createElement("td");
+  coverImageTd.className = "pl-4 align-middle px-4 py-4";
+  const image = document.createElement("img");
+  image.className = "w-12 h-12 object-cover rounded-md justify-self-center";
+  image.src = listing.media.length > 0 ? listing.media[0].url : "";
+  image.alt = listing.title;
+  coverImageTd.appendChild(image);
+  row.appendChild(coverImageTd);
 
   const titleTd = document.createElement("td");
   titleTd.className = "pl-10 align-middle px-4 py-4 font-medium";
   const titleSpan = document.createElement("span");
   titleSpan.className = "block truncate cursor-help";
   titleSpan.textContent = listing.title;
-  titleSpan.title = listing.title;
   titleTd.appendChild(titleSpan);
   row.appendChild(titleTd);
-
-  const sellerTd = document.createElement("td");
-  sellerTd.className =
-    "text-center align-middle px-4 py-4 text-sm text-muted-foreground";
-  sellerTd.textContent = listing.seller.name;
-  row.appendChild(sellerTd);
 
   const statusTd = document.createElement("td");
   statusTd.className = "text-center align-middle px-4 py-4";
@@ -48,16 +48,11 @@ const renderTaskRow = (listing: Listing) => {
   descriptionTd.appendChild(descriptionSpan);
   row.appendChild(descriptionTd);
 
-  const actionsTd = document.createElement("td");
-  actionsTd.className = "text-center align-middle px-6 py-4";
-  const actionsDiv = document.createElement("div");
-  actionsDiv.className = "flex items-center gap-1";
-
-  const viewButton = createButton(icons.file, "View Details");
-
-  actionsDiv.appendChild(viewButton);
-  actionsTd.appendChild(actionsDiv);
-  row.appendChild(actionsTd);
+  const sellerTd = document.createElement("td");
+  sellerTd.className =
+    "text-center align-middle px-4 py-4 text-sm text-muted-foreground";
+  sellerTd.textContent = listing.seller.name;
+  row.appendChild(sellerTd);
 
   row.addEventListener("click", async () => {
     SingleListing(listing);
@@ -67,4 +62,4 @@ const renderTaskRow = (listing: Listing) => {
   return row;
 };
 
-export { renderTaskRow };
+export { renderRow };

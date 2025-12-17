@@ -1,4 +1,4 @@
-import { renderTaskRow } from "./helpers/render-task-row";
+import { renderRow } from "./helpers/render-row";
 import type { Listing } from "@/services/types/listing";
 
 const ListingTable = async (listings: Listing[]) => {
@@ -17,12 +17,12 @@ const ListingTable = async (listings: Listing[]) => {
 
   const headers = [
     {
-      text: "Title",
+      text: "Item",
       className:
         "h-12 px-4 text-center align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0",
     },
     {
-      text: "Seller",
+      text: "Title",
       className:
         "h-12 px-4 text-center align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0",
     },
@@ -32,7 +32,7 @@ const ListingTable = async (listings: Listing[]) => {
         "h-12 px-4 text-center align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 w-[120px]",
     },
     {
-      text: "Added date",
+      text: "Added",
       className:
         "h-12 px-4 text-center align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0",
     },
@@ -42,7 +42,7 @@ const ListingTable = async (listings: Listing[]) => {
         "h-12 px-4 text-center align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0",
     },
     {
-      text: "Actions",
+      text: "Seller",
       className:
         "h-12 px-4 text-center align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 w-[180px]",
     },
@@ -62,7 +62,7 @@ const ListingTable = async (listings: Listing[]) => {
   tbody.className = "[&_tr:last-child]:border-0";
 
   listings.forEach((listing) => {
-    tbody.appendChild(renderTaskRow(listing));
+    tbody.appendChild(renderRow(listing));
   });
 
   table.appendChild(tbody);
