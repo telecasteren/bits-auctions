@@ -1,19 +1,18 @@
-import { fetchAllListings } from "@/services/api/listings/fetch/fetch-all-listings";
+import { fetchListingsForCharts } from "@/services/api/listings/fetch/fetch-listings-for-charts";
 import { MONTHS } from "@/utils/config/constants";
 import type { Listing, Bid } from "@/services/types/listing";
-import type { MonthIndex, ChartItems } from "@/app/components/charts/types";
-
-type BidsOptions = {
-  onlyCurrentUser?: boolean;
-  currentUserName?: string;
-};
+import type {
+  MonthIndex,
+  ChartItems,
+  BidsOptions,
+} from "@/app/components/charts/types";
 
 export const getBidsPerMonth = async (
-  options: BidsOptions = {},
+  options: BidsOptions = {}
 ): Promise<ChartItems[]> => {
   const { onlyCurrentUser = false, currentUserName } = options;
 
-  const response = await fetchAllListings();
+  const response = await fetchListingsForCharts();
   const listings: Listing[] = response.data;
 
   const monthCounts: Record<MonthIndex, number> = {
