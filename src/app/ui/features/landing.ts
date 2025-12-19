@@ -1,5 +1,5 @@
 import { logoImg, logoText } from "@/app/components/branding/brand-logo";
-import Carousel from "@/app/components/carousel/Carousel";
+import { Carousel } from "@/app/components/carousel/images-carousel";
 
 const Landing = async () => {
   const container = document.querySelector("#content");
@@ -9,7 +9,7 @@ const Landing = async () => {
 
   const wrapper = document.createElement("div");
   wrapper.className =
-    "sm:grid sm:grid-cols-2 md:flex md:flex-row items-center justify-center mt-20 gap-4";
+    "sm:grid sm:grid-cols-2 md:flex md:flex-row items-center justify-center lg:mt-[-8%] gap-4";
 
   const header = document.createElement("header");
   header.className = "justify-self-center md:justify-self-start";
@@ -25,7 +25,7 @@ const Landing = async () => {
   const logo = logoImg();
   logo.className = "w-58 mb-6";
 
-  const carouselEl = await Carousel();
+  const { root: carouselEl } = await Carousel();
 
   header.appendChild(h1);
   header.appendChild(p);

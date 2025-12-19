@@ -11,7 +11,5 @@ export const placeBid = async (bidAmount: number, listingId: string) => {
     throw new Error("Failed to place bid");
   }
 
-  console.log("Bid placed successfully", response);
-
   return await response.json();
 };

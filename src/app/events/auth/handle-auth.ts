@@ -20,12 +20,11 @@ export const handleAuth = async (isSignup = false) => {
       const { name } = (await login(email, password)) || email.split("@")[0];
 
       window.location.href = `/bits-auctions/account/${newUser.data.username || name}`;
-      console.log("newUser data: ", newUser.data);
     } catch (error) {
       displayFormErrors(
         emailInput,
         `Registration failed. Email may be in use or wrong.
-        Valid email domains: @stud.noroff.no`,
+        Valid email domains: @stud.noroff.no`
       );
       throw error;
     }

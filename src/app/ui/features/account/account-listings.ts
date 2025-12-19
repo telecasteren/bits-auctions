@@ -2,6 +2,7 @@ import type { Profile } from "@/services/types/profile";
 import ListingTable from "@/app/components/listings/listing-table";
 import EmptyListing from "@/app/components/listings/empty-listing";
 import { fetchListingsByProfile } from "@/services/api/listings/fetch/fetch-profile-listings";
+import { mountDialogue } from "@/app/components/modals/dialogue/mountDialogue";
 
 const AccountListings = async (user: Profile) => {
   const container = document.createElement("div");
@@ -11,6 +12,7 @@ const AccountListings = async (user: Profile) => {
   accountGrid.className = "grid grid-cols-1 gap-6 mt-20 mb-20";
 
   const listings = await fetchListingsByProfile(username);
+  const createNewListing = await mountDialogue();
 
   if (listings.length === 0) {
     const noListings = EmptyListing();
@@ -21,6 +23,9 @@ const AccountListings = async (user: Profile) => {
   }
 
   container.appendChild(accountGrid);
+  if (createNewListing) {
+    container.appendChild(createNewListing);
+  }
 
   return container;
 };

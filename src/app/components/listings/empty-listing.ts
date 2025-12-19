@@ -1,3 +1,5 @@
+import { mountDialogue } from "@/app/components/modals/dialogue/mountDialogue";
+
 const EmptyListing = () => {
   const container = document.createElement("div");
   container.className =
@@ -23,13 +25,13 @@ const EmptyListing = () => {
 
   const iconPath1 = document.createElementNS(
     "http://www.w3.org/2000/svg",
-    "path",
+    "path"
   );
   iconPath1.setAttribute("d", "M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z");
 
   const iconPath2 = document.createElementNS(
     "http://www.w3.org/2000/svg",
-    "path",
+    "path"
   );
   iconPath2.setAttribute("d", "M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z");
 
@@ -59,6 +61,12 @@ const EmptyListing = () => {
 
   content.appendChild(createButton);
 
+  createButton.addEventListener("click", async () => {
+    const createListingDialogue = await mountDialogue();
+    if (!createListingDialogue) return;
+    container.appendChild(createListingDialogue);
+  });
+
   // Learn more - FAQ?
   const learnMoreLink = document.createElement("a");
   learnMoreLink.id = "learn-more-link";
@@ -71,7 +79,7 @@ const EmptyListing = () => {
 
   const arrowIcon = document.createElementNS(
     "http://www.w3.org/2000/svg",
-    "svg",
+    "svg"
   );
   arrowIcon.setAttribute("width", "16");
   arrowIcon.setAttribute("height", "16");
@@ -85,13 +93,13 @@ const EmptyListing = () => {
 
   const arrowPath1 = document.createElementNS(
     "http://www.w3.org/2000/svg",
-    "path",
+    "path"
   );
   arrowPath1.setAttribute("d", "M7 17L17 7");
 
   const arrowPath2 = document.createElementNS(
     "http://www.w3.org/2000/svg",
-    "path",
+    "path"
   );
   arrowPath2.setAttribute("d", "M7 7h10v10");
 

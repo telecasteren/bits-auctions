@@ -65,7 +65,7 @@ const UserProfile = async (user: Profile) => {
   bio.innerHTML = `<b>Bio:</b> ${userBio}`;
 
   const hr = document.createElement("hr");
-  hr.className = "my-4 border-gray-300";
+  hr.className = "my-4 border-gray-300 dark:border-gray-700";
 
   const listingsContainer = document.createElement("div");
   listingsContainer.id = "account-listings-container";

@@ -21,7 +21,7 @@ const ListingCards = (listings: Listing[]) => {
       listing._count.bids > 0 ? listing._count.bids : "No bids yet";
 
     const card = document.createElement("div");
-    card.className = `relative group rounded-lg border bg-card p-4 shadow-sm hover:shadow-lg transition-shadow
+    card.className = `relative group rounded-lg border border-gray-300 dark:border-gray-700 bg-card p-4 shadow-sm hover:shadow-lg transition-shadow
     cursor-pointer overflow-hidden cursor-pointer hover:scale-102 transition-transform`;
 
     const overlay = document.createElement("div");

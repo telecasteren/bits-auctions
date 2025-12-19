@@ -50,8 +50,8 @@ const renderRow = (listing: Listing) => {
 
   const sellerTd = document.createElement("td");
   sellerTd.className =
-    "text-center align-middle px-4 py-4 text-sm text-muted-foreground";
-  sellerTd.textContent = listing.seller.name;
+    "text-center align-middle px-4 py-4 text-sm text-muted-foreground block truncate cursor-help";
+  sellerTd.textContent = listing.seller?.name || "Unknown";
   row.appendChild(sellerTd);
 
   row.addEventListener("click", async () => {

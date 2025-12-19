@@ -1,11 +1,7 @@
 import { authFetch } from "@/services/api/auth/config/auth-fetch";
-import {
-  BASE_URL,
-  LISTINGS,
-  PER_PAGE,
-} from "@/services/api/auth/config/constants";
+import { BASE_URL, LISTINGS } from "@/services/api/auth/config/constants";
 
-export const fetchAllListings = async (limit = PER_PAGE, page = 1) => {
+export const fetchAllListings = async (limit?: number, page?: number) => {
   const response = await authFetch(
     `${BASE_URL}${LISTINGS}?_seller=true&_bids=true&limit=${limit}&page=${page}&sort=created&sortOrder=desc`
   );

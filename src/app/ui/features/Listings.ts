@@ -1,6 +1,7 @@
 import ListingCards from "@/app/components/listings/listing-cards";
 import ListingTable from "@/app/components/listings/listing-table";
 import { fetchAllListings } from "@/services/api/listings/fetch/fetch-all-listings";
+import { renderSearchResults } from "@/app/events/listing/search";
 
 const Listings = async () => {
   const container = document.querySelector("#content");
@@ -24,6 +25,14 @@ const Listings = async () => {
   searchInput.className = `w-full rounded border border-input bg-background px-3 py-2 placeholder:text-muted-foreground
   focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary`;
 
+  searchInput.addEventListener("input", async (e) => {
+    const target = e.target as HTMLInputElement;
+    const query = target.value.trim();
+
+    await renderSearchResults(query);
+    console.log("Searching for:", query);
+  });
+
   const tabMenu = document.createElement("div");
   tabMenu.className =
     "flex flex-wrap gap-4 items-center w-full sticky top-0 left-0 mb-6 pb-2";
@@ -41,22 +50,62 @@ const Listings = async () => {
   cardView.className =
     "active mb-4 fit-content flex flex-col gap-6 items-center";
 
-  const listingsResponse = await fetchAllListings(100, 1);
+  const nextPageButton = document.createElement("button");
+  nextPageButton.id = "next-page-button";
+  nextPageButton.textContent = "See more";
+  nextPageButton.className = "btn-secondary";
+
+  const listingsResponse = await fetchAllListings(20, 1);
   const listings = listingsResponse.data ?? [];
 
-  const table = await ListingTable(listings);
-  const cards = ListingCards(listings);
+  let table = await ListingTable(listings);
+  let cards = ListingCards(listings);
   table.classList.add("hidden");
 
   const viewsWrapper = document.createElement("div");
+  viewsWrapper.id = "listings-wrapper";
   viewsWrapper.className = "flex flex-col mt-12 gap-6 mx-auto max-w-6xl";
   viewsWrapper.appendChild(table);
   viewsWrapper.appendChild(cards);
 
+  let currentPage = 1;
+  let allListings = [...listings];
+  nextPageButton.addEventListener("click", async () => {
+    nextPageButton.disabled = true;
+
+    try {
+      currentPage += 1;
+      const listingsResponse = await fetchAllListings(10, currentPage);
+      const next = listingsResponse.data ?? [];
+
+      if (next.length === 0) {
+        nextPageButton.disabled = true;
+        nextPageButton.textContent = "You reached the end :)";
+        return;
+      }
+
+      allListings = [...allListings, ...next];
+
+      const newTable = await ListingTable(allListings);
+      const newCards = ListingCards(allListings);
+
+      const isTableActive = tableView.classList.contains("active");
+      newTable.classList.toggle("hidden", !isTableActive);
+      newCards.classList.toggle("hidden", isTableActive);
+
+      table.replaceWith(newTable);
+      cards.replaceWith(newCards);
+      table = newTable;
+      cards = newCards;
+    } finally {
+      nextPageButton.disabled = false;
+    }
+  });
+
   const tabMenuElements = [tableView, cardView];
 
   tabMenuElements.forEach((tab) => {
-    tab.addEventListener("click", (e) => {
+    tab.addEventListener("click", async (e) => {
       e.preventDefault();
 
       if (tab === tableView) {
@@ -70,6 +119,11 @@ const Listings = async () => {
         cardView.classList.add("active");
         tableView.classList.remove("active");
       }
+
+      const isQuery = searchInput.value.trim();
+      if (isQuery) {
+        await renderSearchResults(isQuery);
+      }
     });
   });
 
@@ -81,6 +135,7 @@ const Listings = async () => {
   tabMenu.appendChild(tableView);
   container.appendChild(tabMenu);
   container.appendChild(viewsWrapper);
+  container.appendChild(nextPageButton);
 };
 
 export default Listings;

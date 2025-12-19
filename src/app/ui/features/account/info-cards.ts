@@ -30,7 +30,7 @@ export const profileCards = (user: Profile) => {
       item.title.toLowerCase().replace(" ", "-")
     );
     card.className =
-      "relative group rounded-lg border bg-card mb-20 mt-20 p-4 shadow-sm hover:shadow-lg hover:scale-105 duration-300 transition-all cursor-pointer overflow-hidden";
+      "relative group rounded-lg border border-gray-300 dark:border-gray-700 bg-card mb-20 mt-20 p-4 shadow-sm hover:shadow-lg hover:scale-105 duration-300 transition-all cursor-pointer overflow-hidden";
 
     const overlay = document.createElement("div");
     overlay.className =

@@ -26,14 +26,16 @@ const Account = async () => {
   const header = await Header(user);
   const infoCards = profileCards(user);
 
+  const hr = document.createElement("hr");
+  hr.className = "mt-4 w-full border-gray-300 dark:border-gray-700";
+
   const logOutButton = logOutUser(false);
   logOutButton.classList.add("mt-60", "justify-self-end");
 
   container.appendChild(header);
+  container.appendChild(hr);
   container.appendChild(infoCards);
   container.appendChild(logOutButton);
-
-  // editAvatarEvent(user);
 };
 
 export default Account;

@@ -1,12 +1,14 @@
 import type { Listing } from "@/services/types/listing";
 import type { Profile } from "@/services/types/profile";
 import { renderApp } from "@/services/helpers/render-app";
-import { popUpModal } from "@/app/components/modal/modal";
+import { popUpModal } from "@/app/components/modals/modal";
 import { getStatusBadge } from "@/app/components/listings/helpers/get-status-badge";
 import { isAuthenticated } from "@/utils/config/constants";
 import { submitUserBid } from "@/app/events/listing/submit-bid";
 import { clearUserMessage, userMessage } from "@/app/ui/utils/user-messages";
 import { loadKey } from "@/utils/storage/storage";
+import { createBadge } from "@/app/components/listings/helpers/create-badge";
+import { Carousel } from "@/app/components/carousel/images-carousel";
 
 const SingleListing = async (listing: Listing) => {
   const endsAt = new Date(listing.endsAt);
@@ -22,33 +24,33 @@ const SingleListing = async (listing: Listing) => {
 
   container.innerHTML = "";
 
-  const mediaCarousel = document.createElement("div");
-  mediaCarousel.className =
-    "w-full h-68 md:h-96 bg-gray-200 mb-6 flex gap-2 rounded-md overflow-hidden flex items-center justify-center";
-
-  const mediaImages = document.createElement("div");
-  mediaImages.className = "flex flex-row gap-4 overflow-x-auto py-2";
-
-  listing.media.forEach((media) => {
+  const multipleMedia = listing.media.length > 1;
+  if (multipleMedia) {
+    const { root: carouselEl } = await Carousel({}, listing);
+    container.appendChild(carouselEl);
+  } else if (listing.media.length === 1) {
+    const mediaImage = document.createElement("div");
+    mediaImage.className = "media-carousel";
     const img = document.createElement("img");
-    img.setAttribute("id", `media-${listingTitle}`);
-    img.src = media.url;
-    img.alt = listingTitle;
+    img.src = listing.media[0].url;
+    img.alt = listing.title || "Listing image";
     img.className =
-      "flex-shrink-0 flex items-center justify-center w-58 h-58 md:w-80 md:h-80 rounded-sm object-cover cursor-pointer";
-    mediaImages.appendChild(img);
+      "m-4 w-90 h-90 bg-gray-200 rounded-sm justify-self-center object-cover cursor-pointer";
 
     img.addEventListener("click", () => {
-      popUpModal(media.url);
+      popUpModal(listing.media[0].url);
     });
-  });
+
+    mediaImage.appendChild(img);
+    container.appendChild(mediaImage);
+  }
 
   const detailsSection = document.createElement("div");
   detailsSection.className =
-    "px-4 mb-6 flex flex-row items-start justify-between w-full";
+    "px-4 mb-6 flex flex-row flex-wrap items-start justify-between w-full md:w-[82%] justify-self-center";
 
   const textSection = document.createElement("div");
-  textSection.className = "w-[60%]";
+  textSection.className = "w-full md:w-[60%] mt-5 md:mt-0";
 
   const title = document.createElement("h1");
   title.className = "text-3xl font-bold mb-2";
@@ -64,25 +66,23 @@ const SingleListing = async (listing: Listing) => {
   seller.textContent = listingSeller;
 
   const actionCenter = document.createElement("div");
-  actionCenter.className = "flex flex-row items-center justify-end gap-4";
+  actionCenter.className =
+    "flex flex-row flex-wrap items-center justify-end gap-4";
 
   const status = document.createElement("p");
   status.className = "text-sm";
   status.appendChild(getStatusBadge(isActive ? "active" : "ended"));
 
-  const bids = document.createElement("p");
-  bids.className = "text-sm";
-  bids.innerHTML = listing._count.bids
+  const bids = document.createElement("div");
+  const bidsText = listing._count.bids
     ? `${listing._count.bids} bids`
     : "0 bids";
+  const bidsBadge = createBadge(bidsText, "border-none");
+  bids.appendChild(bidsBadge);
 
   const placeBidButton = document.createElement("button");
   placeBidButton.className = "btn btn-primary";
   placeBidButton.textContent = "Place Bid";
-
-  if (isActive && isAuthenticated) {
-    actionCenter.appendChild(placeBidButton);
-  }
 
   const userCredits = loadKey("credits");
   const bidForm = document.createElement("div");
@@ -104,6 +104,10 @@ const SingleListing = async (listing: Listing) => {
   bidForm.appendChild(bidLabel);
   bidForm.appendChild(bidInput);
   bidForm.appendChild(submitBid);
+
+  const hr = document.createElement("hr");
+  hr.className = "mb-4 mt-4 w-full border-gray-300";
+  detailsSection.appendChild(hr);
 
   placeBidButton.addEventListener("click", () => {
     if (!userCredits || userCredits === "0") {
@@ -138,8 +142,10 @@ const SingleListing = async (listing: Listing) => {
   actionCenter.appendChild(bids);
   detailsSection.appendChild(actionCenter);
 
-  mediaCarousel.appendChild(mediaImages);
-  container.appendChild(mediaCarousel);
+  if (isActive && isAuthenticated) {
+    actionCenter.appendChild(placeBidButton);
+  }
+
   container.appendChild(detailsSection);
 };
 export default SingleListing;
