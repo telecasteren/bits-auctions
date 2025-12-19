@@ -1,0 +1,41 @@
+@media (prefers-color-scheme: dark) {
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1) brightness(1.1) contrast(1.05);
+    opacity: 0.9;
+  }
+}
+
+.BTN_BASE {
+  @apply inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium
+   transition-colors focus-visible:outline-none focus-visible:ring-2
+   focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50
+  h-10 px-4 py-2;
+}
+
+.btn-outline {
+  @apply p-2 rounded border bg-[var(--background)] hover:bg-[var(--accent-strong)/90];
+}
+
+.dialogue-primary-btn {
+  @apply p-2 rounded bg-[var(--accent-strong)] hover:bg-[var(--accent-strong)/90];
+}
+
+.INPUT_BASE {
+  @apply flex w-full rounded-md border bg-[var(--background)] px-3 py-2 text-sm;
+}
+
+.LABEL {
+  @apply block text-sm font-medium text-gray-400;
+}
+
+.dialogue-overlay {
+  @apply fixed inset-0 z-[2000] bg-black/50;
+}
+
+.dialogue-content {
+  @apply fixed left-1/2 top-1/2 z-[2001] grid w-[90%] sm:max-w-[600px] -translate-x-1/2 -translate-y-1/2 gap-4 rounded-md border bg-[var(--background)] p-6 shadow-lg;
+}
+
+.dialogue-footer {
+  @apply mt-4 flex justify-end gap-2;
+}

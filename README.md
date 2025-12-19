@@ -1,6 +1,6 @@
 # Bits Action House
 
-![image](src/assets/logo/readme-logo.png)
+![image](src/assets/logo/readme-logo-big.png)
 **Live site:** [bits-auctions](https://telecasternilsen.com/bits-auctions/)
 
 A modular Auction house site where users can manage and display items (listings) for auction and view charts with stats. The codebase is set up for scalability, using a clear folder structure and helper utilities.

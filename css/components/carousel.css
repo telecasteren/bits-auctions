@@ -1,0 +1,44 @@
+@layer components {
+  .media-carousel {
+    @apply mt-20 mb-5 w-full md:w-[82%] justify-self-center bg-black/5 rounded-lg;
+  }
+
+  .slide-default {
+    @apply absolute inset-0 transition-all duration-700 ease-in-out;
+  }
+
+  .slide-active {
+    transform: translateX(0%) scale(1);
+    opacity: 1;
+    z-index: 20;
+    pointer-events: auto;
+  }
+
+  .slide-next {
+    transform: translateX(60%) scale(0.8);
+    opacity: 0.4;
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  .slide-previous {
+    transform: translateX(-60%) scale(0.8);
+    opacity: 0.4;
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  .slide-off-right {
+    transform: translateX(200%) scale(0.9);
+    opacity: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .slide-off-left {
+    transform: translateX(-200%) scale(0.9);
+    opacity: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+}

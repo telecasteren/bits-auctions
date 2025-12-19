@@ -12,11 +12,8 @@
   }
 
   .btn-secondary {
-    @apply bg-[hsl(var(--background))] text-black border border-black;
-  }
-
-  .btn-tertiary {
-    @apply bg-[#7aed07e7] text-green-950 hover:text-[#559f0be7] brightness-90 hover:brightness-100;
+    @apply mt-8 mb-12 px-4 py-2 border dark:border-none bg-[hsl(var(--accent))] dark:text-white rounded
+    hover:bg-[hsl(var(--accent))]/60 transition cursor-pointer disabled:opacity-50;
   }
 
   .btn-danger {
