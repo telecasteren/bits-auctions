@@ -1,5 +1,5 @@
 import { spinner } from "@/app/components/loaders/spinner";
-import { userMessage, clearUserMessage } from "@/app/ui/utils/user-messages";
+import { userMessage } from "@/app/ui/utils/user-messages";
 import { AuthForm } from "@/app/components/forms/auth-form";
 import { AuthenticateUser } from "./authenticate-user";
 
@@ -12,7 +12,9 @@ export const forgotPasswordRoute = (authContainer: HTMLElement) => {
     spinnerEL.className = "flex justify-center items-center mt-48";
     authContainer.prepend(spinnerEL);
 
-    userMessage("info", "Forgot your password? Please signup again.");
+    userMessage("info", "Forgot your password? Please signup again.", {
+      duration: 8000,
+    });
 
     setTimeout(() => {
       const authFormElement = AuthForm(true);
@@ -23,9 +25,5 @@ export const forgotPasswordRoute = (authContainer: HTMLElement) => {
       }
       spinnerEL.remove();
     }, 1000);
-
-    setTimeout(() => {
-      clearUserMessage();
-    }, 3000);
   };
 };

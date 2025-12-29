@@ -4,6 +4,7 @@ import { createInput } from "@/app/components/forms/user-details/create-input";
 import { createTextarea } from "@/app/components/forms/user-details/create-textarea";
 import { editProfile } from "@/app/events/profile/edit-profile";
 import { userMessage } from "@/app/ui/utils/user-messages";
+import { renderApp } from "@/services/helpers/render-app";
 
 const UserDetails = (user: Profile) => {
   const container = document.createElement("div");
@@ -65,13 +66,16 @@ const UserDetails = (user: Profile) => {
     group.appendChild(addon);
     container.appendChild(group);
 
-    addon.addEventListener("click", () => {
+    addon.addEventListener("click", async () => {
       if (!user.bio && !user.avatar.url) {
-        userMessage("warning", "User bio and avatar cannot be empty.");
+        userMessage("warning", "Both bio and avatar cannot be empty.", {
+          duration: 4000,
+        });
         return;
       } else {
-        editProfile(user);
-        userMessage("success", "Profile updated!");
+        await editProfile(user);
+        userMessage("success", "Profile updated!", { duration: 4000 });
+        renderApp();
       }
     });
   }

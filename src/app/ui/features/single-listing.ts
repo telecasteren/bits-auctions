@@ -5,7 +5,7 @@ import { popUpModal } from "@/app/components/modals/modal";
 import { getStatusBadge } from "@/app/components/listings/helpers/get-status-badge";
 import { isAuthenticated } from "@/utils/config/constants";
 import { submitUserBid } from "@/app/events/listing/submit-bid";
-import { clearUserMessage, userMessage } from "@/app/ui/utils/user-messages";
+import { userMessage } from "@/app/ui/utils/user-messages";
 import { loadKey } from "@/utils/storage/storage";
 import { createBadge } from "@/app/components/listings/helpers/create-badge";
 import { Carousel } from "@/app/components/carousel/images-carousel";
@@ -18,6 +18,7 @@ const SingleListing = async (listing: Listing) => {
   const listingTitle = listing.title || "Untitled listing";
   const listingDescription = listing.description || "No description";
   const listingSeller = (listing.seller as Profile)?.name || "Unknown seller";
+  const listingBids = listing._count?.bids || 0;
 
   const container = document.getElementById("content");
   if (!container) return;
@@ -74,9 +75,7 @@ const SingleListing = async (listing: Listing) => {
   status.appendChild(getStatusBadge(isActive ? "active" : "ended"));
 
   const bids = document.createElement("div");
-  const bidsText = listing._count.bids
-    ? `${listing._count.bids} bids`
-    : "0 bids";
+  const bidsText = listingBids ? `${listingBids} bids` : "0 bids";
   const bidsBadge = createBadge(bidsText, "border-none");
   bids.appendChild(bidsBadge);
 
@@ -111,14 +110,11 @@ const SingleListing = async (listing: Listing) => {
 
   placeBidButton.addEventListener("click", () => {
     if (!userCredits || userCredits === "0") {
-      userMessage("error", "You don't have any credits.");
+      userMessage("error", "You don't have any credits.", { duration: 10000 });
       return;
     } else {
       popUpModal("", bidForm);
     }
-    setTimeout(() => {
-      clearUserMessage();
-    }, 4000);
   });
 
   submitBid.addEventListener("click", async () => {

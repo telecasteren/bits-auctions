@@ -26,6 +26,7 @@ const navbar = () => {
 
   const navItems = [
     isAuthenticated ? "Overview" : null,
+    isAuthenticated ? "New" : null,
     "Listings",
     isAuthenticated ? "Account" : "Login",
     !isAuthenticated ? "Signup" : null,

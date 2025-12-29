@@ -1,4 +1,3 @@
-// import { isDark } from "@/utils/config/theme";
 import {
   brandShortName,
   brandLogoImg,
@@ -10,10 +9,6 @@ export const logoText = (short = false) => {
   logoText.id = short ? "nav-logo" : "nav-logo-alt";
   logoText.className = short ? "lemon-font" : "lemon-font-alt";
   logoText.textContent = short ? brandShortName : brandFullName;
-
-  // if (isDark) {
-  //   logoText.classList.add("text-white");
-  // }
 
   return logoText;
 };

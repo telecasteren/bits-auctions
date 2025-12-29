@@ -1,17 +1,15 @@
 import { submitNewListingEvents } from "@/app/events/listing/submit-new-events";
-import { handleClicks } from "@/app/components/modals/dialogue/handleClicks";
+import { handleClicks } from "@/app/components/modals/dialogue/helpers/handle-clicks";
+import { createMediaInputs } from "./helpers/create-media-inputs";
+import { addExtraInput } from "@/app/components/modals/dialogue/helpers/add-extra-input";
 import type { Profile } from "@/services/types/profile";
 
-export const createDialogue = (username: Profile) => {
+export const createDialogue = (
+  username: Profile,
+  container: HTMLElement | null = document.getElementById("content")
+) => {
   const form = document.createElement("div");
-  // form.className = "dialogue-content";
   form.className = "justify-self-end";
-
-  const trigger = document.createElement("button");
-  trigger.type = "button";
-  trigger.className = "btn-outline";
-  trigger.textContent = "Create Listing";
-  form.appendChild(trigger);
 
   const overlay = document.createElement("div");
   overlay.className = "dialogue-overlay";
@@ -32,89 +30,75 @@ export const createDialogue = (username: Profile) => {
   formDescription.id = "dialogue-form-description";
   formDescription.textContent = "Fill in the form to create a new listing.";
 
-  header.appendChild(formTitle);
-  header.appendChild(formDescription);
-
   const body = document.createElement("div");
   body.className = "grid gap-4";
 
   const endsAtGroup = document.createElement("div");
   endsAtGroup.className = "grid grid-cols-2 gap-3 items-center";
+
   const endsAtLabel = document.createElement("label");
   endsAtLabel.className = "text-white";
-  endsAtLabel.htmlFor = "ends-at-1";
+  endsAtLabel.htmlFor = "ends-at";
   endsAtLabel.textContent = "Bidding ends at";
+
   const endsAtInput = document.createElement("input");
+  endsAtInput.id = "ends-at";
   endsAtInput.type = "date";
   endsAtInput.name = "ends-at";
   endsAtInput.value = new Date().toISOString();
   endsAtInput.className = "p-2 rounded-md border bg-[var(--background)]";
-  endsAtGroup.appendChild(endsAtLabel);
-  endsAtGroup.appendChild(endsAtInput);
 
   const listingTitleGroup = document.createElement("div");
   listingTitleGroup.className = "grid gap-3";
   const listingTitleLabel = document.createElement("label");
   listingTitleLabel.className = "LABEL";
-  listingTitleLabel.htmlFor = "title-1";
+  listingTitleLabel.htmlFor = "title";
   listingTitleLabel.textContent = "Title";
+
   const titleInput = document.createElement("input");
-  titleInput.id = "title-1";
+  titleInput.id = "title";
   titleInput.name = "title";
-  titleInput.placeholder = "Enter listing title...";
+  titleInput.placeholder = "Enter listing title";
   titleInput.className = "INPUT_BASE";
-  listingTitleGroup.appendChild(listingTitleLabel);
-  listingTitleGroup.appendChild(titleInput);
 
   const imageGalleryGroup = document.createElement("div");
   imageGalleryGroup.className = "grid gap-3";
-  const imageGalleryLabel = document.createElement("label");
-  imageGalleryLabel.className = "LABEL";
-  imageGalleryLabel.htmlFor = "img-gallery-1";
-  imageGalleryLabel.textContent = "Image gallery urls";
 
-  const urlInputs = document.createElement("input");
-  urlInputs.id = "img-gallery-1";
-  urlInputs.name = "image-gallery";
-  urlInputs.value = "https://example.com/image.jpg";
-  urlInputs.className = "INPUT_BASE";
-  imageGalleryGroup.appendChild(imageGalleryLabel);
-  imageGalleryGroup.appendChild(urlInputs);
+  const urlInputs = createMediaInputs(3);
+
+  const addImageBtn = document.createElement("button");
+  addImageBtn.type = "button";
+  addImageBtn.className = "btn-secondary w-max";
+  addImageBtn.textContent = "+ Add";
 
   const descriptionGroup = document.createElement("div");
   descriptionGroup.className = "grid gap-3";
+
   const descriptionLabel = document.createElement("label");
   descriptionLabel.className = "LABEL";
-  descriptionLabel.htmlFor = "description-1";
-  descriptionLabel.textContent = "Description (optional)";
+  descriptionLabel.htmlFor = "description";
+  descriptionLabel.textContent = "Description (recommended)";
+
   const descriptionInput = document.createElement("textarea");
-  descriptionInput.id = "description-1";
+  descriptionInput.id = "description";
   descriptionInput.name = "description";
   descriptionInput.rows = 4;
-  descriptionInput.placeholder = "Enter description...";
+  descriptionInput.placeholder = "Enter description";
   descriptionInput.className = "INPUT_BASE";
-  descriptionGroup.appendChild(descriptionLabel);
-  descriptionGroup.appendChild(descriptionInput);
 
   const tagsGroup = document.createElement("div");
   tagsGroup.className = "grid gap-3";
+
   const tagsLabel = document.createElement("label");
   tagsLabel.className = "LABEL";
-  tagsLabel.htmlFor = "tags-1";
+  tagsLabel.htmlFor = "tags";
   tagsLabel.textContent = "Tags (optional)";
+
   const tagsInput = document.createElement("input");
-  tagsInput.id = "tags-1";
+  tagsInput.id = "tags";
   tagsInput.name = "tags";
   tagsInput.placeholder = "clothes, fashion...";
   tagsInput.className = "INPUT_BASE";
-  tagsGroup.appendChild(tagsLabel);
-  tagsGroup.appendChild(tagsInput);
-
-  body.appendChild(endsAtGroup);
-  body.appendChild(listingTitleGroup);
-  body.appendChild(imageGalleryGroup);
-  body.appendChild(descriptionGroup);
-  body.appendChild(tagsGroup);
 
   const footer = document.createElement("div");
   footer.className = "dialogue-footer";
@@ -125,9 +109,31 @@ export const createDialogue = (username: Profile) => {
   cancelBtn.textContent = "Cancel";
 
   const saveBtn = document.createElement("button");
+  saveBtn.id = "dialogue-save-btn";
   saveBtn.type = "button";
   saveBtn.className = "dialogue-primary-btn cursor-pointer";
   saveBtn.textContent = "Save changes";
+
+  header.appendChild(formTitle);
+  header.appendChild(formDescription);
+  endsAtGroup.appendChild(endsAtLabel);
+  endsAtGroup.appendChild(endsAtInput);
+
+  listingTitleGroup.appendChild(listingTitleLabel);
+  listingTitleGroup.appendChild(titleInput);
+  imageGalleryGroup.appendChild(urlInputs);
+  imageGalleryGroup.appendChild(addImageBtn);
+
+  descriptionGroup.appendChild(descriptionLabel);
+  descriptionGroup.appendChild(descriptionInput);
+  tagsGroup.appendChild(tagsLabel);
+  tagsGroup.appendChild(tagsInput);
+
+  body.appendChild(endsAtGroup);
+  body.appendChild(listingTitleGroup);
+  body.appendChild(imageGalleryGroup);
+  body.appendChild(descriptionGroup);
+  body.appendChild(tagsGroup);
 
   footer.appendChild(cancelBtn);
   footer.appendChild(saveBtn);
@@ -136,8 +142,33 @@ export const createDialogue = (username: Profile) => {
   content.appendChild(body);
   content.appendChild(footer);
 
-  const { close } = handleClicks({ trigger, cancelBtn, overlay, content });
-  submitNewListingEvents(username, close);
+  addImageBtn.addEventListener("click", () => {
+    const newAddition = addExtraInput(urlInputs, 1);
+    if (newAddition === 0) addImageBtn.disabled = true;
 
-  return form;
+    if (addImageBtn.disabled) {
+      addImageBtn.textContent = "Max images reached";
+      return;
+    }
+  });
+
+  container?.appendChild(form);
+
+  const { open } = handleClicks({
+    cancelBtn,
+    overlay,
+    content,
+  });
+  open();
+
+  const { close } = handleClicks({
+    cancelBtn,
+    overlay,
+    content,
+  });
+
+  saveBtn.addEventListener("click", async (event) => {
+    event.preventDefault();
+    submitNewListingEvents(username, close);
+  });
 };

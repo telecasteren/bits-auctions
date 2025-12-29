@@ -1,6 +1,7 @@
 import type { Profile } from "@/services/types/profile";
 import { loadKey } from "@/utils/storage/storage";
 import { renderApp } from "@/services/helpers/render-app";
+import { createDialogue } from "@/app/components/modals/dialogue/create-dialogue";
 
 const navigation = () => {
   const liItems = document.querySelectorAll("nav ul li");
@@ -20,6 +21,9 @@ const navigation = () => {
         case "nav-overview":
           window.history.pushState({}, "", "/bits-auctions/overview");
           break;
+        case "nav-new":
+          createDialogue(user);
+          break;
         case "nav-listings":
           window.history.pushState({}, "", "/bits-auctions/listings");
           break;
@@ -27,7 +31,7 @@ const navigation = () => {
           window.history.pushState(
             {},
             "",
-            `/bits-auctions/account/${username}`,
+            `/bits-auctions/account/${username}`
           );
           break;
         case "nav-login":

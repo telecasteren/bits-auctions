@@ -48,9 +48,15 @@ const ListingTable = async (listings: Listing[]) => {
     },
   ];
 
+  const inAccountListings = window.location.pathname.includes("account");
+
   headers.forEach((header) => {
     const th = document.createElement("th");
+    th.id = header.text.toLowerCase() + "-header";
     th.className = header.className;
+    if (header.text === "Seller" && inAccountListings) {
+      th.classList.add("hidden");
+    }
     th.textContent = header.text;
     headerRow.appendChild(th);
   });
@@ -62,7 +68,7 @@ const ListingTable = async (listings: Listing[]) => {
   tbody.className = "[&_tr:last-child]:border-0";
 
   listings.forEach((listing) => {
-    tbody.appendChild(renderRow(listing));
+    tbody.appendChild(renderRow(listing, inAccountListings));
   });
 
   table.appendChild(tbody);

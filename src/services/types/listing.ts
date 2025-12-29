@@ -10,11 +10,11 @@ export interface Listing {
     alt: string;
   }>;
   created: Date;
-  updated: Date;
+  updated?: Date;
   endsAt: Date;
   seller: Profile;
-  bids: Bid[];
-  _count: {
+  bids?: Bid[];
+  _count?: {
     bids: number;
   };
   _seller?: boolean;

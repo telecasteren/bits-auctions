@@ -3,7 +3,11 @@ export const clearUserMessage = () => {
   if (existingAlert) existingAlert.remove();
 };
 
-export const userMessage = (type: string, message: string) => {
+export const userMessage = (
+  type: string,
+  message: string,
+  options?: { duration?: number }
+) => {
   clearUserMessage();
 
   const alertTypes = {
@@ -61,4 +65,11 @@ export const userMessage = (type: string, message: string) => {
   setTimeout(() => {
     document.addEventListener("click", closeAlert);
   }, 500);
+
+  if (options?.duration) {
+    const timeout = window.setTimeout(() => {
+      if (div.isConnected) div.remove();
+      window.clearTimeout(timeout);
+    }, options.duration);
+  }
 };

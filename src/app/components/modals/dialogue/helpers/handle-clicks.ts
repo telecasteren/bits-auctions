@@ -1,10 +1,8 @@
 export const handleClicks = ({
-  trigger,
   cancelBtn,
   overlay,
   content,
 }: {
-  trigger: HTMLButtonElement;
   cancelBtn: HTMLButtonElement;
   overlay: HTMLDivElement;
   content: HTMLDivElement;
@@ -40,7 +38,6 @@ export const handleClicks = ({
     if (event.target === overlay) close();
   };
 
-  trigger.addEventListener("click", open);
   cancelBtn.addEventListener("click", close);
 
   return { open, close };

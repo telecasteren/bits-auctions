@@ -9,15 +9,27 @@ export const submitNewListingEvents = (
   const saveBtn = document.getElementById("dialogue-save-btn");
   if (!saveBtn) return;
 
-  const titleInput = document.getElementById("title-1") as HTMLInputElement;
+  const titleInput = document.getElementById("title") as HTMLInputElement;
   const descriptionInput = document.getElementById(
-    "description-1"
+    "description"
   ) as HTMLTextAreaElement;
-  const tagsInput = document.getElementById("tags-1") as HTMLInputElement;
-  const urlInputs = document.getElementById(
-    "img-gallery-1"
-  ) as HTMLInputElement;
-  const endsAtInput = document.getElementById("ends-at-1") as HTMLInputElement;
+  const tagsInput = document.getElementById("tags") as HTMLInputElement;
+  const endsAtInput = document.getElementById("ends-at") as HTMLInputElement;
+
+  const mediaGroup = document.getElementById(
+    "media-gallery-inputs"
+  ) as HTMLDivElement | null;
+  const inputs = Array.from(
+    mediaGroup?.querySelectorAll(`input[name="media"]`) ?? []
+  ) as HTMLInputElement[];
+
+  const media = inputs
+    .map((input) => input.value.trim())
+    .filter((url) => url.length > 0)
+    .map((url) => ({
+      url,
+      alt: `${titleInput.value.trim() || "Listing"} image`,
+    }));
 
   saveBtn.addEventListener("click", async (event) => {
     event.preventDefault();
@@ -29,18 +41,10 @@ export const submitNewListingEvents = (
       tags: tagsInput.value
         ? tagsInput.value.split(",").map((tag) => tag.trim())
         : [],
-      media: [urlInputs.value.trim()].map((url) => ({
-        url,
-        alt: `${titleInput.value.trim() || "Listing"} image`,
-      })),
+      media,
       created: new Date(),
-      updated: new Date(),
       endsAt: new Date(endsAtInput.value),
       seller: username,
-      bids: [],
-      _count: {
-        bids: 0,
-      },
     };
 
     await submitNewListing(newListing);

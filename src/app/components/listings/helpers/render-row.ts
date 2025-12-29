@@ -2,7 +2,7 @@ import { getStatusBadge } from "./get-status-badge";
 import type { Listing } from "@/services/types/listing";
 import SingleListing from "@/app/ui/features/single-listing";
 
-const renderRow = (listing: Listing) => {
+const renderRow = (listing: Listing, hideSeller: boolean = false) => {
   const row = document.createElement("tr");
   row.setAttribute("data-id", listing.id);
   row.className =
@@ -50,8 +50,9 @@ const renderRow = (listing: Listing) => {
 
   const sellerTd = document.createElement("td");
   sellerTd.className =
-    "text-center align-middle px-4 py-4 text-sm text-muted-foreground block truncate cursor-help";
-  sellerTd.textContent = listing.seller?.name || "Unknown";
+    "text-center align-middle px-4 py-4 text-sm text-muted-foreground block truncate cursor-help" +
+    (hideSeller ? " hidden" : "");
+  sellerTd.textContent = listing.seller?.name;
   row.appendChild(sellerTd);
 
   row.addEventListener("click", async () => {

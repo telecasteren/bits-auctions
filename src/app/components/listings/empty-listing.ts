@@ -1,4 +1,6 @@
-import { mountDialogue } from "@/app/components/modals/dialogue/mountDialogue";
+import { createDialogue } from "@/app/components/modals/dialogue/create-dialogue";
+import { loadKey } from "@/utils/storage/storage";
+import { Profile } from "@/services/types/profile";
 
 const EmptyListing = () => {
   const container = document.createElement("div");
@@ -62,9 +64,8 @@ const EmptyListing = () => {
   content.appendChild(createButton);
 
   createButton.addEventListener("click", async () => {
-    const createListingDialogue = await mountDialogue();
-    if (!createListingDialogue) return;
-    container.appendChild(createListingDialogue);
+    const userObject = loadKey("user") as Profile;
+    createDialogue(userObject);
   });
 
   // Learn more - FAQ?

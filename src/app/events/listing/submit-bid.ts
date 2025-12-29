@@ -1,5 +1,5 @@
 import { placeBid } from "@/services/api/listings/actions/place-bid";
-import { clearUserMessage, userMessage } from "@/app/ui/utils/user-messages";
+import { userMessage } from "@/app/ui/utils/user-messages";
 import { renderApp } from "@/services/helpers/render-app";
 import { loadKey, saveKey } from "@/utils/storage/storage";
 
@@ -10,24 +10,23 @@ export const submitUserBid = async (bidAmount: number, listingId: string) => {
   const creditsLeft = creditsNumber - bidAmountNumber;
 
   if (isNaN(bidAmount) || bidAmount <= 0) {
-    userMessage("error", "Please enter a valid bid amount.");
+    userMessage("error", "Please enter a valid bid amount.", {
+      duration: 5000,
+    });
     return;
   }
 
   if (bidAmount > creditsNumber) {
-    userMessage("error", "You do not have enough credits for this bid.");
+    userMessage("error", "You do not have enough credits for this bid.", {
+      duration: 8000,
+    });
     return;
   }
 
-  try {
-    await placeBid(bidAmount, listingId);
-    userMessage("success", `You placed a bid of ${bidAmount} credits!`);
-    saveKey("credits", creditsLeft);
-    renderApp();
-  } catch (error) {
-    userMessage("error", "Failed to place bid. Please try again.");
-    throw error;
-  } finally {
-    clearUserMessage();
-  }
+  await placeBid(bidAmount, listingId);
+  userMessage("success", `You placed a bid of ${bidAmount} credits!`, {
+    duration: 5000,
+  });
+  saveKey("credits", creditsLeft);
+  renderApp();
 };

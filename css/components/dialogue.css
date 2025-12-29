@@ -33,7 +33,7 @@
 }
 
 .dialogue-content {
-  @apply fixed left-1/2 top-1/2 z-[2001] grid w-[90%] sm:max-w-[600px] -translate-x-1/2 -translate-y-1/2 gap-4 rounded-md border bg-[var(--background)] p-6 shadow-lg;
+  @apply fixed left-1/2 top-1/2 z-[2001] grid w-[90%] md:w-[60%] -translate-x-1/2 -translate-y-1/2 max-h-[calc(100vh-2rem)] overflow-y-auto gap-4 rounded-md border bg-[var(--background)] p-6 shadow-lg;
 }
 
 .dialogue-footer {
