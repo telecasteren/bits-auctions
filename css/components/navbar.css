@@ -19,6 +19,10 @@
     @apply text-4xl font-bold pl-10;
   }
 
+  #nav-credits-wrapper {
+    @apply flex flex-row items-center gap-2 justify-center mr-4 md:mr-10 md:justify-end text-[var(--accent-strong)];
+  }
+
   #navbar ul {
     @apply flex flex-wrap gap-5 p-5 mr-10 list-none text-lg justify-self-end;
   }
