@@ -19,4 +19,8 @@
   .btn-danger {
     @apply bg-red-600 hover:bg-red-700 hover:brightness-90 text-white;
   }
+
+  .close-btn {
+    @apply text-[var(--accent-strong)] hover:text-red-800 text-3xl font-bold mb-4 cursor-pointer justify-self-end;
+  }
 }

@@ -71,8 +71,7 @@ export const profileCards = (user: Profile) => {
       wrapper.className = "";
 
       const closeBtn = document.createElement("div");
-      closeBtn.className =
-        "text-2xl font-bold mb-4 cursor-pointer hover:text-[var(--accent)] justify-self-end";
+      closeBtn.className = "close-btn";
       closeBtn.innerHTML = "&times;";
       wrapper.appendChild(closeBtn);
 

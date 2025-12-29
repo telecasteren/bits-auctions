@@ -8,6 +8,7 @@
   --accent: #f3f8fc;
   --accent-foreground: #0a1626;
   --accent-strong: #f25a2b;
+  --accent-strong-hover: #e05227;
 
   --bid-badge-bg: #f25a2b;
   --bid-badge-text: #ffeae3;
@@ -25,6 +26,7 @@
 
   --accent: #f25a2b;
   --accent-strong: #90a900;
+  --accent-strong-hover: #abc804;
 
   --bid-badge-bg: #f25a2b;
   --bid-badge-text: #ffeae3;

@@ -13,11 +13,11 @@
 }
 
 .btn-outline {
-  @apply p-2 rounded border bg-[var(--background)] hover:bg-[var(--accent-strong)/90];
+  @apply p-2 rounded border bg-[var(--background)] text-black dark:text-white hover:text-red-800;
 }
 
 .dialogue-primary-btn {
-  @apply p-2 rounded bg-[var(--accent-strong)] hover:bg-[var(--accent-strong)/90];
+  @apply p-2 rounded bg-[var(--accent-strong)] hover:bg-[var(--accent-strong-hover)];
 }
 
 .INPUT_BASE {

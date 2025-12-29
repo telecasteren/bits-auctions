@@ -20,7 +20,7 @@ export const popUpModal = (image?: string, form?: HTMLElement) => {
     const closeButton = document.createElement("span");
     closeButton.id = "close-modal";
     closeButton.className = `absolute m-[2%] max-w-[50px] text-[38px] font-bold cursor-pointer
-    text-black dark:text-white hover:text-[var(--accent-strong)]`;
+    text-[var(--accent-strong)] hover:text-red-800`;
     closeButton.innerHTML = "&times;";
 
     modalContent.appendChild(closeButton);
