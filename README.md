@@ -42,6 +42,7 @@ src/
   utils/
     config/
     storage/
+    tests/
 ```
 
 ### Technologies and tools
@@ -53,7 +54,6 @@ src/
 - Husky
 
 - Tailwind (styles)
-- Shadcn (components)
 
 ### Get started
 

@@ -1,10 +1,33 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, beforeEach, vi } from "vitest";
+import Dashboard from "@/app/ui/features/Dashboard";
 
-describe("Overview Page", () => {
-  it("should have the correct h1 text", () => {
-    document.body.innerHTML = "<h1>Bits Auctions</h1>";
-    const h1 = document.querySelector("h1");
+vi.mock("@/utils/config/constants", () => ({ isAuthenticated: true }));
+
+vi.mock("@/app/events/auth/unauthenticated", () => ({
+  unAuthenticatedEvents: vi.fn(),
+}));
+
+vi.mock("@/utils/storage/storage", () => ({
+  loadKey: vi.fn(() => ({ name: "test-user" })),
+}));
+
+vi.mock("@/app/components/charts/bar-chart", () => ({
+  default: vi.fn(async () => {
+    const element = document.createElement("div");
+    element.id = "mock-bar-chart";
+    return element;
+  }),
+}));
+
+describe("Dashboard", () => {
+  beforeEach(() => {
+    document.body.innerHTML = '<div id="content"></div>';
+  });
+
+  it("should have the correct h1 text", async () => {
+    await Dashboard();
+    const h1 = document.querySelector("#content h1#page-title");
     expect(h1).not.toBeNull();
-    expect(h1?.textContent).toContain("Bits Auctions");
+    expect(h1?.textContent).toBe("Overview");
   });
 });

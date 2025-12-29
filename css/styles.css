@@ -5,8 +5,8 @@
 @import url("../src/assets/Typography/Lemon/Web-TT/Lemon-ExtraBold.css");
 @import "tailwindcss";
 @import "./variables.css";
-@import "./shadcn/components/chart.css";
-@import "./shadcn/variables.css";
+@import "./chart/components/chart.css";
+@import "./chart/variables.css";
 @import "./components/navbar.css";
 @import "./components/buttons.css";
 @import "./components/dialogue.css";
