@@ -2,6 +2,7 @@
 
 - Figma design prototype
 - Write tests for essential logic
+- Push all changes to main before delivery
 
 ## APP
 

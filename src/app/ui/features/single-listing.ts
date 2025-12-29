@@ -19,6 +19,7 @@ const SingleListing = async (listing: Listing) => {
   const listingDescription = listing.description || "No description";
   const listingSeller = (listing.seller as Profile)?.name || "Unknown seller";
   const listingBids = listing._count?.bids || 0;
+  const bidAmounts = listing.bids?.map((bid) => bid.amount) || [];
 
   const container = document.getElementById("content");
   if (!container) return;
@@ -87,6 +88,19 @@ const SingleListing = async (listing: Listing) => {
   const bidForm = document.createElement("div");
   bidForm.className = "flex flex-col gap-4";
 
+  const highestBid =
+    bidAmounts.find((amount) => amount === Math.max(...bidAmounts)) || 0;
+  const highestBidLabel = document.createElement("label");
+  highestBidLabel.className = "font-medium text-[var(--accent-strong)]";
+  highestBidLabel.textContent = `Current highest bid: ${highestBid} credits`;
+
+  const viewAllBidsSummary = document.createElement("summary");
+  viewAllBidsSummary.textContent = "View all bids";
+  viewAllBidsSummary.className = "font-medium";
+  const viewAllBidsDetails = document.createElement("details");
+  viewAllBidsDetails.textContent = "Credit amounts: " + bidAmounts.join(", ");
+  viewAllBidsDetails.appendChild(viewAllBidsSummary);
+
   const bidLabel = document.createElement("label");
   bidLabel.textContent = `You have ${userCredits} credits available.`;
 
@@ -100,6 +114,8 @@ const SingleListing = async (listing: Listing) => {
   submitBid.className = "btn btn-primary";
   submitBid.textContent = "Submit your bid";
 
+  bidForm.appendChild(highestBidLabel);
+  bidForm.appendChild(viewAllBidsDetails);
   bidForm.appendChild(bidLabel);
   bidForm.appendChild(bidInput);
   bidForm.appendChild(submitBid);
