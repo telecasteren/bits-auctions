@@ -11,7 +11,6 @@
 ## PAGES
 
 - Account
-  - Credits
   - History log
   - Active bids
 - Single Listing

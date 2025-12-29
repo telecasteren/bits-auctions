@@ -30,7 +30,7 @@ export const profileCards = (user: Profile) => {
       item.title.toLowerCase().replace(" ", "-")
     );
     card.className =
-      "relative group rounded-lg border border-gray-300 dark:border-gray-700 bg-card mb-20 mt-20 p-4 shadow-sm hover:shadow-lg hover:scale-105 duration-300 transition-all cursor-pointer overflow-hidden";
+      "relative group rounded-lg border border-gray-300 dark:border-gray-700 bg-card mt-10 lg:mb-20 lg:mt-20 p-4 shadow-sm hover:shadow-lg hover:scale-105 duration-300 transition-all cursor-pointer overflow-hidden";
 
     const overlay = document.createElement("div");
     overlay.className =
@@ -51,6 +51,7 @@ export const profileCards = (user: Profile) => {
             ? "bids"
             : "listings"
       ];
+    icon.alt = item.title + " icon";
     itemContainer.appendChild(icon);
 
     const title = document.createElement("h3");

@@ -8,13 +8,13 @@ import { renderApp } from "@/services/helpers/render-app";
 
 const UserDetails = (user: Profile) => {
   const container = document.createElement("div");
-  container.className = "grid mt-20 w-full max-w-sm gap-6 mx-auto";
+  container.className = "grid mt-10 w-full max-w-sm gap-6 mx-auto";
 
   // USER CREDITS
   {
     const group = document.createElement("div");
     group.className =
-      "flex w-full items-center justify-between mb-2 px-4 py-3 rounded-lg border font-medium";
+      "flex w-full items-center justify-between mb-2 px-4 py-3 rounded-lg border font-medium text-gray-600";
 
     const walletIcon = document.createElement("span");
     walletIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-credit-card-icon lucide-credit-card"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>`;
@@ -22,8 +22,7 @@ const UserDetails = (user: Profile) => {
 
     const creditsValue = document.createElement("span");
     creditsValue.textContent = user.credits.toString() || "0";
-    creditsValue.className =
-      "flex-1 text-right text-black dark:text-gray-200 font-medium";
+    creditsValue.className = "flex-1 text-right text-gray-600 font-medium";
 
     const creditsText = createText("CREDITS", "ml-2 text-sm");
 
@@ -35,6 +34,8 @@ const UserDetails = (user: Profile) => {
 
   // USER AVATAR
   {
+    const label = createText("Update avatar", "font-medium");
+    container.appendChild(label);
     const group = document.createElement("div");
     group.className = "flex w-full";
     const input = createInput(user.avatar?.url || "");
@@ -45,6 +46,8 @@ const UserDetails = (user: Profile) => {
 
   // USER BIO
   {
+    const label = createText("Update bio", "font-medium");
+    container.appendChild(label);
     const group = document.createElement("div");
     group.className = "flex flex-col w-full";
     const bioTextArea = createTextarea(user.bio || "Enter your bio");
