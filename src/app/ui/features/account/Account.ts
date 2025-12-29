@@ -6,6 +6,7 @@ import { fetchSingleProfile } from "@/services/api/profiles/fetch-single-profile
 import Header from "@/app/ui/features/account/header";
 import { logOutUser } from "@/services/helpers/logout-user";
 import { profileCards } from "./info-cards";
+import { backButton } from "@/app/components/back-button";
 
 const Account = async () => {
   const container = document.querySelector("#content");
@@ -23,6 +24,7 @@ const Account = async () => {
 
   container.innerHTML = "";
 
+  const backBtn = backButton(user);
   const header = await Header(user);
   const infoCards = profileCards(user);
 
@@ -32,6 +34,7 @@ const Account = async () => {
   const logOutButton = logOutUser(false);
   logOutButton.classList.add("mt-60", "justify-self-end");
 
+  container.appendChild(backBtn);
   container.appendChild(header);
   container.appendChild(hr);
   container.appendChild(infoCards);

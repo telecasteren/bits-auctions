@@ -19,8 +19,6 @@
 - Navbar
   - Show credits
 
-## API
-
 // Image links to create listings:
 https://i.postimg.cc/vTVSwJdV/chris-barbalis-aj-HE-KGlbjs-unsplash.jpg // paint stuff - USED
 https://i.postimg.cc/0jwH1TqZ/markus-spiske-p-Ohp-Ef-Sn-A-unsplash.jpg // christmas ornaments - USED

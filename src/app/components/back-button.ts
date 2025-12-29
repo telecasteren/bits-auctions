@@ -1,14 +1,16 @@
 import type { Profile } from "@/services/types/profile";
 
-export const backButton = (user: Profile) => {
+export const backButton = (user: Profile, preview: boolean = false) => {
   const username = user.name || "";
+  const isAccount = window.location.pathname.includes("account");
   const backButton = document.createElement("button");
   backButton.id = "back-button";
   backButton.textContent = "← Back";
   backButton.className =
     "mb-6 text-[var(--accent-strong)] hover:underline cursor-pointer justify-self-start";
+
   backButton.addEventListener("click", () => {
-    if (window.location.pathname === `/bits-auctions/account/${username}`) {
+    if (preview && isAccount) {
       window.location.pathname = `/bits-auctions/account/${username}`;
     } else {
       window.history.back();

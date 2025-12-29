@@ -19,7 +19,7 @@ const UserProfile = async (user: Profile) => {
 
   container.innerHTML = "";
 
-  const backBtn = backButton(user);
+  const backBtn = backButton(user, true);
 
   const wrapper = document.createElement("div");
   wrapper.className = "flex flex-rows gap-4 items-center";
