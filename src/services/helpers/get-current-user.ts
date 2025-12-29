@@ -1,5 +1,6 @@
 import { fetchSingleProfile } from "@/services/api/profiles/fetch-single-profile";
 import { Profile } from "@/services/types/profile";
+import { loadKey } from "@/utils/storage/storage";
 
 export const getCurrentUser = async () => {
   const userFromPath = window.location.pathname.split(
@@ -20,4 +21,13 @@ export const getCurrentUser = async () => {
   }
 
   return { userFromPath };
+};
+
+export const getAuthenticatedUser = async () => {
+  const userFromStorage = loadKey("user") as Profile | null;
+  const userFromApi = await fetchSingleProfile(
+    userFromStorage ? userFromStorage.name : ""
+  );
+  console.log("Authenticated user:", userFromApi);
+  return userFromApi as Profile;
 };

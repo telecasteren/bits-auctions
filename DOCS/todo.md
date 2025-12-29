@@ -14,8 +14,6 @@
 - Account
   - History log
   - Active bids
-- Single Listing
-  - Show highest bid
 
 // Image links to create listings:
 https://i.postimg.cc/vTVSwJdV/chris-barbalis-aj-HE-KGlbjs-unsplash.jpg // paint stuff - USED
