@@ -2,6 +2,7 @@ import { renderApp } from "@/services/helpers/render-app";
 import AccountListings from "@/app/ui/features/account/account-listings";
 import UserDetails from "@/app/components/forms/user-details/user-details";
 import type { Profile } from "@/services/types/profile";
+import { userBidsHistory } from "@/app/ui/features/account/bids-history";
 
 export const profileCards = (user: Profile) => {
   const container = document.createElement("div");
@@ -89,7 +90,8 @@ export const profileCards = (user: Profile) => {
         const userDetailsForm = UserDetails(user);
         container.appendChild(userDetailsForm);
       } else if (cardId === "active-bids") {
-        // active bids list here
+        const activeBidsList = await userBidsHistory(user);
+        container.appendChild(activeBidsList);
       } else if (cardId === "my-listings") {
         const accountListings = await AccountListings(user);
         wrapper.appendChild(accountListings);

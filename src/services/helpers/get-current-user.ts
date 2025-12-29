@@ -1,4 +1,4 @@
-import { fetchSingleProfile } from "@/services/api/profiles/fetch-single-profile";
+import { fetchSingleProfile } from "@/services/api/profiles/fetch/fetch-single-profile";
 import { Profile } from "@/services/types/profile";
 import { loadKey } from "@/utils/storage/storage";
 

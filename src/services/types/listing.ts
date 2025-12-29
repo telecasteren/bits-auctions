@@ -25,5 +25,6 @@ export interface Bid {
   id: string;
   amount: number;
   bidder: Profile;
+  listing: Listing;
   created: Date;
 }

@@ -2,7 +2,7 @@ import type { Profile } from "@/services/types/profile";
 import { loadKey } from "@/utils/storage/storage";
 import { unAuthenticatedEvents } from "@/app/events/auth/unauthenticated";
 import { isAuthenticated } from "@/utils/config/constants";
-import { fetchSingleProfile } from "@/services/api/profiles/fetch-single-profile";
+import { fetchSingleProfile } from "@/services/api/profiles/fetch/fetch-single-profile";
 import Header from "@/app/ui/features/account/header";
 import { logOutUser } from "@/services/helpers/logout-user";
 import { profileCards } from "./info-cards";
