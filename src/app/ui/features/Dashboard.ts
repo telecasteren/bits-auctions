@@ -1,8 +1,7 @@
 import BarChart from "@/app/components/charts/bar-chart";
 import { unAuthenticatedEvents } from "@/app/events/auth/unauthenticated";
 import { isAuthenticated } from "@/utils/config/constants";
-import { loadKey } from "@/utils/storage/storage";
-import type { Profile } from "@/services/types/profile";
+import { getAuthenticatedUser } from "@/services/helpers/get-current-user";
 
 const Dashboard = async () => {
   const container = document.querySelector("#content");
@@ -26,7 +25,7 @@ const Dashboard = async () => {
   container.appendChild(h1);
   container.appendChild(p);
 
-  const currentUser = loadKey("user") as Profile;
+  const currentUser = await getAuthenticatedUser();
   const currentUserName = currentUser?.name;
 
   const chartComponent = await BarChart(currentUserName);

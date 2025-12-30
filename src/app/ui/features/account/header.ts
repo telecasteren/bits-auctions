@@ -31,7 +31,7 @@ const Header = async (user: Profile) => {
   avatar.id = "account-avatar";
   avatar.src = userAvatar;
   avatar.alt = userAvatarAlt;
-  avatar.className = "w-22 h-22 rounded-full mb-4";
+  avatar.className = "w-22 h-22 rounded-full mb-4 object-cover";
 
   const info = document.createElement("p");
   info.id = "account-info";

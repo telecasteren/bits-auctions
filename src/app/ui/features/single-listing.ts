@@ -9,6 +9,7 @@ import { userMessage } from "@/app/ui/utils/user-messages";
 import { loadKey } from "@/utils/storage/storage";
 import { createBadge } from "@/app/components/listings/helpers/create-badge";
 import { Carousel } from "@/app/components/carousel/images-carousel";
+import { getAuthenticatedUser } from "@/services/helpers/get-current-user";
 
 const SingleListing = async (listing: Listing) => {
   const endsAt = new Date(listing.endsAt);
@@ -20,6 +21,9 @@ const SingleListing = async (listing: Listing) => {
   const listingSeller = (listing.seller as Profile)?.name || "Unknown seller";
   const listingBids = listing._count?.bids || 0;
   const bidAmounts = listing.bids?.map((bid) => bid.amount) || [];
+
+  const authUser = await getAuthenticatedUser();
+  const sellerIsAuthUser = listingSeller === authUser?.name;
 
   const container = document.getElementById("content");
   if (!container) return;
@@ -154,7 +158,7 @@ const SingleListing = async (listing: Listing) => {
   actionCenter.appendChild(bids);
   detailsSection.appendChild(actionCenter);
 
-  if (isActive && isAuthenticated) {
+  if (isActive && isAuthenticated && !sellerIsAuthUser) {
     actionCenter.appendChild(placeBidButton);
   }
 

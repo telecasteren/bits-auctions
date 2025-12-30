@@ -28,7 +28,7 @@ const UserProfile = async (user: Profile) => {
   avatar.id = "account-avatar";
   avatar.src = userAvatar;
   avatar.alt = userAvatarAlt;
-  avatar.className = "w-22 h-22 rounded-full";
+  avatar.className = "w-22 h-22 rounded-full object-cover";
   wrapper.appendChild(avatar);
 
   const h1 = document.createElement("h1");

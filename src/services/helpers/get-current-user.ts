@@ -24,10 +24,12 @@ export const getCurrentUser = async () => {
 };
 
 export const getAuthenticatedUser = async () => {
-  const userFromStorage = loadKey("user") as Profile | null;
+  const userFromStorage = loadKey("user") as Profile;
+
+  if (!userFromStorage) return null;
+
   const userFromApi = await fetchSingleProfile(
     userFromStorage ? userFromStorage.name : ""
   );
-  console.log("Authenticated user:", userFromApi);
   return userFromApi as Profile;
 };

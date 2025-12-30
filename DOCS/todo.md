@@ -6,8 +6,8 @@
 
 ## APP
 
-- Auth: login, logout, authentication
-  - FIX VALIDATION BUGS: live password and email check prior to signup + fail signup if invalid
+- FIX VALIDATION BUGS:
+  - Password detection
 
 // Image links to create listings:
 https://i.postimg.cc/vTVSwJdV/chris-barbalis-aj-HE-KGlbjs-unsplash.jpg // paint stuff - USED

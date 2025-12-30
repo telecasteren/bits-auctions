@@ -1,6 +1,5 @@
 import { createDialogue } from "@/app/components/modals/dialogue/create-dialogue";
-import { loadKey } from "@/utils/storage/storage";
-import { Profile } from "@/services/types/profile";
+import { getAuthenticatedUser } from "@/services/helpers/get-current-user";
 
 const EmptyListing = () => {
   const container = document.createElement("div");
@@ -64,7 +63,7 @@ const EmptyListing = () => {
   content.appendChild(createButton);
 
   createButton.addEventListener("click", async () => {
-    const userObject = loadKey("user") as Profile;
+    const userObject = await getAuthenticatedUser();
     createDialogue(userObject);
   });
 

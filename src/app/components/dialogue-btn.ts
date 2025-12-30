@@ -1,14 +1,13 @@
 import { createDialogue } from "@/app/components/modals/dialogue/create-dialogue";
-import { loadKey } from "@/utils/storage/storage";
-import type { Profile } from "@/services/types/profile";
+import { getAuthenticatedUser } from "@/services/helpers/get-current-user";
 
-export const createListingBtn = () => {
+export const createListingBtn = async () => {
   const button = document.createElement("button");
   button.type = "button";
   button.className = "btn-secondary w-max";
   button.textContent = "Create listing";
 
-  const userObject = loadKey("user") as Profile;
+  const userObject = await getAuthenticatedUser();
 
   button.addEventListener("click", () => {
     createDialogue(userObject);

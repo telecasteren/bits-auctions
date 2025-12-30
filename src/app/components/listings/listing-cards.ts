@@ -18,7 +18,9 @@ const ListingCards = (listings: Listing[]) => {
     const listingTitle = listing.title || "Untitled listing";
     const listingDescription = listing.description || "No description";
     const listingBidsCount =
-      listing._count.bids > 0 ? listing._count?.bids : "No bids yet";
+      listing._count && listing._count.bids > 0
+        ? listing._count?.bids
+        : "No bids yet";
 
     const card = document.createElement("div");
     card.className = `relative group rounded-lg border border-gray-300 dark:border-gray-700 bg-card p-4 shadow-sm hover:shadow-lg transition-shadow

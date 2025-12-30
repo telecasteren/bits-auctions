@@ -1,5 +1,4 @@
-import type { Profile } from "@/services/types/profile";
-import { loadKey } from "@/utils/storage/storage";
+import { getAuthenticatedUser } from "@/services/helpers/get-current-user";
 import { unAuthenticatedEvents } from "@/app/events/auth/unauthenticated";
 import { isAuthenticated } from "@/utils/config/constants";
 import { fetchSingleProfile } from "@/services/api/profiles/fetch/fetch-single-profile";
@@ -18,7 +17,7 @@ const Account = async () => {
     return;
   }
 
-  const userFromStorage = loadKey("user") as Profile | undefined;
+  const userFromStorage = await getAuthenticatedUser();
   const username = userFromStorage?.name || "";
   const user = await fetchSingleProfile(username);
 

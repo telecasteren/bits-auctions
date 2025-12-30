@@ -25,7 +25,7 @@ export const submitUserBid = async (bidAmount: number, listingId: string) => {
 
   await placeBid(bidAmount, listingId);
   userMessage("success", `You placed a bid of ${bidAmount} credits!`, {
-    duration: 5000,
+    duration: 3000,
   });
   saveKey("credits", creditsLeft);
   renderApp();

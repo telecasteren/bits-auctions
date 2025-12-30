@@ -8,9 +8,9 @@ setThemeListener((isDark) => {
   document.body.classList.toggle("dark", isDark);
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-  navbar();
-  renderContent();
+document.addEventListener("DOMContentLoaded", async () => {
+  await navbar();
+  await renderContent();
 });
 
 window.addEventListener("popstate", () => {

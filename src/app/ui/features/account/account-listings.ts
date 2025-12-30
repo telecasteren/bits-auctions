@@ -18,7 +18,7 @@ const AccountListings = async (user: Profile) => {
     accountGrid.appendChild(noListings);
   } else {
     const listingsList = await ListingTable(listings);
-    const newListing = createListingBtn();
+    const newListing = await createListingBtn();
     newListing.classList.add("justify-self-end");
 
     accountGrid.appendChild(listingsList);

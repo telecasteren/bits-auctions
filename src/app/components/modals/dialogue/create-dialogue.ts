@@ -41,13 +41,15 @@ export const createDialogue = (
   endsAtLabel.htmlFor = "ends-at";
   endsAtLabel.textContent = "Bidding ends at";
 
-  const today = new Date().toLocaleDateString("en-CA");
+  const today = new Date();
+  today.setDate(today.getDate() + 1);
+  const tomorrow = today.toLocaleDateString("en-CA");
   const endsAtInput = document.createElement("input");
   endsAtInput.id = "ends-at";
   endsAtInput.type = "date";
   endsAtInput.name = "ends-at";
-  endsAtInput.min = today;
-  endsAtInput.value = today;
+  endsAtInput.min = tomorrow;
+  endsAtInput.value = tomorrow;
   endsAtInput.className = "p-2 rounded-md border bg-[var(--background)]";
 
   const listingTitleGroup = document.createElement("div");

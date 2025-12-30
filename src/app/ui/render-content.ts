@@ -6,15 +6,17 @@ import UserProfile from "@/app/ui/features/account/user-profile";
 import Landing from "@/app/ui/features/Landing";
 import renderAuthForm from "./features/auth/render-auth-form";
 import PageNotFound from "@/app/ui/utils/page-not-found";
-import { loadKey } from "@/utils/storage/storage";
-import { getCurrentUser } from "@/services/helpers/get-current-user";
+import {
+  getAuthenticatedUser,
+  getCurrentUser,
+} from "@/services/helpers/get-current-user";
 import { getCurrentListing } from "@/services/helpers/get-current-listing";
 import type { Profile } from "@/services/types/profile";
 import type { Listing } from "@/services/types/listing";
 
 const renderContent = async () => {
-  const user = (loadKey("user") as Profile) || "";
-  const username = user.name || "";
+  const user = await getAuthenticatedUser();
+  const username = user?.name || "";
   const seller = ((await getCurrentUser())?.profile as Profile) || null;
   const listingId = (await getCurrentListing())?.listingId || "";
   const listing = ((await getCurrentListing())?.listing as Listing) || null;
