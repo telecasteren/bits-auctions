@@ -20,7 +20,7 @@ const renderRow = (listing: Listing, hideSeller: boolean = false) => {
   const titleTd = document.createElement("td");
   titleTd.className = "pl-10 align-middle px-4 py-4 font-medium";
   const titleSpan = document.createElement("span");
-  titleSpan.className = "block truncate cursor-help";
+  titleSpan.className = "block cursor-help truncate";
   titleSpan.textContent = listing.title;
   titleTd.appendChild(titleSpan);
   row.appendChild(titleTd);
@@ -50,7 +50,7 @@ const renderRow = (listing: Listing, hideSeller: boolean = false) => {
 
   const sellerTd = document.createElement("td");
   sellerTd.className =
-    "text-center align-middle px-4 py-4 text-sm text-muted-foreground block truncate cursor-help" +
+    "text-center align-middle px-4 py-4 text-sm text-muted-foreground block cursor-help truncate" +
     (hideSeller ? " hidden" : "");
   sellerTd.textContent = listing.seller?.name;
   row.appendChild(sellerTd);

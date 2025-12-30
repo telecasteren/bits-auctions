@@ -41,11 +41,13 @@ export const createDialogue = (
   endsAtLabel.htmlFor = "ends-at";
   endsAtLabel.textContent = "Bidding ends at";
 
+  const today = new Date().toLocaleDateString("en-CA");
   const endsAtInput = document.createElement("input");
   endsAtInput.id = "ends-at";
   endsAtInput.type = "date";
   endsAtInput.name = "ends-at";
-  endsAtInput.value = new Date().toISOString();
+  endsAtInput.min = today;
+  endsAtInput.value = today;
   endsAtInput.className = "p-2 rounded-md border bg-[var(--background)]";
 
   const listingTitleGroup = document.createElement("div");
@@ -141,6 +143,11 @@ export const createDialogue = (
   content.appendChild(header);
   content.appendChild(body);
   content.appendChild(footer);
+
+  endsAtInput.addEventListener("change", () => {
+    if (endsAtInput.value < endsAtInput.min)
+      endsAtInput.value = endsAtInput.min;
+  });
 
   addImageBtn.addEventListener("click", () => {
     const newAddition = addExtraInput(urlInputs, 1);

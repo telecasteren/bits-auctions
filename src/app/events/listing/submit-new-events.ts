@@ -1,8 +1,10 @@
+import { userMessage } from "@/app/ui/utils/user-messages";
 import { submitNewListing } from "@/services/api/listings/submit-new-listing";
+import { renderApp } from "@/services/helpers/render-app";
 import type { Listing } from "@/services/types/listing";
 import type { Profile } from "@/services/types/profile";
 
-export const submitNewListingEvents = (
+export const submitNewListingEvents = async (
   username: Profile,
   close?: () => void
 ) => {
@@ -31,23 +33,21 @@ export const submitNewListingEvents = (
       alt: `${titleInput.value.trim() || "Listing"} image`,
     }));
 
-  saveBtn.addEventListener("click", async (event) => {
-    event.preventDefault();
+  const newListing: Listing = {
+    id: "",
+    title: titleInput.value || "",
+    description: descriptionInput.value || "",
+    tags: tagsInput.value
+      ? tagsInput.value.split(",").map((tag) => tag.trim())
+      : [],
+    media,
+    created: new Date(),
+    endsAt: new Date(endsAtInput.value),
+    seller: username,
+  };
 
-    const newListing: Listing = {
-      id: "",
-      title: titleInput.value || "",
-      description: descriptionInput.value || "",
-      tags: tagsInput.value
-        ? tagsInput.value.split(",").map((tag) => tag.trim())
-        : [],
-      media,
-      created: new Date(),
-      endsAt: new Date(endsAtInput.value),
-      seller: username,
-    };
-
-    await submitNewListing(newListing);
-    close?.();
-  });
+  await submitNewListing(newListing);
+  userMessage("success", "Listing created.", { duration: 3000 });
+  close?.();
+  renderApp();
 };
