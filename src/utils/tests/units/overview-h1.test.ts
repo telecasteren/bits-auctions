@@ -7,6 +7,10 @@ vi.mock("@/app/events/auth/unauthenticated", () => ({
   unAuthenticatedEvents: vi.fn(),
 }));
 
+vi.mock("@/services/api/profiles/fetch/fetch-single-profile", () => ({
+  fetchSingleProfile: vi.fn(async (username: string) => ({ name: username })),
+}));
+
 vi.mock("@/utils/storage/storage", () => ({
   loadKey: vi.fn(() => ({ name: "test-user" })),
 }));
