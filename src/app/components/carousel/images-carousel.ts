@@ -19,7 +19,7 @@ export const Carousel = async (options: Options = {}, listing?: Listing) => {
       }))
       .filter((img) => img.src);
   } else {
-    const response = await fetchAllListings(10, 1);
+    const response = await fetchAllListings(9, 1);
     const listings = response.data as Listing[];
     images = listings
       .map((item) => ({
