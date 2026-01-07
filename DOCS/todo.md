@@ -6,8 +6,14 @@
 
 ## APP
 
-- FIX VALIDATION BUGS:
-  - Password detection
+- BUG:
+  - Fix password detection (signup validation)
+- BUG:
+  - Set image id's for each listing image when creating new listing so the image-modal opens image clicked
+- STYLE:
+  - Set profile info card borders to --accent-strong while hovering
+
+---
 
 // Image links to create listings:
 https://i.postimg.cc/vTVSwJdV/chris-barbalis-aj-HE-KGlbjs-unsplash.jpg // paint stuff - USED

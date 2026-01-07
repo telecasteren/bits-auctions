@@ -77,4 +77,12 @@
   #page-tagline {
     @apply italic mb-6;
   }
+
+  .signup-link a {
+    @apply text-[var(--accent-strong)];
+  }
+
+  .signup-link a:hover {
+    @apply underline;
+  }
 }

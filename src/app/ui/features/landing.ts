@@ -27,11 +27,31 @@ const Landing = async () => {
 
   const { root: carouselEl } = await Carousel();
 
+  const hr = document.createElement("hr");
+  hr.className = "mt-10 w-full border-gray-300 dark:border-gray-700";
+
+  const aboutSection = document.createElement("section");
+  aboutSection.id = "about-section";
+  aboutSection.className = "mt-10";
+  const subtitle = document.createElement("h2");
+  subtitle.className = "text-xl font-semibold mb-4";
+  subtitle.textContent = "What is Bits Auctions?";
+  const aboutText = document.createElement("p");
+  aboutText.className = "text-md";
+  aboutText.innerHTML = `A modern online marketplace where anyone can browse listings and verified users can place their bids. Auctions are simple and transparent, when the timer ends ➡️ the highest bidder wins.
+  <span class="signup-link"><a href="/bits-auctions/signup">Create your account</a></span> to list your items and place bids. No fuzz, just bid, buy and sell.`;
+
   header.appendChild(h1);
   header.appendChild(p);
   wrapper.appendChild(header);
   wrapper.appendChild(logo);
   container.appendChild(wrapper);
   container.appendChild(carouselEl);
+
+  container.appendChild(hr);
+
+  aboutSection.prepend(subtitle);
+  aboutSection.appendChild(aboutText);
+  container.appendChild(aboutSection);
 };
 export default Landing;
