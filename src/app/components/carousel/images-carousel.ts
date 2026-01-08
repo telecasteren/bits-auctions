@@ -53,6 +53,7 @@ export const Carousel = async (options: Options = {}, listing?: Listing) => {
     item.setAttribute("data-carousel-item", "");
 
     const image = document.createElement("img");
+    image.id = `carousel-image-${index}`;
     image.src = img.src;
     image.alt = img.alt ?? `Slide ${index + 1}`;
     image.className =
@@ -69,9 +70,7 @@ export const Carousel = async (options: Options = {}, listing?: Listing) => {
       });
     } else {
       image.addEventListener("click", async () => {
-        images.forEach((img) => {
-          popUpModal(img.src);
-        });
+        popUpModal(img.src);
       });
     }
 

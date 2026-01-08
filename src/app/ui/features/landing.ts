@@ -33,13 +33,21 @@ const Landing = async () => {
   const aboutSection = document.createElement("section");
   aboutSection.id = "about-section";
   aboutSection.className = "mt-10";
+
   const subtitle = document.createElement("h2");
   subtitle.className = "text-xl font-semibold mb-4";
   subtitle.textContent = "What is Bits Auctions?";
+
   const aboutText = document.createElement("p");
   aboutText.className = "text-md";
   aboutText.innerHTML = `A modern online marketplace where anyone can browse listings and verified users can place their bids. Auctions are simple and transparent, when the timer ends ➡️ the highest bidder wins.
   <span class="signup-link"><a href="/bits-auctions/signup">Create your account</a></span> to list your items and place bids. No fuzz, just bid, buy and sell.`;
+
+  const listingsLink = document.createElement("a");
+  listingsLink.href = "/bits-auctions/listings";
+  listingsLink.textContent = "Go to listings";
+  listingsLink.className =
+    "w-fit py-2 text-md font-semibold text-black dark:text-white hover:underline cursor-pointer";
 
   header.appendChild(h1);
   header.appendChild(p);
@@ -52,6 +60,7 @@ const Landing = async () => {
 
   aboutSection.prepend(subtitle);
   aboutSection.appendChild(aboutText);
+  aboutSection.appendChild(listingsLink);
   container.appendChild(aboutSection);
 };
 export default Landing;
