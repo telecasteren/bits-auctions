@@ -22,6 +22,5 @@ export const fetchBidsByProfile = async (username: string) => {
   }
 
   const { data } = await response.json();
-  console.log("Fetched bids for profile:", data);
   return data;
 };

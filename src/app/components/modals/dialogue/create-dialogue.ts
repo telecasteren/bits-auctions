@@ -3,6 +3,7 @@ import { handleClicks } from "@/app/components/modals/dialogue/helpers/handle-cl
 import { createMediaInputs } from "./helpers/create-media-inputs";
 import { addExtraInput } from "@/app/components/modals/dialogue/helpers/add-extra-input";
 import type { Profile } from "@/services/types/profile";
+import { checkMandatoryInputs } from "./helpers/check-mandatory-fields";
 
 export const createDialogue = (
   username: Profile,
@@ -115,6 +116,7 @@ export const createDialogue = (
   const saveBtn = document.createElement("button");
   saveBtn.id = "dialogue-save-btn";
   saveBtn.type = "button";
+  saveBtn.disabled = true;
   saveBtn.className = "dialogue-primary-btn cursor-pointer";
   saveBtn.textContent = "Save changes";
 
@@ -175,6 +177,8 @@ export const createDialogue = (
     overlay,
     content,
   });
+
+  checkMandatoryInputs();
 
   saveBtn.addEventListener("click", async (event) => {
     event.preventDefault();

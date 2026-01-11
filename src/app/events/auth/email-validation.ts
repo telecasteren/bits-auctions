@@ -2,10 +2,8 @@ import {
   displayFormErrors,
   clearFormErrors,
 } from "@/app/ui/utils/auth-form-errors";
-import { getAuthInputs } from "@/app/events/auth/get-auth-inputs";
 
-export const emailValidation = () => {
-  const { emailInput } = getAuthInputs();
+export const emailValidation = (emailInput: HTMLInputElement) => {
   const validDomains = "@stud.noroff.no";
 
   if (emailInput) {
@@ -17,7 +15,7 @@ export const emailValidation = () => {
         emailInput.setCustomValidity("Please enter a valid email address.");
         displayFormErrors(
           emailInput,
-          `Email must contain a "@" and a "." to be valid.`,
+          `Email must contain a "@" and a "." to be valid.`
         );
         return;
       }
@@ -26,7 +24,7 @@ export const emailValidation = () => {
       if (!emailDomainIsValid) {
         displayFormErrors(
           emailInput,
-          `Valid emails end with: ${validDomains}.`,
+          `Valid emails end with: ${validDomains}.`
         );
         return;
       }

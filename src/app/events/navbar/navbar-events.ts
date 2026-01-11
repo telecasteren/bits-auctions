@@ -16,19 +16,23 @@ const navigation = async () => {
       switch (selectedItem) {
         case "nav-landing":
           window.history.pushState({}, "", "/bits-auctions/");
+          renderApp();
           break;
         case "nav-overview":
           window.history.pushState({}, "", "/bits-auctions/overview");
+          renderApp();
           break;
         case "nav-new":
           if (!user) {
             window.history.pushState({}, "", "/bits-auctions/login");
+            renderApp();
             break;
           }
           createDialogue(user);
           break;
         case "nav-listings":
           window.history.pushState({}, "", "/bits-auctions/listings");
+          renderApp();
           break;
         case "nav-account":
           window.history.pushState(
@@ -36,18 +40,19 @@ const navigation = async () => {
             "",
             `/bits-auctions/account/${username}`
           );
+          renderApp();
           break;
         case "nav-login":
           window.history.pushState({}, "", "/bits-auctions/login");
+          renderApp();
           break;
         case "nav-signup":
           window.history.pushState({}, "", "/bits-auctions/signup");
+          renderApp();
           break;
         default:
           break;
       }
-
-      renderApp();
     });
   });
 };

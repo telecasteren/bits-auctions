@@ -4,7 +4,8 @@ import { register } from "@/services/api/auth/register";
 import { getAuthInputs } from "./get-auth-inputs.js";
 
 export const handleAuth = async (isSignup = false) => {
-  const { usernameInput, emailInput, passwordInput } = getAuthInputs(isSignup);
+  const { usernameInput, emailInput, passwordInput, confirmPassInput } =
+    getAuthInputs(isSignup);
 
   if (!emailInput || !passwordInput) return;
 
@@ -13,6 +14,11 @@ export const handleAuth = async (isSignup = false) => {
     : "";
   const email = emailInput ? emailInput.value.trim() : "";
   const password = passwordInput ? passwordInput.value.trim() : "";
+
+  if (isSignup && confirmPassInput && confirmPassInput.value !== password) {
+    displayFormErrors(confirmPassInput, "Passwords must match.");
+    return;
+  }
 
   if (isSignup) {
     try {
@@ -23,8 +29,7 @@ export const handleAuth = async (isSignup = false) => {
     } catch (error) {
       displayFormErrors(
         emailInput,
-        `Registration failed. Email may be in use or wrong.
-        Valid email domains: @stud.noroff.no`
+        `Registration failed. Email may be in use or invalid.`
       );
       throw error;
     }

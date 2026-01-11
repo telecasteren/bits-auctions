@@ -8,8 +8,7 @@ export const logOutUser = (isLoading = false) => {
   } else {
     logOutButton.textContent = "Log out";
   }
-  logOutButton.className = `flex mt-6 px-4 py-2 btn bg-red-600 text-white
-  hover:bg-red-700 transition-colors cursor-pointer`;
+  logOutButton.className = "btn bg-red-600 text-white flex mt-6 px-4 py-2";
 
   logOutButton.addEventListener("click", () => {
     isLoading = true;

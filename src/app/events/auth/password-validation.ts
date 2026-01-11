@@ -1,17 +1,12 @@
-import {
-  displayFormErrors,
-  // clearFormErrors,
-} from "@/app/ui/utils/auth-form-errors";
-import { getAuthInputs } from "@/app/events/auth/get-auth-inputs";
+import { displayFormErrors } from "@/app/ui/utils/auth-form-errors";
+import { getAuthInputs } from "./get-auth-inputs.js";
 
 export const passwordValidation = () => {
   const { passwordInput, confirmPassInput } = getAuthInputs();
 
-  if (!passwordInput) {
-    return;
-  }
+  if (!passwordInput) return;
 
-  if (passwordInput) {
+  const validate = () => {
     const password = passwordInput.value;
     const errors = [];
 
@@ -39,7 +34,8 @@ export const passwordValidation = () => {
     if (confirmPassInput && confirmPassInput.value !== password) {
       displayFormErrors(confirmPassInput, "Passwords must match.");
     }
+  };
 
-    return "The password is valid";
-  }
+  passwordInput.addEventListener("input", validate);
+  validate();
 };

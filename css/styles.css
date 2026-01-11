@@ -5,8 +5,7 @@
 @import url("../src/assets/Typography/Lemon/Web-TT/Lemon-ExtraBold.css");
 @import "tailwindcss";
 @import "./variables.css";
-@import "./chart/components/chart.css";
-@import "./chart/variables.css";
+@import "./components/chart.css";
 @import "./components/navbar.css";
 @import "./components/buttons.css";
 @import "./components/dialogue.css";
@@ -67,7 +66,8 @@
 
 @layer components {
   .active {
-    @apply underline;
+    /* @apply underline; */
+    @apply border-b-3 border-[var(--accent-strong)];
   }
 
   #page-title {

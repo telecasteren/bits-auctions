@@ -35,20 +35,20 @@ const Listings = async () => {
 
   const tabMenu = document.createElement("div");
   tabMenu.className =
-    "flex flex-wrap gap-4 items-center w-full sticky top-0 left-0 mb-6 pb-2";
+    "flex flex-wrap gap-4 items-center w-full sticky top-0 left-0 border-b border-gray-300";
 
   const tableView = document.createElement("a");
   tableView.href = "#";
   tableView.id = "listings-tableView";
   tableView.textContent = "Table view";
-  tableView.className = "mb-4 flex items-center";
+  tableView.className = "flex items-center transition duration-300 ease-in-out";
 
   const cardView = document.createElement("a");
   cardView.href = "#";
   cardView.id = "listings-cardView";
   cardView.textContent = "Card view";
   cardView.className =
-    "active mb-4 fit-content flex flex-col gap-6 items-center";
+    "active fit-content flex flex-col gap-6 items-center transition duration-300 ease-in-out";
 
   const nextPageButton = document.createElement("button");
   nextPageButton.id = "next-page-button";
@@ -70,6 +70,7 @@ const Listings = async () => {
 
   let currentPage = 1;
   let allListings = [...listings];
+
   nextPageButton.addEventListener("click", async () => {
     nextPageButton.disabled = true;
 

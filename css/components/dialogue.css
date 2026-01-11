@@ -17,7 +17,7 @@
 }
 
 .dialogue-primary-btn {
-  @apply p-2 rounded bg-[var(--accent-strong)] hover:bg-[var(--accent-strong-hover)];
+  @apply p-2 rounded bg-[var(--accent-strong)] hover:bg-[var(--accent-strong-hover)] disabled:opacity-50;
 }
 
 .INPUT_BASE {

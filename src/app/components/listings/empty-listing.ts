@@ -64,6 +64,7 @@ const EmptyListing = () => {
 
   createButton.addEventListener("click", async () => {
     const userObject = await getAuthenticatedUser();
+    if (!userObject) return;
     createDialogue(userObject);
   });
 

@@ -1,6 +1,6 @@
 @layer components {
   .btn {
-    @apply w-40 h-10 px-4 py-2 justify-center whitespace-nowrap rounded-sm text-sm font-medium transition-all duration-200 ease-in-out shadow-[2px_5px_0_0_black] cursor-pointer;
+    @apply w-40 h-10 px-4 py-2 justify-center whitespace-nowrap rounded-sm text-sm font-medium transition-all duration-200 ease-in-out shadow-[2px_5px_0_0_black] disabled:opacity-50 cursor-pointer;
   }
 
   .btn:hover {
@@ -8,7 +8,7 @@
   }
 
   .btn-primary {
-    @apply bg-[var(--accent-strong)] text-white;
+    @apply bg-[var(--accent-strong)] text-white disabled:opacity-50;
   }
 
   .btn-secondary {

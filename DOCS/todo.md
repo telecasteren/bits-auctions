@@ -6,12 +6,10 @@
 
 ## APP
 
-- BUG:
+- BUGS:
   - Fix password detection (signup validation)
-- BUG:
-  - Set image id's for each listing image when creating new listing so the image-modal opens image clicked
-- STYLE:
-  - Set profile info card borders to --accent-strong while hovering
+  - Fix My bids amount
+  - Fix 'Unknown seller' in Account listings
 
 ---
 

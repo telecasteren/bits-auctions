@@ -7,10 +7,10 @@ export const AuthenticateUser = async (isSignup = false) => {
     return;
   }
 
-  const form = document.getElementById("auth-form");
+  const form = document.getElementById("auth-form") as HTMLFormElement;
   if (!form) {
     console.warn(
-      "AuthenticateUser: auth-form not found in DOM when attaching handler.",
+      "AuthenticateUser: auth-form not found in DOM when attaching handler."
     );
     return;
   }

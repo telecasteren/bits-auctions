@@ -160,11 +160,13 @@ export const AuthForm = (isSignup = false) => {
   authContainer.appendChild(wrapper);
 
   // Input validation
-  if (emailInput) emailValidation();
+  if (emailInput) emailValidation(emailInput);
   if (passwordInput) passwordValidation();
 
   if (isSignup) {
-    const confirmPassword = document.getElementById("confirm-password");
+    const confirmPassword = document.getElementById(
+      "confirm-password"
+    ) as HTMLInputElement | null;
     if (confirmPassword) passwordValidation();
   }
 
