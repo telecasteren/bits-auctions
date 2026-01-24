@@ -10,6 +10,7 @@ import { loadKey } from "@/utils/storage/storage";
 import { createBadge } from "@/app/components/listings/helpers/create-badge";
 import { Carousel } from "@/app/components/carousel/images-carousel";
 import { getAuthenticatedUser } from "@/services/helpers/get-current-user";
+import { SingleListingSkeleton } from "@/app/components/skeletons/single-listing-skeleton";
 
 const SingleListing = async (listing: Listing) => {
   const endsAt = new Date(listing.endsAt);
@@ -29,6 +30,11 @@ const SingleListing = async (listing: Listing) => {
   if (!container) return;
 
   container.innerHTML = "";
+
+  if (!listing) {
+    container.appendChild(SingleListingSkeleton());
+    return;
+  }
 
   const multipleMedia = listing.media.length > 1;
   if (multipleMedia) {

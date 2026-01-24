@@ -6,6 +6,7 @@ import Header from "@/app/ui/features/account/header";
 import { logOutUser } from "@/services/helpers/logout-user";
 import { profileCards } from "./info-cards";
 import { backButton } from "@/app/components/back-button";
+import { AccountSkeleton } from "@/app/components/skeletons/account-skeleton";
 
 const Account = async () => {
   const container = document.querySelector("#content");
@@ -16,6 +17,8 @@ const Account = async () => {
     unAuthenticatedEvents();
     return;
   }
+
+  container.appendChild(AccountSkeleton());
 
   const userFromStorage = await getAuthenticatedUser();
   const username = userFromStorage?.name || "";

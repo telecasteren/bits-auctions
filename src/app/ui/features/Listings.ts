@@ -2,11 +2,20 @@ import ListingCards from "@/app/components/listings/listing-cards";
 import ListingTable from "@/app/components/listings/listing-table";
 import { fetchAllListings } from "@/services/api/listings/fetch/fetch-all-listings";
 import { renderSearchResults } from "@/app/events/listing/search";
+import { ListingsSkeleton } from "@/app/components/skeletons/listings-skeleton";
 
 const Listings = async () => {
   const container = document.querySelector("#content");
   container?.classList.add("max-w-[1000px]");
   if (!container) return;
+
+  container.innerHTML = "";
+
+  const loader = ListingsSkeleton();
+  container.appendChild(loader);
+
+  const listingsResponse = await fetchAllListings(20, 1);
+  const listings = listingsResponse.data ?? [];
 
   container.innerHTML = "";
 
@@ -54,9 +63,6 @@ const Listings = async () => {
   nextPageButton.id = "next-page-button";
   nextPageButton.textContent = "See more";
   nextPageButton.className = "btn-secondary";
-
-  const listingsResponse = await fetchAllListings(20, 1);
-  const listings = listingsResponse.data ?? [];
 
   let table = await ListingTable(listings);
   let cards = ListingCards(listings);

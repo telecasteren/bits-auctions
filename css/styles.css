@@ -66,8 +66,7 @@
 
 @layer components {
   .active {
-    /* @apply underline; */
-    @apply border-b-3 border-[var(--accent-strong)];
+    @apply border-b-4 border-[var(--accent-strong)];
   }
 
   #page-title {

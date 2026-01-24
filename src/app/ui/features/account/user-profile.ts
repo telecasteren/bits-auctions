@@ -2,6 +2,7 @@ import type { Profile } from "@/services/types/profile";
 import { backButton } from "@/app/components/back-button";
 import { fetchListingsByProfile } from "@/services/api/listings/fetch/fetch-profile-listings";
 import ListingCards from "@/app/components/listings/listing-cards";
+import { ProfileSkeleton } from "@/app/components/skeletons/profile-skeleton";
 
 const UserProfile = async (user: Profile) => {
   const username = user.name || "John Doe";
@@ -18,6 +19,11 @@ const UserProfile = async (user: Profile) => {
   container?.classList.add("max-w-[1000px]");
 
   container.innerHTML = "";
+
+  if (!user) {
+    container.appendChild(ProfileSkeleton());
+    return;
+  }
 
   const backBtn = backButton(user, true);
 
@@ -58,7 +64,7 @@ const UserProfile = async (user: Profile) => {
 
   const verifiedBadge = document.createElement("p");
   verifiedBadge.id = "account-verified-badge";
-  verifiedBadge.innerHTML = `<span style="color:var(--selector-background);">&#10004;</span>`; // Use proper checkmark icon
+  verifiedBadge.innerHTML = `<span style="color:var(--selector-background);">&#10004;</span>`;
 
   const bio = document.createElement("p");
   bio.id = "account-bio";

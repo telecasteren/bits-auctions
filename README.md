@@ -1,12 +1,17 @@
 # Bits Action House
 
+**Author:** Tele Caster Nilsen<br/>
+**Website:** [www.telecasternilsen.com](https://telecasternilsen.com)
+
+---
+
 ![image](src/assets/logo/readme-logo-big.png)
 **Live site:** [bits-auctions](https://telecasternilsen.com/bits-auctions/)
 
-A modular Auction house site where users can manage and display items (listings) for auction and view charts with stats. The codebase is set up for scalability, using a clear folder structure and helper utilities.
+**Description**<br/>
+A modular Auction house site where users can manage and display items (listings) for auction and view charts with stats. The codebase is set up for scalability, using a clear folder structure and helper utilities. <br/>
 
-**Author:** Tele Caster Nilsen<br/>
-**Website:** [www.telecasternilsen.com](https://telecasternilsen.com)
+Each listing page includes a media gallery (image carousel) when there is multiple images available, allowing users to browse images of the items without leaving the page.
 
 ---
 
@@ -52,8 +57,7 @@ src/
 - Vitest
 - Playwright
 - Husky
-
-- Tailwind (styles)
+- Tailwind
 
 ### Get started
 
@@ -154,9 +158,11 @@ See the [.env.example](.env.example) file for how to use.
 
 ### Branding / CSS Variables
 
-**These file centralise the themes:**<br/>
+**Variables**
 [App](css/variables.css)<br/>
-[shadcn components](css/shadcn/variables.css)
+
+**Brand**
+[Logo](src/app/components/branding/brand-logo.ts)<br/>
 
 ## Acknowledgements
 
