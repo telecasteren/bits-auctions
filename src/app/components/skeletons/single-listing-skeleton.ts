@@ -4,7 +4,7 @@ export const SingleListingSkeleton = () => {
 
   const mediaGallery = document.createElement("div");
   mediaGallery.className =
-    "w-full h-64 rounded-md bg-gray-800 animate-pulse mb-4";
+    "w-full h-64 rounded-md bg-gray-300 dark:bg-gray-800 animate-pulse mb-4";
 
   const details = document.createElement("div");
   details.className = "flex flex-col md:flex-row gap-6 w-full";
@@ -13,25 +13,30 @@ export const SingleListingSkeleton = () => {
   textSection.className = "flex-1 flex flex-col gap-2";
 
   const title = document.createElement("div");
-  title.className = "w-60 h-8 rounded-md bg-gray-800 animate-pulse mb-2";
+  title.className =
+    "w-60 h-8 rounded-md bg-gray-300 dark:bg-gray-800 animate-pulse mb-2";
 
   const desc = document.createElement("div");
-  desc.className = "w-80 h-6 rounded-md bg-gray-800 animate-pulse mb-2";
+  desc.className =
+    "w-80 h-6 rounded-md bg-gray-300 dark:bg-gray-800 animate-pulse mb-2";
 
   const seller = document.createElement("div");
-  seller.className = "w-40 h-6 rounded-md bg-gray-800 animate-pulse mb-2";
+  seller.className =
+    "w-40 h-6 rounded-md bg-gray-300 dark:bg-gray-800 animate-pulse mb-2";
 
   const hr = document.createElement("div");
-  hr.className = "h-[1px] w-full bg-gray-800 my-4";
+  hr.className = "h-[1px] w-full bg-gray-300 dark:bg-gray-800 my-4";
 
   const actionCenter = document.createElement("div");
   actionCenter.className = "flex flex-col gap-2 items-end";
 
   const status = document.createElement("div");
-  status.className = "w-24 h-6 rounded-md bg-gray-800 animate-pulse";
+  status.className =
+    "w-24 h-6 rounded-md bg-gray-300 dark:bg-gray-800 animate-pulse";
 
   const bidBtn = document.createElement("div");
-  bidBtn.className = "w-32 h-10 rounded-md bg-gray-800 animate-pulse";
+  bidBtn.className =
+    "w-32 h-10 rounded-md bg-gray-300 dark:bg-gray-800 animate-pulse";
 
   wrapper.appendChild(mediaGallery);
   textSection.appendChild(title);

@@ -20,7 +20,7 @@
   }
 
   .card-content {
-    @apply p-6 pt-0;
+    @apply p-6 pb-2 pt-0;
   }
 
   .card-footer {

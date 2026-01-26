@@ -29,42 +29,38 @@ const ListingCards = (listings: Listing[]) => {
     const overlay = document.createElement("div");
     overlay.className =
       "absolute inset-0 pointer-events-none bg-[#1e293b0f] opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded-lg";
-    card.appendChild(overlay);
+
+    const image = document.createElement("img");
+    image.className =
+      "mb-2 rounded w-full h-64 object-cover justify-self-center";
+    image.src = listing.media.length > 0 ? listing.media[0].url : "";
+    image.alt = listingTitle || "Listing image";
 
     const title = document.createElement("h3");
     title.className = "mb-2 text-lg font-semibold";
     title.textContent = listingTitle;
-    card.appendChild(title);
-
-    const image = document.createElement("img");
-    image.className = "mb-2 rounded max-w-40 justify-self-center";
-    image.src = listing.media.length > 0 ? listing.media[0].url : "";
-    image.alt = listingTitle || "Listing image";
-    card.appendChild(image);
 
     const statsWrapper = document.createElement("div");
     statsWrapper.className = "flex flex-col gap-1 mb-4";
-    card.appendChild(statsWrapper);
 
     const bids = document.createElement("p");
     bids.className = "mb-2 text-sm font-medium";
     bids.textContent = `Bids: ${listingBidsCount}`;
-    statsWrapper.appendChild(bids);
 
     const status = document.createElement("div");
     status.appendChild(
-      getStatusBadge(new Date(listing.endsAt) > new Date() ? "active" : "ended")
+      getStatusBadge(
+        new Date(listing.endsAt) > new Date() ? "active" : "ended",
+      ),
     );
-    statsWrapper.appendChild(status);
 
     const endsAt = document.createElement("div");
     endsAt.className = "text-sm italic";
     endsAt.textContent = `Last call: ${endingDate}`;
 
     const seller = document.createElement("p");
-    seller.className = "mb-2 text-sm";
+    seller.className = "mb-2 text-sm hover:underline cursor-pointer";
     seller.innerHTML = `<span style="font-weight: bold;">Seller:</span> ${sellerName}`;
-    card.appendChild(seller);
 
     seller.addEventListener("click", () => {
       window.history.pushState({}, "", `/bits-auctions/profile/${sellerName}`);
@@ -79,6 +75,15 @@ const ListingCards = (listings: Listing[]) => {
     const description = document.createElement("p");
     description.className = "text-sm text-muted-foreground";
     description.textContent = listingDescription;
+
+    card.appendChild(overlay);
+
+    card.appendChild(image);
+    card.appendChild(title);
+    card.appendChild(statsWrapper);
+    statsWrapper.appendChild(bids);
+    statsWrapper.appendChild(status);
+    card.appendChild(seller);
     card.appendChild(description);
     card.appendChild(endsAt);
 

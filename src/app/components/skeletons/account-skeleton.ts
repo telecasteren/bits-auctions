@@ -3,28 +3,33 @@ export const AccountSkeleton = () => {
   wrapper.className = "flex flex-col gap-6 max-w-[1000px] mx-auto p-6";
 
   const header = document.createElement("div");
-  header.className = "w-98 h-12 rounded-md bg-gray-800 animate-pulse";
+  header.className =
+    "w-98 h-12 rounded-md bg-gray-300 dark:bg-gray-800 animate-pulse";
 
   const avatar = document.createElement("div");
-  avatar.className = "w-24 h-24 rounded-full bg-gray-800 animate-pulse";
+  avatar.className =
+    "w-24 h-24 rounded-full bg-gray-300 dark:bg-gray-800 animate-pulse";
 
   const infoRow = document.createElement("div");
   infoRow.className = "flex flex-col gap-6 mt-6";
 
   const email = document.createElement("div");
-  email.className = "w-40 h-6 rounded-md bg-gray-800 animate-pulse";
+  email.className =
+    "w-40 h-6 rounded-md bg-gray-300 dark:bg-gray-800 animate-pulse";
 
   const verified = document.createElement("div");
-  verified.className = "w-24 h-6 rounded-md bg-gray-800 animate-pulse";
+  verified.className =
+    "w-24 h-6 rounded-md bg-gray-300 dark:bg-gray-800 animate-pulse";
 
   const hr = document.createElement("div");
-  hr.className = "h-[1px] w-full bg-gray-800 my-4";
+  hr.className = "h-[1px] w-full bg-gray-300 dark:bg-gray-800 my-4";
 
   const cards = document.createElement("div");
   cards.className = "grid grid-cols-1 md:grid-cols-3 gap-4 w-full";
   for (let i = 0; i < 3; i++) {
     const card = document.createElement("div");
-    card.className = "h-48 rounded-md bg-gray-800 animate-pulse";
+    card.className =
+      "h-48 rounded-md bg-gray-300 dark:bg-gray-800 animate-pulse";
     cards.appendChild(card);
   }
 
