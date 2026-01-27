@@ -1,6 +1,7 @@
 import { getAuthenticatedUser } from "@/services/helpers/get-current-user";
 import { renderApp } from "@/services/helpers/render-app";
 import { createDialogue } from "@/app/components/modals/dialogue/create-dialogue";
+import { loadKey } from "@/utils/storage/storage";
 
 const navigation = async () => {
   const liItems = document.querySelectorAll("nav ul li");
@@ -38,7 +39,7 @@ const navigation = async () => {
           window.history.pushState(
             {},
             "",
-            `/bits-auctions/account/${username}`
+            `/bits-auctions/account/${username}`,
           );
           renderApp();
           break;
@@ -54,6 +55,12 @@ const navigation = async () => {
           break;
       }
     });
+  });
+
+  window.addEventListener("creditsUpdated", () => {
+    const newCredits = loadKey("credits") as number;
+    const wallet = document.getElementById("nav-credits") as HTMLElement;
+    if (wallet) wallet.textContent = newCredits.toString();
   });
 };
 export default navigation;

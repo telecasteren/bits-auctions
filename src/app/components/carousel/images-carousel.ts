@@ -1,10 +1,10 @@
 import { fetchAllListings } from "@/services/api/listings/fetch/fetch-all-listings";
 import { renderApp } from "@/services/helpers/render-app";
-import type { Listing } from "@/services/types/listing";
 import { carouselEvents } from "@/app/components/carousel/carousel-events";
 import { carouselPlayback } from "@/app/components/carousel/carousel-playback";
-import type { Options, ImageItem } from "@/app/components/carousel/types";
 import { popUpModal } from "@/app/components/modals/modal";
+import type { Listing } from "@/services/types/listing";
+import type { Options, ImageItem } from "@/app/components/carousel/types";
 
 export const Carousel = async (options: Options = {}, listing?: Listing) => {
   let images: ImageItem[] = [];
@@ -33,7 +33,7 @@ export const Carousel = async (options: Options = {}, listing?: Listing) => {
   const id = options.id ?? "default-carousel";
   const startImageIndex = Math.min(
     Math.max(options.startImageIndex ?? 0, 0),
-    Math.max(images.length - 1, 0)
+    Math.max(images.length - 1, 0),
   );
 
   const root = document.createElement("div");
@@ -64,7 +64,7 @@ export const Carousel = async (options: Options = {}, listing?: Listing) => {
         window.history.pushState(
           {},
           "",
-          `/bits-auctions/listings/${images[index].listingId}`
+          `/bits-auctions/listings/${images[index].listingId}`,
         );
         renderApp();
       });
@@ -102,7 +102,7 @@ export const Carousel = async (options: Options = {}, listing?: Listing) => {
     path.setAttribute("stroke-width", "2");
     path.setAttribute(
       "d",
-      direction === "left" ? "m15 19-7-7 7-7" : "m9 5 7 7-7 7"
+      direction === "left" ? "m15 19-7-7 7-7" : "m9 5 7 7-7 7",
     );
     svg.appendChild(path);
     return svg;
@@ -116,7 +116,7 @@ export const Carousel = async (options: Options = {}, listing?: Listing) => {
 
   const previousSpan = document.createElement("span");
   previousSpan.className =
-    "inline-flex items-center justify-center w-10 h-10 rounded-base bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none";
+    "inline-flex items-center justify-center w-10 h-10 rounded-base bg-gray-800/30 dark:bg-white/30 group-hover:bg-gray-800/20 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none";
   previousSpan.appendChild(chevronSvg("left"));
   const previousSr = document.createElement("span");
   previousSr.className = "sr-only";
@@ -133,7 +133,7 @@ export const Carousel = async (options: Options = {}, listing?: Listing) => {
 
   const nextSpan = document.createElement("span");
   nextSpan.className =
-    "inline-flex items-center justify-center w-10 h-10 rounded-base bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none";
+    "inline-flex items-center justify-center w-10 h-10 rounded-base bg-gray-800/30 dark:bg-white/30 group-hover:bg-gray-800/20 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none";
   nextSpan.appendChild(chevronSvg("right"));
   const nextSr = document.createElement("span");
   nextSr.className = "sr-only";
@@ -151,7 +151,7 @@ export const Carousel = async (options: Options = {}, listing?: Listing) => {
     btn.setAttribute("data-carousel-slide-to", String(index));
     btn.setAttribute(
       "aria-current",
-      index === startImageIndex ? "true" : "false"
+      index === startImageIndex ? "true" : "false",
     );
     indicators.appendChild(btn);
     return btn;
@@ -180,7 +180,7 @@ export const Carousel = async (options: Options = {}, listing?: Listing) => {
       wireEvents.nextBtn,
       wireEvents.indicatorButtons,
       wireEvents.startImageIndex,
-      !listing
+      !listing,
     );
   }
 

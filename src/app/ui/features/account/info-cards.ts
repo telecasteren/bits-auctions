@@ -10,12 +10,12 @@ export const profileCards = (user: Profile) => {
     "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 mx-auto max-w-2xl w-full";
 
   const infoItems = [
-    { title: "My account", subtitle: "See and edit your account details." },
+    { title: "My account", subtitle: "See and edit my account details." },
     {
-      title: "Active bids",
-      subtitle: "See all the listings you've placed a bid on.",
+      title: "All bids",
+      subtitle: "See my bid history per listing.",
     },
-    { title: "My listings", subtitle: "See and manage your listings." },
+    { title: "My listings", subtitle: "See and manage my listings." },
   ];
 
   const icons = {
@@ -28,7 +28,7 @@ export const profileCards = (user: Profile) => {
     const card = document.createElement("div");
     card.setAttribute(
       "data-card-id",
-      item.title.toLowerCase().replace(" ", "-")
+      item.title.toLowerCase().replace(" ", "-"),
     );
     card.className =
       "relative group rounded-lg border border-gray-300 dark:border-gray-700 bg-card mt-10 lg:mb-20 lg:mt-20 p-4 shadow-sm hover:shadow-lg hover:scale-105 hover:border-[var(--accent-strong)] duration-300 transition-all cursor-pointer overflow-hidden";
@@ -48,7 +48,7 @@ export const profileCards = (user: Profile) => {
       icons[
         item.title === "My account"
           ? "account"
-          : item.title === "Active bids"
+          : item.title === "All bids"
             ? "bids"
             : "listings"
       ];
@@ -89,7 +89,7 @@ export const profileCards = (user: Profile) => {
       if (cardId === "my-account") {
         const userDetailsForm = UserDetails(user);
         container.appendChild(userDetailsForm);
-      } else if (cardId === "active-bids") {
+      } else if (cardId === "all-bids") {
         const activeBidsList = await userBidsHistory(user);
         container.appendChild(activeBidsList);
       } else if (cardId === "my-listings") {
