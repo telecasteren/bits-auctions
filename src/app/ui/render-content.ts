@@ -60,6 +60,8 @@ const renderContent = async () => {
     default:
       break;
   }
+
+  window.dispatchEvent(new Event("navItemChanged"));
 };
 
 export default renderContent;

@@ -2,6 +2,7 @@ import { getAuthenticatedUser } from "@/services/helpers/get-current-user";
 import { renderApp } from "@/services/helpers/render-app";
 import { createDialogue } from "@/app/components/modals/dialogue/create-dialogue";
 import { loadKey } from "@/utils/storage/storage";
+import { setNavItemActive } from "./set-nav-item-active";
 
 const navigation = async () => {
   const liItems = document.querySelectorAll("nav ul li");
@@ -62,5 +63,7 @@ const navigation = async () => {
     const wallet = document.getElementById("nav-credits") as HTMLElement;
     if (wallet) wallet.textContent = newCredits.toString();
   });
+
+  window.addEventListener("navItemChanged", setNavItemActive);
 };
 export default navigation;
