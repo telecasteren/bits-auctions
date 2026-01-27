@@ -1,4 +1,3 @@
-import { passwordValidation } from "@/app/events/auth/password-validation";
 import { emailValidation } from "@/app/events/auth/email-validation";
 import { forgotPasswordRoute } from "@/app/events/auth/forgot-password";
 
@@ -159,16 +158,8 @@ export const AuthForm = (isSignup = false) => {
   wrapper.appendChild(formContainer);
   authContainer.appendChild(wrapper);
 
-  // Input validation
+  // Live email input validation
   if (emailInput) emailValidation(emailInput);
-  if (passwordInput) passwordValidation();
-
-  if (isSignup) {
-    const confirmPassword = document.getElementById(
-      "confirm-password"
-    ) as HTMLInputElement | null;
-    if (confirmPassword) passwordValidation();
-  }
 
   forgotPassword.addEventListener("click", forgotPasswordRoute(authContainer));
 

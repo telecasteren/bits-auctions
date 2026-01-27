@@ -6,8 +6,6 @@
 ## APP
 
 - BUGS:
-  - Fix password detection (signup validation)
-  - Fix My bids amount
   - Fix 'Unknown seller' in Account listings
 
 ## Deliver

@@ -1,23 +1,12 @@
+import { MONTHS } from "@/utils/config/constants";
+
 export const currentYear = () => {
   const year = new Date().getFullYear();
   return year;
 };
 
 export const currentMonths = () => {
-  const monthNames = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
+  const monthNames = MONTHS;
 
   const now = new Date();
   const currentMonthIndex = now.getMonth();

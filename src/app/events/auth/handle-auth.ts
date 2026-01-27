@@ -2,6 +2,7 @@ import { displayFormErrors } from "@/app/ui/utils/auth-form-errors.js";
 import { login } from "@/services/api/auth/login";
 import { register } from "@/services/api/auth/register";
 import { getAuthInputs } from "./get-auth-inputs.js";
+import { passwordValidation } from "./password-validation.js";
 
 export const handleAuth = async (isSignup = false) => {
   const { usernameInput, emailInput, passwordInput, confirmPassInput } =
@@ -22,6 +23,16 @@ export const handleAuth = async (isSignup = false) => {
 
   if (isSignup) {
     try {
+      const { valid, message } = passwordValidation(
+        password,
+        confirmPassInput?.value,
+      );
+
+      if (!valid) {
+        displayFormErrors(passwordInput, message);
+        return;
+      }
+
       const newUser = await register(username, email, password);
       const { name } = (await login(email, password)) || email.split("@")[0];
 
@@ -29,7 +40,7 @@ export const handleAuth = async (isSignup = false) => {
     } catch (error) {
       displayFormErrors(
         emailInput,
-        `Registration failed. Email may be in use or invalid.`
+        `Registration failed. Email may be in use or invalid.`,
       );
       throw error;
     }
