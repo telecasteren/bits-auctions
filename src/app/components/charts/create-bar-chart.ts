@@ -35,7 +35,6 @@ const createBarChart = (data: { month: string; desktop: number }[]) => {
 
     bar.addEventListener("mouseenter", () => {
       bar.style.opacity = "0.8";
-      // Show tooltip when hovering bar
       const tooltip = document.createElement("div");
       tooltip.className = `
         absolute top-[-30px] left-1/2 transform -translate-x-1/2 bg-[hsl(var(--popover))] border border-[hsl(var(--border))]

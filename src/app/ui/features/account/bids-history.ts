@@ -6,7 +6,7 @@ import { fetchBidsByProfile } from "@/services/api/profiles/fetch/fetch-profile-
 
 export const userBidsHistory = async (user: Profile) => {
   const container = document.createElement("div");
-  const username = user.name || "";
+  const username = user.name;
 
   const grid = document.createElement("div");
   grid.className = "grid grid-cols-1 gap-6 mb-20";

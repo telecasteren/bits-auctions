@@ -28,7 +28,7 @@ const renderRow = (listing: Listing, hideSeller: boolean = false) => {
   const statusTd = document.createElement("td");
   statusTd.className = "text-center align-middle px-4 py-4";
   statusTd.appendChild(
-    getStatusBadge(new Date(listing.endsAt) > new Date() ? "active" : "ended")
+    getStatusBadge(new Date(listing.endsAt) > new Date() ? "active" : "ended"),
   );
   row.appendChild(statusTd);
 

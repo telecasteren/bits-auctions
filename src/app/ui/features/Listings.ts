@@ -65,7 +65,7 @@ const Listings = async () => {
   nextPageButton.className = "btn-secondary";
 
   let table = await ListingTable(listings);
-  let cards = ListingCards(listings);
+  let cards = await ListingCards(listings);
   table.classList.add("hidden");
 
   const viewsWrapper = document.createElement("div");
@@ -94,7 +94,7 @@ const Listings = async () => {
       allListings = [...allListings, ...next];
 
       const newTable = await ListingTable(allListings);
-      const newCards = ListingCards(allListings);
+      const newCards = await ListingCards(allListings);
 
       const isTableActive = tableView.classList.contains("active");
       newTable.classList.toggle("hidden", !isTableActive);

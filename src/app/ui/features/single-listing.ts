@@ -1,5 +1,4 @@
 import type { Listing } from "@/services/types/listing";
-import type { Profile } from "@/services/types/profile";
 import { renderApp } from "@/services/helpers/render-app";
 import { popUpModal } from "@/app/components/modals/modal";
 import { getStatusBadge } from "@/app/components/listings/helpers/get-status-badge";
@@ -11,6 +10,7 @@ import { createBadge } from "@/app/components/listings/helpers/create-badge";
 import { Carousel } from "@/app/components/carousel/images-carousel";
 import { getAuthenticatedUser } from "@/services/helpers/get-current-user";
 import { SingleListingSkeleton } from "@/app/components/skeletons/single-listing-skeleton";
+import { fetchSingleListing } from "@/services/api/listings/fetch/fetch-single-listing";
 
 const SingleListing = async (listing: Listing) => {
   const endsAt = new Date(listing.endsAt);
@@ -19,7 +19,19 @@ const SingleListing = async (listing: Listing) => {
 
   const listingTitle = listing.title || "Untitled listing";
   const listingDescription = listing.description || "No description";
-  const listingSeller = (listing.seller as Profile)?.name || "Unknown seller";
+
+  if (!listing.seller || !listing.seller.name) {
+    try {
+      const fullListing = await fetchSingleListing(listing.id);
+      listing = fullListing;
+    } catch (error) {
+      throw new Error("Failed to fetch full listing data.", error as Error);
+    }
+  }
+
+  const listingSellerName = listing.seller?.name;
+  const listingSeller = listingSellerName;
+
   const listingBids = listing._count?.bids || 0;
   const bidAmounts = listing.bids?.map((bid) => bid.amount) || [];
 

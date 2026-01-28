@@ -6,8 +6,9 @@ import {
   currentMonths,
   currentYear,
 } from "@/services/helpers/calculate-months";
+import type { Profile } from "@/services/types/profile";
 
-const BarChart = async (userName?: string) => {
+const BarChart = async (userName?: Profile) => {
   const card = document.createElement("div");
   card.className = "card";
 
@@ -43,7 +44,7 @@ const BarChart = async (userName?: string) => {
   let chart = createBarChart(
     await getBidsPerMonth({
       onlyCurrentUser: false,
-      currentUserName: userName,
+      currentUserName: userName?.name,
     }),
   );
 
@@ -52,7 +53,7 @@ const BarChart = async (userName?: string) => {
     const newChart = createBarChart(
       await getBidsPerMonth({
         onlyCurrentUser: false,
-        currentUserName: userName,
+        currentUserName: userName?.name,
       }),
     );
     chart.replaceWith(newChart);
@@ -60,11 +61,16 @@ const BarChart = async (userName?: string) => {
   });
 
   userBidsChart.addEventListener("click", async () => {
+    if (!userName?.name) {
+      alert("Can't find user. User possibly undefined.");
+      return;
+    }
+
     chart.innerHTML = "";
     const newChart = createBarChart(
       await getBidsPerMonth({
         onlyCurrentUser: true,
-        currentUserName: userName,
+        currentUserName: userName.name,
       }),
     );
     chart.replaceWith(newChart);

@@ -5,7 +5,7 @@ import ListingCards from "@/app/components/listings/listing-cards";
 import { ProfileSkeleton } from "@/app/components/skeletons/profile-skeleton";
 
 const UserProfile = async (user: Profile) => {
-  const username = user.name || "John Doe";
+  const username = user.name as Profile["name"];
   const userAvatar =
     user.avatar.url ||
     user.name.charAt(0).toUpperCase() ||
@@ -85,7 +85,7 @@ const UserProfile = async (user: Profile) => {
     noListingsText.textContent = "This user has no listings.";
     listingsContainer.appendChild(noListingsText);
   } else {
-    const listingsList = ListingCards(listings);
+    const listingsList = await ListingCards(listings);
     listingsContainer.appendChild(listingsList);
   }
 

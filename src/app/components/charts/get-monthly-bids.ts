@@ -1,4 +1,5 @@
 import { fetchListingsForCharts } from "@/services/api/listings/fetch/fetch-listings-for-charts";
+import { fetchBidsByProfile } from "@/services/api/profiles/fetch/fetch-profile-bids";
 import { MONTHS } from "@/utils/config/constants";
 import type { Listing, Bid } from "@/services/types/listing";
 import type {
@@ -8,12 +9,9 @@ import type {
 } from "@/app/components/charts/types";
 
 export const getBidsPerMonth = async (
-  options: BidsOptions = {}
+  options: BidsOptions = {},
 ): Promise<ChartItems[]> => {
   const { onlyCurrentUser = false, currentUserName } = options;
-
-  const response = await fetchListingsForCharts();
-  const listings: Listing[] = response.data;
 
   const monthCounts: Record<MonthIndex, number> = {
     0: 0,
@@ -30,23 +28,34 @@ export const getBidsPerMonth = async (
     11: 0,
   };
 
-  for (const listing of listings) {
-    const bids: Bid[] = listing?.bids ?? [];
+  if (onlyCurrentUser && currentUserName) {
+    const userBids: Bid[] = await fetchBidsByProfile(currentUserName);
 
-    for (const bid of bids) {
-      if (onlyCurrentUser) {
-        if (!currentUserName) continue;
-        if (bid.bidder.name !== currentUserName) continue;
-      }
-
+    for (const bid of userBids) {
       const bidDate = new Date(bid.created);
       const month = bidDate.getMonth() as MonthIndex;
-
       const year = bidDate.getFullYear();
       const currentYear = new Date().getFullYear();
-      if (year !== currentYear) continue;
 
+      if (year !== currentYear) continue;
       monthCounts[month] += 1;
+    }
+  } else {
+    const response = await fetchListingsForCharts();
+    const listings: Listing[] = response.data;
+
+    for (const listing of listings) {
+      const bids: Bid[] = listing?.bids ?? [];
+
+      for (const bid of bids) {
+        const bidDate = new Date(bid.created);
+        const month = bidDate.getMonth() as MonthIndex;
+        const year = bidDate.getFullYear();
+        const currentYear = new Date().getFullYear();
+
+        if (year !== currentYear) continue;
+        monthCounts[month] += 1;
+      }
     }
   }
 

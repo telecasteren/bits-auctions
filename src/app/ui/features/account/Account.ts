@@ -7,6 +7,7 @@ import { logOutUser } from "@/services/helpers/logout-user";
 import { profileCards } from "./info-cards";
 import { backButton } from "@/app/components/back-button";
 import { AccountSkeleton } from "@/app/components/skeletons/account-skeleton";
+import { Profile } from "@/services/types/profile";
 
 const Account = async () => {
   const container = document.querySelector("#content");
@@ -21,7 +22,7 @@ const Account = async () => {
   container.appendChild(AccountSkeleton());
 
   const userFromStorage = await getAuthenticatedUser();
-  const username = userFromStorage?.name || "";
+  const username = userFromStorage?.name as Profile["name"];
   const user = await fetchSingleProfile(username);
 
   container.innerHTML = "";

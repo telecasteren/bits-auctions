@@ -5,9 +5,6 @@
 
 ## APP
 
-- BUGS:
-  - Fix 'Unknown seller' in Account listings
-
 ## Deliver
 
 - Link to live site

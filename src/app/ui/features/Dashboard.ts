@@ -3,6 +3,7 @@ import { unAuthenticatedEvents } from "@/app/events/auth/unauthenticated";
 import { isAuthenticated } from "@/utils/config/constants";
 import { getAuthenticatedUser } from "@/services/helpers/get-current-user";
 import { OverviewSkeleton } from "@/app/components/skeletons/overview-skeleton";
+import type { Profile } from "@/services/types/profile";
 
 const Dashboard = async () => {
   const container = document.querySelector("#content");
@@ -16,9 +17,8 @@ const Dashboard = async () => {
   container.innerHTML = "";
   container.appendChild(OverviewSkeleton());
 
-  const currentUser = await getAuthenticatedUser();
-  const currentUserName = currentUser?.name;
-  const chartComponent = await BarChart(currentUserName);
+  const currentUser = (await getAuthenticatedUser()) as Profile;
+  const chartComponent = await BarChart(currentUser);
 
   container.innerHTML = "";
 

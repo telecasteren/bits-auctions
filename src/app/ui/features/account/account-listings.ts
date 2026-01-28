@@ -6,7 +6,7 @@ import { createListingBtn } from "@/app/components/dialogue-btn";
 
 const AccountListings = async (user: Profile) => {
   const container = document.createElement("div");
-  const username = user.name || "";
+  const username = user.name as Profile["name"];
 
   const accountGrid = document.createElement("div");
   accountGrid.className = "grid grid-cols-1 gap-6 mb-20";
