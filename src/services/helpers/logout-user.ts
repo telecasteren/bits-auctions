@@ -1,5 +1,6 @@
 import { spinner } from "@/app/components/loaders/spinner";
-import { removeKey } from "@/utils/storage/storage";
+import { logoutFromStorage } from "@/utils/storage/storage";
+import { renderApp } from "./render-app";
 
 export const logOutUser = (isLoading = false) => {
   const logOutButton = document.createElement("button");
@@ -13,12 +14,11 @@ export const logOutUser = (isLoading = false) => {
   logOutButton.addEventListener("click", () => {
     isLoading = true;
     logOutButton.replaceChildren(spinner());
-    removeKey("token");
-    removeKey("user");
-    removeKey("credits");
+    logoutFromStorage();
 
     setTimeout(() => {
-      window.location.pathname = "/bits-auctions/";
+      window.history.pushState({}, "", "/bits-auctions/");
+      renderApp();
     }, 500);
   });
 

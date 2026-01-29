@@ -14,7 +14,7 @@ const Account = async () => {
   container?.classList.add("max-w-[1000px]");
   if (!container) return;
 
-  if (!isAuthenticated) {
+  if (!isAuthenticated()) {
     unAuthenticatedEvents();
     return;
   }

@@ -1,13 +1,18 @@
 import { isAuthenticated, brandShortName } from "@/utils/config/constants";
 import { AuthenticateUser } from "@/app/events/auth/authenticate-user";
-import Account from "@/app/ui/features/account/Account";
 import { AuthForm } from "@/app/components/forms/auth-form";
+import { renderApp } from "@/services/helpers/render-app";
+import { getAuthenticatedUser } from "@/services/helpers/get-current-user";
 
 const renderAuthForm = async (isSignup = false) => {
-  if (isAuthenticated) {
-    window.location.pathname = "/bits-auctions/account";
-    Account();
-    return;
+  if (isAuthenticated()) {
+    const user = await getAuthenticatedUser();
+    const username = user?.name;
+    if (username) {
+      window.history.pushState({}, "", `/bits-auctions/account/${username}`);
+      renderApp();
+      return;
+    }
   }
 
   const container = document.querySelector("#content");

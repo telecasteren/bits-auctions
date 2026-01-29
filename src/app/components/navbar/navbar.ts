@@ -51,11 +51,11 @@ const navbar = async () => {
   const navList = document.createElement("ul");
 
   const navItems = [
-    isAuthenticated ? "Overview" : null,
-    isAuthenticated ? "New" : null,
+    isAuthenticated() ? "Overview" : null,
+    isAuthenticated() ? "New" : null,
     "Listings",
-    isAuthenticated ? "Account" : "Login",
-    !isAuthenticated ? "Signup" : null,
+    isAuthenticated() ? "Account" : "Login",
+    !isAuthenticated() ? "Signup" : null,
   ];
 
   navItems.forEach((item) => {

@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, vi } from "vitest";
 import Dashboard from "@/app/ui/features/Dashboard";
 
-vi.mock("@/utils/config/constants", () => ({ isAuthenticated: true }));
+vi.mock("@/utils/config/constants", () => ({ isAuthenticated: () => true }));
 
 vi.mock("@/app/events/auth/unauthenticated", () => ({
   unAuthenticatedEvents: vi.fn(),

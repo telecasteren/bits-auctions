@@ -1,6 +1,6 @@
 import { getStatusBadge } from "./get-status-badge";
 import type { Listing } from "@/services/types/listing";
-import SingleListing from "@/app/ui/features/single-listing";
+import { renderApp } from "@/services/helpers/render-app";
 
 const renderRow = (listing: Listing, hideSeller: boolean = false) => {
   const row = document.createElement("tr");
@@ -56,8 +56,8 @@ const renderRow = (listing: Listing, hideSeller: boolean = false) => {
   row.appendChild(sellerTd);
 
   row.addEventListener("click", async () => {
-    SingleListing(listing);
     window.history.pushState({}, "", `/bits-auctions/listings/${listing.id}`);
+    renderApp();
   });
 
   return row;

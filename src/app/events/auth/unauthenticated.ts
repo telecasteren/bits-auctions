@@ -1,3 +1,4 @@
+import { renderApp } from "@/services/helpers/render-app";
 import { isAuthenticated } from "@/utils/config/constants";
 
 export const unAuthenticatedEvents = () => {
@@ -7,7 +8,7 @@ export const unAuthenticatedEvents = () => {
   content.innerHTML = "";
   const loginMessage = document.createElement("p");
 
-  if (!isAuthenticated) {
+  if (!isAuthenticated()) {
     loginMessage.innerHTML = `Create an account or log in to access the ${window.location.pathname.slice(1)} page.
     <br/>
     <b class="hover:underline cursor-pointer">Click here to log in.</b>`;
@@ -16,7 +17,8 @@ export const unAuthenticatedEvents = () => {
   }
 
   loginMessage.addEventListener("click", () => {
-    window.location.pathname = "/bits-auctions/login";
+    window.history.pushState({}, "", "/bits-auctions/login");
+    renderApp();
   });
 
   content.appendChild(loginMessage);

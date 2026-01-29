@@ -1,3 +1,4 @@
+import { renderApp } from "@/services/helpers/render-app";
 import type { Profile } from "@/services/types/profile";
 
 export const backButton = (user: Profile, preview: boolean = false) => {
@@ -11,7 +12,8 @@ export const backButton = (user: Profile, preview: boolean = false) => {
 
   backButton.addEventListener("click", () => {
     if (preview && isAccount) {
-      window.location.pathname = `/bits-auctions/account/${username}`;
+      window.history.pushState({}, "", `/bits-auctions/account/${username}`);
+      renderApp();
     } else {
       window.history.back();
     }

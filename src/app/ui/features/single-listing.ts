@@ -176,7 +176,7 @@ const SingleListing = async (listing: Listing) => {
   actionCenter.appendChild(bids);
   detailsSection.appendChild(actionCenter);
 
-  if (isActive && isAuthenticated && !sellerIsAuthUser) {
+  if (isActive && isAuthenticated() && !sellerIsAuthUser) {
     actionCenter.appendChild(placeBidButton);
   }
 

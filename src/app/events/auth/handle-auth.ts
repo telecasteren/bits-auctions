@@ -3,6 +3,7 @@ import { login } from "@/services/api/auth/login";
 import { register } from "@/services/api/auth/register";
 import { getAuthInputs } from "./get-auth-inputs.js";
 import { passwordValidation } from "./password-validation.js";
+import { renderApp } from "@/services/helpers/render-app.js";
 
 export const handleAuth = async (isSignup = false) => {
   const { usernameInput, emailInput, passwordInput, confirmPassInput } =
@@ -36,7 +37,12 @@ export const handleAuth = async (isSignup = false) => {
       const newUser = await register(username, email, password);
       const { name } = (await login(email, password)) || email.split("@")[0];
 
-      window.location.href = `/bits-auctions/account/${newUser.data.username || name}`;
+      window.history.pushState(
+        {},
+        "",
+        `/bits-auctions/account/${newUser.data.username || name}`,
+      );
+      renderApp();
     } catch (error) {
       displayFormErrors(
         emailInput,
@@ -47,7 +53,8 @@ export const handleAuth = async (isSignup = false) => {
   } else {
     try {
       const { name } = await login(email, password);
-      window.location.href = `/bits-auctions/account/${name}`;
+      window.history.pushState({}, "", `/bits-auctions/account/${name}`);
+      renderApp();
     } catch (error) {
       displayFormErrors(emailInput, "Login failed. Invalid email or password.");
       throw error;

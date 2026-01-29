@@ -3,13 +3,16 @@ import { Profile } from "@/services/types/profile";
 import { loadKey } from "@/utils/storage/storage";
 
 export const getCurrentUser = async () => {
-  const userFromPath = window.location.pathname.split(
-    "/bits-auctions/profile/"
+  const profileUserFromPath = window.location.pathname.split(
+    "/bits-auctions/profile/",
   )[1];
 
-  if (userFromPath) {
-    const userProfile = await fetchSingleProfile(userFromPath);
+  const accountUserFromPath = window.location.pathname.split(
+    "/bits-auctions/account/",
+  )[1];
 
+  if (profileUserFromPath) {
+    const userProfile = await fetchSingleProfile(profileUserFromPath);
     const profile = userProfile as Profile;
 
     if (!profile) {
@@ -17,10 +20,23 @@ export const getCurrentUser = async () => {
       return;
     }
 
-    return { userFromPath, profile: userProfile as Profile };
+    return { profileUserFromPath, profile: userProfile as Profile };
+  } else if (accountUserFromPath) {
+    const userProfile = await fetchSingleProfile(accountUserFromPath);
+    const profile = userProfile as Profile;
+
+    if (!profile) {
+      window.location.pathname = "/bits-auctions/404.html";
+      return;
+    }
+
+    return {
+      profileUserFromPath: accountUserFromPath,
+      profile: userProfile as Profile,
+    };
   }
 
-  return { userFromPath };
+  return { profileUserFromPath };
 };
 
 export const getAuthenticatedUser = async () => {
@@ -29,7 +45,7 @@ export const getAuthenticatedUser = async () => {
   if (!userFromStorage) return null;
 
   const userFromApi = await fetchSingleProfile(
-    userFromStorage ? userFromStorage.name : ""
+    userFromStorage ? userFromStorage.name : "",
   );
   return userFromApi as Profile;
 };

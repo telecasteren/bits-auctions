@@ -9,7 +9,7 @@ const Dashboard = async () => {
   const container = document.querySelector("#content");
   if (!container) return;
 
-  if (!isAuthenticated) {
+  if (!isAuthenticated()) {
     unAuthenticatedEvents();
     return;
   }
