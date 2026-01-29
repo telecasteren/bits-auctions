@@ -32,11 +32,11 @@ const renderRow = (listing: Listing, hideSeller: boolean = false) => {
   );
   row.appendChild(statusTd);
 
-  const createdDate = document.createElement("td");
-  createdDate.className =
+  const endsAtDate = document.createElement("td");
+  endsAtDate.className =
     "text-center align-middle px-4 py-4 text-sm text-muted-foreground";
-  createdDate.textContent = new Date(listing.created).toLocaleDateString();
-  row.appendChild(createdDate);
+  endsAtDate.textContent = new Date(listing.endsAt).toLocaleDateString();
+  row.appendChild(endsAtDate);
 
   const descriptionTd = document.createElement("td");
   descriptionTd.className =

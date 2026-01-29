@@ -84,6 +84,10 @@ const SingleListing = async (listing: Listing) => {
   description.className = "text-black dark:text-gray-200 text-md mb-4";
   description.textContent = listingDescription;
 
+  const listingEndsAt = document.createElement("p");
+  listingEndsAt.className = "text-sm text-gray-500 dark:text-gray-400 mb-2";
+  listingEndsAt.textContent = `Bidding closes: ${endsAt.toLocaleDateString()}`;
+
   const seller = document.createElement("p");
   seller.className =
     "w-40 text-gray-600 dark:text-gray-300 text-sm mb-4 hover:underline hover:text-[var(--accent-strong)] cursor-pointer";
@@ -170,6 +174,7 @@ const SingleListing = async (listing: Listing) => {
   textSection.appendChild(title);
   textSection.appendChild(description);
   textSection.appendChild(seller);
+  textSection.appendChild(listingEndsAt);
   detailsSection.appendChild(textSection);
 
   actionCenter.appendChild(status);

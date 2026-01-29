@@ -6,23 +6,23 @@ import type { Profile } from "@/services/types/profile";
 
 export const submitNewListingEvents = async (
   username: Profile,
-  close?: () => void
+  close?: () => void,
 ) => {
   const saveBtn = document.getElementById("dialogue-save-btn");
   if (!saveBtn) return;
 
   const titleInput = document.getElementById("title") as HTMLInputElement;
   const descriptionInput = document.getElementById(
-    "description"
+    "description",
   ) as HTMLTextAreaElement;
   const tagsInput = document.getElementById("tags") as HTMLInputElement;
   const endsAtInput = document.getElementById("ends-at") as HTMLInputElement;
 
   const mediaGroup = document.getElementById(
-    "media-gallery-inputs"
+    "media-gallery-inputs",
   ) as HTMLDivElement | null;
   const inputs = Array.from(
-    mediaGroup?.querySelectorAll(`input[name="media"]`) ?? []
+    mediaGroup?.querySelectorAll(`input[name="media"]`) ?? [],
   ) as HTMLInputElement[];
 
   const media = inputs
@@ -49,5 +49,6 @@ export const submitNewListingEvents = async (
   await submitNewListing(newListing);
   userMessage("success", "Listing created.", { duration: 3000 });
   close?.();
+  window.history.pushState({}, "", "/bits-auctions/listings");
   renderApp();
 };
