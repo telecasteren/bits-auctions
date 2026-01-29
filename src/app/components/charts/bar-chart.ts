@@ -33,7 +33,7 @@ const BarChart = async (userName?: Profile) => {
   bidsChart.className = "flex flex-row gap-4 mb-4 text-sm";
 
   const allBidsChart = document.createElement("p");
-  allBidsChart.className = "hover:underline cursor-pointer";
+  allBidsChart.className = "underline hover:underline cursor-pointer";
   allBidsChart.textContent = "All bids";
 
   const userBidsChart = document.createElement("p");
@@ -58,6 +58,8 @@ const BarChart = async (userName?: Profile) => {
     );
     chart.replaceWith(newChart);
     chart = newChart;
+    allBidsChart.classList.add("underline");
+    userBidsChart.classList.remove("underline");
   });
 
   userBidsChart.addEventListener("click", async () => {
@@ -75,6 +77,8 @@ const BarChart = async (userName?: Profile) => {
     );
     chart.replaceWith(newChart);
     chart = newChart;
+    userBidsChart.classList.add("underline");
+    allBidsChart.classList.remove("underline");
   });
 
   cardContent.appendChild(bidsChart);
