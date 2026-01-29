@@ -3,14 +3,23 @@ import { AuthenticateUser } from "@/app/events/auth/authenticate-user";
 import { AuthForm } from "@/app/components/forms/auth-form";
 import { renderApp } from "@/services/helpers/render-app";
 import { getAuthenticatedUser } from "@/services/helpers/get-current-user";
+import { userMessage } from "../../utils/user-messages";
 
 const renderAuthForm = async (isSignup = false) => {
   if (isAuthenticated()) {
     const user = await getAuthenticatedUser();
     const username = user?.name;
     if (username) {
-      window.history.pushState({}, "", `/bits-auctions/account/${username}`);
-      renderApp();
+      userMessage(
+        "info",
+        "You are already logged in. Redirecting to your account page...",
+        { duration: 2500 },
+      );
+
+      setTimeout(() => {
+        window.history.pushState({}, "", `/bits-auctions/account/${username}`);
+        renderApp();
+      }, 2500);
       return;
     }
   }

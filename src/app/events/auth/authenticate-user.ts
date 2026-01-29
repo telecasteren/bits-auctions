@@ -9,13 +9,6 @@ export const AuthenticateUser = async (isSignup = false) => {
   }
 
   const form = document.getElementById("auth-form") as HTMLFormElement;
-  if (!form) {
-    console.warn(
-      "AuthenticateUser: auth-form not found in DOM when attaching handler.",
-    );
-    return;
-  }
-
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
     await handleAuth(isSignup);

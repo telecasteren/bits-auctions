@@ -2,8 +2,7 @@
 
 - Write tests for essential logic
 - Push all changes to main before delivery
-
-## APP
+- npm run build + deploy before delivery
 
 ## Deliver
 
