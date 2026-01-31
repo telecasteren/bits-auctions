@@ -1,11 +1,11 @@
 export const carouselEvents = (root: HTMLElement) => {
   const slides = root.querySelectorAll<HTMLDivElement>("[data-carousel-item]");
   const previousBtn = root.querySelector<HTMLButtonElement>(
-    "[data-carousel-prev]"
+    "[data-carousel-prev]",
   );
   const nextBtn = root.querySelector<HTMLButtonElement>("[data-carousel-next]");
   const indicatorButtons = Array.from(
-    root.querySelectorAll<HTMLButtonElement>("[data-carousel-slide-to]")
+    root.querySelectorAll<HTMLButtonElement>("[data-carousel-slide-to]"),
   );
 
   if (!previousBtn || !nextBtn || indicatorButtons.length === 0) return;
@@ -13,8 +13,8 @@ export const carouselEvents = (root: HTMLElement) => {
   const startImageIndex = Math.max(
     0,
     indicatorButtons.findIndex(
-      (btn) => btn.getAttribute("aria-current") === "true"
-    )
+      (btn) => btn.getAttribute("aria-current") === "true",
+    ),
   );
   const state = { index: startImageIndex };
 
@@ -35,7 +35,7 @@ export const carouselEvents = (root: HTMLElement) => {
         "slide-next",
         "slide-previous",
         "slide-off-right",
-        "slide-off-left"
+        "slide-off-left",
       );
 
       if (ahead === 0) {

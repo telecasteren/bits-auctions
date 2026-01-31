@@ -6,7 +6,7 @@ export const clearUserMessage = () => {
 export const userMessage = (
   type: string,
   message: string,
-  options?: { duration?: number }
+  options?: { duration?: number },
 ) => {
   clearUserMessage();
 

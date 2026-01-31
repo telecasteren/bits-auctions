@@ -6,7 +6,7 @@ export const updateProfile = async (
   newData: Partial<{
     bio: string;
     avatar: { url: string; alt: string };
-  }>
+  }>,
 ) => {
   try {
     const response = await authFetch(`${BASE_URL}${USERS}/${user}`, {

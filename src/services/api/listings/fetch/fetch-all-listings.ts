@@ -3,7 +3,7 @@ import { BASE_URL, LISTINGS } from "@/services/api/auth/config/constants";
 
 export const fetchAllListings = async (limit?: number, page?: number) => {
   const response = await authFetch(
-    `${BASE_URL}${LISTINGS}?_seller=true&_bids=true&limit=${limit}&page=${page}&sort=created&sortOrder=desc`
+    `${BASE_URL}${LISTINGS}?_seller=true&_bids=true&limit=${limit}&page=${page}&sort=created&sortOrder=desc`,
   );
 
   if (response.status === 404) {

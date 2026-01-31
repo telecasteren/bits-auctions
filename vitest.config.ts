@@ -9,5 +9,5 @@ export default mergeConfig(
       globals: true,
       include: ["src/**/*.test.ts"],
     },
-  })
+  }),
 );

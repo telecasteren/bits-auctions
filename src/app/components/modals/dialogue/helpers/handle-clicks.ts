@@ -28,7 +28,7 @@ export const handleClicks = ({
     setTimeout(() => {
       (
         content.querySelector(
-          "input,button,select,textarea"
+          "input,button,select,textarea",
         ) as HTMLElement | null
       )?.focus();
     }, 0);

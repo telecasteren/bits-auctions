@@ -7,7 +7,7 @@ export const carouselPlayback = (
   nextBtn: HTMLButtonElement,
   indicatorButtons: HTMLButtonElement[],
   startImageIndex: number,
-  autoplay = true
+  autoplay = true,
 ) => {
   const AUTOPLAY_DELAY = 3000;
   let autoplayId: number | undefined;
@@ -42,7 +42,7 @@ export const carouselPlayback = (
     btn.addEventListener("click", () => {
       setActive(i);
       if (autoplay) startAutoplay();
-    })
+    }),
   );
 
   if (autoplay) {

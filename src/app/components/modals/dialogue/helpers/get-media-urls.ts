@@ -1,6 +1,6 @@
 export const getAllMediaUrls = (mediaGroup: HTMLElement): string[] => {
   const inputs = mediaGroup.querySelectorAll(
-    `input[name="media"]`
+    `input[name="media"]`,
   ) as NodeListOf<HTMLInputElement>;
 
   const urls: string[] = [];

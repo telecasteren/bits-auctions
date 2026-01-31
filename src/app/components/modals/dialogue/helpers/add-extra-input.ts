@@ -1,10 +1,10 @@
 export const addExtraInput = (
   mediaGroup: HTMLElement,
   amount: number,
-  newMax?: number
+  newMax?: number,
 ) => {
   const inputGroup = mediaGroup.querySelector(
-    `[data-role="media-input-group"]`
+    `[data-role="media-input-group"]`,
   ) as HTMLElement;
   const max =
     typeof newMax === "number" ? newMax : Number(mediaGroup.dataset.max ?? 10);

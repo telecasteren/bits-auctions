@@ -15,7 +15,7 @@ export const emailValidation = (emailInput: HTMLInputElement) => {
         emailInput.setCustomValidity("Please enter a valid email address.");
         displayFormErrors(
           emailInput,
-          `Email must contain a "@" and a "." to be valid.`
+          `Email must contain a "@" and a "." to be valid.`,
         );
         return;
       }
@@ -24,7 +24,7 @@ export const emailValidation = (emailInput: HTMLInputElement) => {
       if (!emailDomainIsValid) {
         displayFormErrors(
           emailInput,
-          `Valid emails end with: ${validDomains}.`
+          `Valid emails end with: ${validDomains}.`,
         );
         return;
       }
