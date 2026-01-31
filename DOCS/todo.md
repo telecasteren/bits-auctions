@@ -1,14 +1,12 @@
+## FIX
+
 ## General
 
 - Write tests for essential logic
-- Push all changes to main before delivery
-- npm run build + deploy before delivery
-
-## FIX
-
-- Fix type errors: npm run type
-  1 src/app/components/dialogue-btn.ts:13
-  3 src/app/events/listing/search.ts:21
+  - Non existing user cannot log in
+  - User cannot sign up with invalid email or password
+- Push/pull all changes into main before delivery
+  - Build and deploy to github pages
 
 ## Deliver
 
