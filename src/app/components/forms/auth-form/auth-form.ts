@@ -1,5 +1,6 @@
 import { emailValidation } from "@/app/events/auth/email-validation";
 import { forgotPasswordRoute } from "@/app/events/auth/forgot-password";
+import { updateDisabledState } from "./update-disabled";
 
 export const AuthForm = (isSignup = false) => {
   const authContainer = document.createElement("div");
@@ -37,8 +38,8 @@ export const AuthForm = (isSignup = false) => {
   emailInputDiv.className = "mt-2";
 
   const emailInput = document.createElement("input");
-  emailInput.className =
-    "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50";
+  emailInput.className = `flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background
+  placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2`;
   emailInput.setAttribute("type", "email");
   emailInput.setAttribute("id", "email");
   emailInput.setAttribute("name", "email");
@@ -88,6 +89,7 @@ export const AuthForm = (isSignup = false) => {
   const submitButton = document.createElement("button");
   submitButton.id = "submit-auth";
   submitButton.className = "btn-auth";
+  submitButton.disabled = true;
   submitButton.setAttribute("type", "submit");
   submitButton.textContent = isSignup ? "Sign up." : "Log in.";
   submitDiv.appendChild(submitButton);
@@ -158,6 +160,18 @@ export const AuthForm = (isSignup = false) => {
 
   // Live email input validation
   if (emailInput) emailValidation(emailInput);
+
+  // Update submit button disabled state when form is filled
+  emailInput.addEventListener("input", () => updateDisabledState(isSignup));
+  passwordInput.addEventListener("input", () => updateDisabledState(isSignup));
+  if (isSignup) {
+    const confirmPasswordInput = form.querySelector(
+      'input[name="confirm-password"]',
+    ) as HTMLInputElement;
+    confirmPasswordInput.addEventListener("input", () =>
+      updateDisabledState(isSignup),
+    );
+  }
 
   forgotPassword.addEventListener("click", forgotPasswordRoute(authContainer));
 

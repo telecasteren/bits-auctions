@@ -15,6 +15,7 @@
 
   .btn-save,
   .btn-cancel,
+  .btn-logout,
   .btn-load-more,
   .btn-modal-trigger,
   .btn-add-media-input {
@@ -30,11 +31,15 @@
     @apply text-[var(--accent-strong)] hover:text-red-800 text-3xl font-bold mb-4 cursor-pointer justify-self-end;
   }
 
+  .btn-save {
+    @apply border-none bg-[var(--accent-strong)] hover:bg-[var(--accent-strong-hover)];
+  }
+
   .btn-cancel {
     @apply border border-solid bg-[var(--background)] text-black dark:text-white hover:text-red-800;
   }
 
-  .btn-save {
-    @apply border-none bg-[var(--accent-strong)] hover:bg-[var(--accent-strong-hover)];
+  .btn-logout {
+    @apply border-none bg-red-600 hover:bg-red-700 hover:brightness-90 text-white flex mt-6 px-4 py-2;
   }
 }

@@ -16,7 +16,7 @@ export const spinner = () => {
     "h-6",
     "text-black",
     "animate-spin",
-    "dark:text-white",
+    "text-white",
   );
 
   const path1 = document.createElementNS("http://www.w3.org/2000/svg", "path");

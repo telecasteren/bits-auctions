@@ -46,9 +46,18 @@ export const submitNewListingEvents = async (
     seller: username,
   };
 
-  await submitNewListing(newListing);
-  userMessage("success", "Listing created.", { duration: 3000 });
-  close?.();
-  window.history.pushState({}, "", "/bits-auctions/listings");
-  renderApp();
+  try {
+    await submitNewListing(newListing);
+    userMessage("success", "Listing created.", { duration: 3000 });
+    close?.();
+    window.history.pushState({}, "", "/bits-auctions/listings");
+    renderApp();
+  } catch (error) {
+    if (error instanceof Error) {
+      userMessage("error", `Failed to create listing: ${error.message}`, {
+        duration: 5000,
+      });
+      return;
+    }
+  }
 };

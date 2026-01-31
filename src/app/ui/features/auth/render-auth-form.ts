@@ -1,6 +1,6 @@
 import { isAuthenticated, brandShortName } from "@/utils/config/constants";
 import { AuthenticateUser } from "@/app/events/auth/authenticate-user";
-import { AuthForm } from "@/app/components/forms/auth-form";
+import { AuthForm } from "@/app/components/forms/auth-form/auth-form";
 import { renderApp } from "@/services/helpers/render-app";
 import { getAuthenticatedUser } from "@/services/helpers/get-current-user";
 import { userMessage } from "../../utils/user-messages";

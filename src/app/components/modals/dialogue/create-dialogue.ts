@@ -4,6 +4,7 @@ import { createMediaInputs } from "./helpers/create-media-inputs";
 import { addExtraInput } from "@/app/components/modals/dialogue/helpers/add-extra-input";
 import type { Profile } from "@/services/types/profile";
 import { checkMandatoryInputs } from "./helpers/check-mandatory-fields";
+import { spinner } from "../../loaders/spinner";
 
 export const createDialogue = (
   username: Profile,
@@ -182,6 +183,16 @@ export const createDialogue = (
 
   saveBtn.addEventListener("click", async (event) => {
     event.preventDefault();
-    submitNewListingEvents(username, close);
+    const originalText = Array.from(saveBtn.childNodes);
+    saveBtn.disabled = true;
+    saveBtn.replaceChildren(spinner());
+
+    try {
+      await new Promise((request) => setTimeout(request, 200));
+      await submitNewListingEvents(username, close);
+    } finally {
+      saveBtn.disabled = false;
+      saveBtn.replaceChildren(...originalText);
+    }
   });
 };

@@ -1,6 +1,6 @@
 import { spinner } from "@/app/components/loaders/spinner";
 import { userMessage } from "@/app/ui/utils/user-messages";
-import { AuthForm } from "@/app/components/forms/auth-form";
+import { AuthForm } from "@/app/components/forms/auth-form/auth-form";
 import { AuthenticateUser } from "./authenticate-user";
 
 export const forgotPasswordRoute = (authContainer: HTMLElement) => {

@@ -9,7 +9,7 @@ export const logOutUser = (isLoading = false) => {
   } else {
     logOutButton.textContent = "Log out";
   }
-  logOutButton.className = "btn bg-red-600 text-white flex mt-6 px-4 py-2";
+  logOutButton.className = "btn-logout";
 
   logOutButton.addEventListener("click", () => {
     isLoading = true;
