@@ -1,0 +1,22 @@
+import { test, expect } from "@playwright/test";
+
+test.describe("Login", () => {
+  test("Login form displays", async ({ page }) => {
+    await page.goto("/bits-auctions/login");
+
+    const h2 = page.locator("#auth-form-title");
+    await expect(h2).toHaveText(/Log in to your account/i);
+  });
+
+  test("User can log in", async ({ page }) => {
+    await page.goto("/bits-auctions/login");
+    const email = process.env.TEST_USER_EMAIL;
+    const password = process.env.TEST_USER_PASSWORD;
+
+    await page.locator('input[name="email"]').fill(email!);
+    await page.locator('input[name="password"]').fill(password!);
+    await page.locator('button[type="submit"]').click();
+
+    await expect(page.getByRole("button", { name: /log out/i })).toBeVisible();
+  });
+});

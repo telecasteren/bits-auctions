@@ -15,6 +15,7 @@ const Landing = async () => {
   header.className = "justify-self-center md:justify-self-start";
 
   const h1 = logoText(false);
+  h1.id = "page-title";
   h1.classList.add("text-[80px]", "md:text-[120px]", "lg:text-[162px]");
 
   const p = document.createElement("p");

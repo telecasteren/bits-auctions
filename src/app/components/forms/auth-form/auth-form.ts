@@ -14,6 +14,7 @@ export const AuthForm = (isSignup = false) => {
   titleWrapper.className = "w-full max-w-sm mx-auto";
 
   const title = document.createElement("h2");
+  title.id = "auth-form-title";
   title.className =
     "font-sans mt-10 text-center text-2xl font-bold tracking-tight";
   title.textContent = isSignup

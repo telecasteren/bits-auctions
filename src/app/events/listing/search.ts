@@ -7,7 +7,7 @@ export const renderSearchResults = async (query: string) => {
   const listings = listingsResponse.data ?? [];
 
   const table = await ListingTable(listings);
-  const cards = ListingCards(listings);
+  const cards = await ListingCards(listings);
 
   const container = document.querySelector("#listings-wrapper");
   if (!container) return;

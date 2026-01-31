@@ -7,8 +7,7 @@ export const backButton = (user: Profile, preview: boolean = false) => {
   const backButton = document.createElement("button");
   backButton.id = "back-button";
   backButton.textContent = "← Back";
-  backButton.className =
-    "mb-6 text-[var(--accent-strong)] hover:underline cursor-pointer justify-self-start";
+  backButton.className = "btn-back";
 
   backButton.addEventListener("click", () => {
     if (preview && isAccount) {
