@@ -1,35 +1,38 @@
 import { updateProfile } from "@/services/api/profiles/update/update-profile";
-import { Profile } from "@/services/types/profile";
 
-export const editProfile = async (user: Profile) => {
-  const button = document.querySelector("#save-btn");
-  if (!button) return;
+type ProfileUpdate = {
+  bio?: string;
+  avatarUrl?: string;
+};
 
-  const username = user.name || "";
-
-  const bioInput = document.getElementById(
-    "user-bio-textarea"
-  ) as HTMLTextAreaElement | null;
-  const avatarInput = document.getElementById(
-    "user-avatar-input"
-  ) as HTMLInputElement | null;
-
+export const editProfile = async (
+  user: string,
+  update: ProfileUpdate,
+  initial: ProfileUpdate,
+) => {
+  const username = user;
   const newData: Partial<{
     bio: string;
-    avatar: { url: string; alt: string };
+    avatar?: { url: string; alt: string };
   }> = {};
 
-  if (bioInput && bioInput.value) {
-    newData.bio = bioInput.value;
+  if (update.bio !== initial.bio) {
+    newData.bio = update.bio;
   }
 
-  if (avatarInput && avatarInput.value) {
-    newData.avatar = { url: avatarInput.value, alt: user.avatar.alt };
+  if (
+    update.avatarUrl !== initial.avatarUrl &&
+    update.avatarUrl !== undefined
+  ) {
+    newData.avatar = {
+      url: update.avatarUrl,
+      alt: "",
+    };
   }
 
-  if (Object.keys(newData).length > 0) {
-    await updateProfile(username, newData);
-  } else {
+  if (!Object.keys(newData).length) {
     throw new Error("No changes to update.");
   }
+
+  await updateProfile(username, newData);
 };

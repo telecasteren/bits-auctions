@@ -10,6 +10,11 @@ const UserDetails = (user: Profile) => {
   const container = document.createElement("div");
   container.className = "grid mt-10 w-full max-w-sm gap-6 mx-auto";
 
+  const initialState = {
+    bio: user.bio || "",
+    avatar: user.avatar?.url || "",
+  };
+
   // USER CREDITS
   {
     const group = document.createElement("div");
@@ -33,24 +38,26 @@ const UserDetails = (user: Profile) => {
   }
 
   // USER AVATAR
+  let avatarInput: HTMLInputElement;
   {
     const label = createText("Update avatar", "font-medium");
     container.appendChild(label);
     const group = document.createElement("div");
     group.className = "flex w-full";
-    const input = createInput(user.avatar?.url || "");
-    input.id = "user-avatar-input";
-    group.appendChild(input);
+    avatarInput = createInput(user.avatar?.url || "Enter avatar URL");
+    avatarInput.id = "user-avatar-input";
+    group.appendChild(avatarInput);
     container.appendChild(group);
   }
 
   // USER BIO
+  let bioTextArea: HTMLTextAreaElement;
   {
     const label = createText("Update bio", "font-medium");
     container.appendChild(label);
     const group = document.createElement("div");
     group.className = "flex flex-col w-full";
-    const bioTextArea = createTextarea(user.bio || "Enter your bio");
+    bioTextArea = createTextarea(user.bio || "Enter your bio");
     bioTextArea.id = "user-bio-textarea";
     group.appendChild(bioTextArea);
     container.appendChild(group);
@@ -61,23 +68,36 @@ const UserDetails = (user: Profile) => {
     const group = document.createElement("div");
     group.className = "flex flex-col w-full";
 
-    const saveBtn = document.createElement("span");
+    const saveBtn = document.createElement("button");
     saveBtn.id = "save-btn";
     saveBtn.className = "btn-auth";
+    // saveBtn.disabled = true;
     saveBtn.appendChild(createText("Save details", "text-center text-md"));
     group.appendChild(saveBtn);
     container.appendChild(group);
 
     saveBtn.addEventListener("click", async () => {
-      if (!user.bio && !user.avatar.url) {
-        userMessage("warning", "Both bio and avatar cannot be empty.", {
-          duration: 4000,
-        });
-        return;
-      } else {
-        await editProfile(user);
+      const username = user.name;
+
+      const update = {
+        bio: bioTextArea.value.trim(),
+        avatarUrl: avatarInput.value.trim(),
+      };
+
+      const initial = {
+        bio: initialState.bio,
+        avatarUrl: initialState.avatar,
+      };
+
+      try {
+        await editProfile(username, update, initial);
         userMessage("success", "Profile updated!", { duration: 4000 });
         renderApp();
+      } catch (error) {
+        if (error instanceof Error) {
+          userMessage("warning", error.message, { duration: 5000 });
+          return;
+        }
       }
     });
   }
