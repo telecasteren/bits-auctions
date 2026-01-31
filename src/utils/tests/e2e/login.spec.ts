@@ -19,4 +19,17 @@ test.describe("Login", () => {
 
     await expect(page.getByRole("button", { name: /log out/i })).toBeVisible();
   });
+
+  test("Invalid user cannot log in", async ({ page }) => {
+    await page.goto("/bits-auctions/login");
+    const email = process.env.TEST_USER_EMAIL;
+
+    await page.locator('input[name="email"]').fill(email!);
+    await page.locator('input[name="password"]').fill("wrongpassworrd");
+    await page.locator('button[type="submit"]').click();
+
+    await expect(page.locator(".formError")).toHaveText(
+      /Invalid email or password/i,
+    );
+  });
 });

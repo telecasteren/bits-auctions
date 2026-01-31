@@ -26,4 +26,20 @@ test.describe("Signup", () => {
 
     await expect(page.getByRole("button", { name: /log out/i })).toBeVisible();
   });
+
+  test("User cannot sign up with invalid email or password", async ({
+    page,
+  }) => {
+    await page.goto("/bits-auctions/signup");
+    const password = process.env.TEST_SIGNUP_PASSWORD || "TestPass123!";
+    const submit = page.locator('button[type="submit"]');
+
+    await page.locator('input[name="email"]').fill("testuser@example.com");
+    await page.locator('input[name="password"]').fill(password!);
+    await expect(submit).toBeDisabled();
+
+    await expect(page.locator(".formError")).toHaveText(
+      /Valid emails end with: @stud.noroff.no/i,
+    );
+  });
 });
