@@ -107,7 +107,7 @@ const SingleListing = async (listing: Listing) => {
   bids.appendChild(bidsBadge);
 
   const placeBidButton = document.createElement("button");
-  placeBidButton.className = "btn btn-primary";
+  placeBidButton.className = "btn-action";
   placeBidButton.textContent = "Place Bid";
 
   const userCredits = loadKey("credits");
@@ -137,7 +137,7 @@ const SingleListing = async (listing: Listing) => {
     "input input-bordered border border-[var(--accent-strong)] p-2 rounded w-full";
 
   const submitBid = document.createElement("button");
-  submitBid.className = "btn btn-primary";
+  submitBid.className = "btn-action";
   submitBid.textContent = "Submit your bid";
 
   bidForm.appendChild(highestBidLabel);

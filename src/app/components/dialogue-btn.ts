@@ -4,7 +4,7 @@ import { getAuthenticatedUser } from "@/services/helpers/get-current-user";
 export const createListingBtn = async () => {
   const button = document.createElement("button");
   button.type = "button";
-  button.className = "btn-secondary w-max";
+  button.className = "btn-modal-trigger w-max";
   button.textContent = "Create listing";
 
   const userObject = await getAuthenticatedUser();

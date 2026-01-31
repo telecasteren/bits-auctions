@@ -61,15 +61,14 @@ const UserDetails = (user: Profile) => {
     const group = document.createElement("div");
     group.className = "flex flex-col w-full";
 
-    const addon = document.createElement("span");
-    addon.id = "save-btn";
-    addon.className =
-      "flex mt-6 px-4 py-2 justify-center items-center bg-[hsl(var(--chart-1))] text-white hover:brightness-90 rounded-lg shadow-sm hover:shadow-lg transition-shadow transition-colors cursor-pointer";
-    addon.appendChild(createText("Save details", "text-center text-md"));
-    group.appendChild(addon);
+    const saveBtn = document.createElement("span");
+    saveBtn.id = "save-btn";
+    saveBtn.className = "btn-auth";
+    saveBtn.appendChild(createText("Save details", "text-center text-md"));
+    group.appendChild(saveBtn);
     container.appendChild(group);
 
-    addon.addEventListener("click", async () => {
+    saveBtn.addEventListener("click", async () => {
       if (!user.bio && !user.avatar.url) {
         userMessage("warning", "Both bio and avatar cannot be empty.", {
           duration: 4000,

@@ -5,21 +5,6 @@
   }
 }
 
-.BTN_BASE {
-  @apply inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium
-   transition-colors focus-visible:outline-none focus-visible:ring-2
-   focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50
-  h-10 px-4 py-2;
-}
-
-.btn-outline {
-  @apply p-2 rounded border bg-[var(--background)] text-black dark:text-white hover:text-red-800;
-}
-
-.dialogue-primary-btn {
-  @apply p-2 rounded bg-[var(--accent-strong)] hover:bg-[var(--accent-strong-hover)] disabled:opacity-50;
-}
-
 .INPUT_BASE {
   @apply flex w-full rounded-md border bg-[var(--background)] px-3 py-2 text-sm;
 }

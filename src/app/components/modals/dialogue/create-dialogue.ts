@@ -7,7 +7,7 @@ import { checkMandatoryInputs } from "./helpers/check-mandatory-fields";
 
 export const createDialogue = (
   username: Profile,
-  container: HTMLElement | null = document.getElementById("content")
+  container: HTMLElement | null = document.getElementById("content"),
 ) => {
   const form = document.createElement("div");
   form.className = "justify-self-end";
@@ -73,7 +73,7 @@ export const createDialogue = (
 
   const addImageBtn = document.createElement("button");
   addImageBtn.type = "button";
-  addImageBtn.className = "btn-secondary w-max";
+  addImageBtn.className = "btn-add-media-input w-max";
   addImageBtn.textContent = "+ Add";
 
   const descriptionGroup = document.createElement("div");
@@ -110,14 +110,14 @@ export const createDialogue = (
 
   const cancelBtn = document.createElement("button");
   cancelBtn.type = "button";
-  cancelBtn.className = "btn-outline cursor-pointer";
+  cancelBtn.className = "btn-cancel";
   cancelBtn.textContent = "Cancel";
 
   const saveBtn = document.createElement("button");
   saveBtn.id = "dialogue-save-btn";
   saveBtn.type = "button";
   saveBtn.disabled = true;
-  saveBtn.className = "dialogue-primary-btn cursor-pointer";
+  saveBtn.className = "btn-save";
   saveBtn.textContent = "Save changes";
 
   header.appendChild(formTitle);

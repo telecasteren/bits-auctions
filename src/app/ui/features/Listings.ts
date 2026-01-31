@@ -62,7 +62,7 @@ const Listings = async () => {
   const nextPageButton = document.createElement("button");
   nextPageButton.id = "next-page-button";
   nextPageButton.textContent = "See more";
-  nextPageButton.className = "btn-secondary";
+  nextPageButton.className = "btn-load-more";
 
   let table = await ListingTable(listings);
   let cards = await ListingCards(listings);

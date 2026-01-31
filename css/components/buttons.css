@@ -1,26 +1,40 @@
 @layer components {
-  .btn {
-    @apply w-40 h-10 px-4 py-2 justify-center whitespace-nowrap rounded-sm text-sm font-medium transition-all duration-200 ease-in-out shadow-[2px_5px_0_0_black] disabled:opacity-50 cursor-pointer;
+  .btn-action {
+    @apply w-40 h-10 px-4 py-2 justify-center whitespace-nowrap rounded-sm text-sm font-medium transition-all duration-200 ease-in-out
+    shadow-[2px_5px_0_0_black] bg-[var(--accent-strong)] text-white disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer;
   }
 
-  .btn:hover {
-    @apply scale-95 brightness-105 shadow-none border-[hsl(var(--muted-foreground))];
+  .btn-action:hover {
+    @apply scale-95 brightness-105 shadow-none;
   }
 
-  .btn-primary {
-    @apply bg-[var(--accent-strong)] text-white disabled:opacity-50;
+  .btn-auth {
+    @apply flex h-10 w-full items-center justify-center rounded-md bg-[var(--accent-strong)] px-3 py-2 text-sm font-semibold
+  text-[var(--text-buttons)] shadow-sm hover:shadow-lg hover:brightness-110 cursor-pointer disabled:cursor-not-allowed disabled:opacity-50;
   }
 
-  .btn-secondary {
-    @apply mt-8 mb-12 px-4 py-2 border dark:border-none bg-[hsl(var(--accent))] dark:text-white rounded
-    hover:bg-[hsl(var(--accent))]/60 transition cursor-pointer disabled:opacity-50;
+  .btn-save,
+  .btn-cancel,
+  .btn-load-more,
+  .btn-modal-trigger,
+  .btn-add-media-input {
+    @apply mt-8 mb-12 px-4 py-2 border dark:border-none bg-gray-100 hover:bg-gray-200 dark:bg-[hsl(var(--accent))] dark:text-white rounded
+    dark:hover:bg-[hsl(var(--accent))]/60 transition cursor-pointer disabled:cursor-not-allowed disabled:opacity-50;
   }
 
   .btn-danger {
-    @apply bg-red-600 hover:bg-red-700 hover:brightness-90 text-white;
+    @apply bg-red-600 hover:bg-red-700 hover:brightness-90 text-white disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer;
   }
 
-  .close-btn {
+  .btn-close {
     @apply text-[var(--accent-strong)] hover:text-red-800 text-3xl font-bold mb-4 cursor-pointer justify-self-end;
+  }
+
+  .btn-cancel {
+    @apply border border-solid bg-[var(--background)] text-black dark:text-white hover:text-red-800;
+  }
+
+  .btn-save {
+    @apply border-none bg-[var(--accent-strong)] hover:bg-[var(--accent-strong-hover)];
   }
 }

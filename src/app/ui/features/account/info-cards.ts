@@ -73,7 +73,7 @@ export const profileCards = (user: Profile) => {
       wrapper.className = "";
 
       const closeBtn = document.createElement("div");
-      closeBtn.className = "close-btn";
+      closeBtn.className = "btn-close";
       closeBtn.innerHTML = "&times;";
       wrapper.appendChild(closeBtn);
 

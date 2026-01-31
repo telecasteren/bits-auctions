@@ -1,6 +1,7 @@
 :root {
   --background: #f9fffc;
   --text-foreground: #0a1626;
+  --text-buttons: #f9fffc;
 
   --navbar-background: #fafffccc;
   --navbar-border: #ffffff33;
@@ -53,6 +54,7 @@
 .dark {
   --background: #0a1a2a;
   --text-foreground: #f4f4f4;
+  --text-buttons: #0a1a2a;
 
   --navbar-background: #0a1a2af8;
   --navbar-border: #0a1a2ae4;

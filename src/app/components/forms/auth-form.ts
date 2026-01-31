@@ -87,9 +87,7 @@ export const AuthForm = (isSignup = false) => {
   const submitDiv = document.createElement("div");
   const submitButton = document.createElement("button");
   submitButton.id = "submit-auth";
-  submitButton.className = `flex h-10 w-full items-center justify-center rounded-md bg-[var(--accent-strong)] px-3 py-2 text-sm font-semibold
-  text-black shadow-sm hover:shadow-lg hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring
-  focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer`;
+  submitButton.className = "btn-auth";
   submitButton.setAttribute("type", "submit");
   submitButton.textContent = isSignup ? "Sign up." : "Log in.";
   submitDiv.appendChild(submitButton);
