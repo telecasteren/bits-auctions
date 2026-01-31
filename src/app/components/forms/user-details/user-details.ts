@@ -71,7 +71,6 @@ const UserDetails = (user: Profile) => {
     const saveBtn = document.createElement("button");
     saveBtn.id = "save-btn";
     saveBtn.className = "btn-auth";
-    // saveBtn.disabled = true;
     saveBtn.appendChild(createText("Save details", "text-center text-md"));
     group.appendChild(saveBtn);
     container.appendChild(group);
