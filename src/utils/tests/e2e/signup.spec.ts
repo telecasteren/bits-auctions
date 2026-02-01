@@ -7,6 +7,7 @@ const uniqueId = () => {
 test.describe("Signup", () => {
   test("Signup form displays", async ({ page }) => {
     await page.goto("/bits-auctions/signup");
+    await page.locator("#auth-form-title").waitFor({ state: "visible" });
 
     const h2 = page.locator("#auth-form-title");
     await expect(page.locator("#auth-form-title")).toBeVisible({
@@ -22,12 +23,7 @@ test.describe("Signup", () => {
     const password = process.env.TEST_SIGNUP_PASSWORD || "TestPass123!";
 
     await page.goto("/bits-auctions/signup");
-
-    // const h2 = page.locator("#auth-form-title");
-    // await expect(page.locator("#auth-form-title")).toBeVisible({
-    //   timeout: 15000,
-    // });
-    // await expect(h2).toHaveText(/Create your account/i);
+    await page.locator('input[name="username"]').waitFor({ state: "visible" });
 
     // Then we fill out the form with valid data
     await page.locator('input[name="username"]').fill(username!);
@@ -40,18 +36,14 @@ test.describe("Signup", () => {
   });
 
   test("User cannot sign up with invalid email", async ({ page }) => {
+    const username = `user_${uniqueId()}`;
     const password = process.env.TEST_SIGNUP_PASSWORD || "TestPass123!";
 
     await page.goto("/bits-auctions/signup");
-
-    // const h2 = page.locator("#auth-form-title");
-    // await expect(page.locator("#auth-form-title"))
-    //   .toBeVisible
-    //   // {timeout: 15000,}
-    //   ();
-    // await expect(h2).toHaveText(/Create your account/i);
+    await page.locator('input[name="username"]').waitFor({ state: "visible" });
 
     // Then we fill out the form with invalid email
+    await page.locator('input[name="username"]').fill(username!);
     await page.locator('input[name="email"]').fill("testuser@example.com");
     await page.locator('input[name="password"]').fill(password!);
     const submit = page.locator('button[type="submit"]');
