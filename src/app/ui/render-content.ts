@@ -3,7 +3,7 @@ import Listings from "@/app/ui/features/Listings";
 import SingleListing from "./features/single-listing";
 import Account from "@/app/ui/features/account/Account";
 import UserProfile from "@/app/ui/features/account/user-profile";
-import Landing from "@/app/ui/features/landing";
+import Landing from "@/app/ui/features/Landing";
 import renderAuthForm from "./features/auth/render-auth-form";
 import PageNotFound from "@/app/ui/utils/page-not-found";
 import {
@@ -28,36 +28,82 @@ const renderContent = async () => {
   content.innerHTML = "";
   body.classList.remove("route-landing");
 
-  switch (window.location.pathname) {
-    case "/bits-auctions/":
+  const base = import.meta.env.BASE_URL || "/bits-auctions/";
+  let relativePath = window.location.pathname;
+
+  if (relativePath.startsWith(base)) {
+    relativePath = relativePath.slice(base.length);
+  } else if (relativePath === "/") {
+    relativePath = "";
+  } else {
+    relativePath = relativePath.replace(/^\//, "");
+  }
+
+  //   switch (window.location.pathname) {
+  //     case "/bits-auctions/":
+  //       body.classList.add("route-landing");
+  //       Landing();
+  //       break;
+  //     case "/bits-auctions/overview":
+  //       Dashboard();
+  //       break;
+  //     case "/bits-auctions/listings":
+  //       Listings();
+  //       break;
+  //     case `/bits-auctions/listings/${listingId}`:
+  //       SingleListing(listing);
+  //       break;
+  //     case `/bits-auctions/account/${username}`:
+  //       Account();
+  //       break;
+  //     case `/bits-auctions/profile/${seller?.name}`:
+  //       UserProfile(seller);
+  //       break;
+  //     case "/bits-auctions/login":
+  //       renderAuthForm(false);
+  //       break;
+  //     case "/bits-auctions/signup":
+  //       renderAuthForm(true);
+  //       break;
+  //     case "/bits-auctions/404.html":
+  //       PageNotFound();
+  //       break;
+  //     default:
+  //       PageNotFound();
+  //       break;
+  //   }
+
+  switch (true) {
+    case relativePath === "":
       body.classList.add("route-landing");
       Landing();
       break;
-    case "/bits-auctions/overview":
+    case relativePath === "overview":
       Dashboard();
       break;
-    case "/bits-auctions/listings":
+    case relativePath === "listings":
       Listings();
       break;
-    case `/bits-auctions/listings/${listingId}`:
+    case relativePath.startsWith(`listings/${listingId}`):
       SingleListing(listing);
       break;
-    case `/bits-auctions/account/${username}`:
+    case relativePath.startsWith(`account/${username}`):
       Account();
       break;
-    case `/bits-auctions/profile/${seller?.name}`:
+    case relativePath.startsWith(`profile/${seller?.name ?? ""}`):
       UserProfile(seller);
       break;
-    case "/bits-auctions/login":
+    case relativePath === "login":
       renderAuthForm(false);
       break;
-    case "/bits-auctions/signup":
+    case relativePath === "signup":
       renderAuthForm(true);
       break;
-    case "/bits-auctions/404.html":
+    case relativePath === "404.html":
       PageNotFound();
       break;
     default:
+      PageNotFound();
       break;
   }
 
