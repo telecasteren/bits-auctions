@@ -19,7 +19,7 @@ jobs:
         with:
           node-version: 20
       - run: npm ci
-      - run: npx prettier --write .
+      - run: npx prettier --check .
       - run: npx eslint .
       - run: npx vitest run
       - run: npx playwright install --with-deps
