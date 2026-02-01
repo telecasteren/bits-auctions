@@ -2,6 +2,9 @@ import { test, expect } from "@playwright/test";
 
 test.describe("Login", () => {
   test("Login form displays", async ({ page }) => {
+    await page.goto("/bits-auctions/");
+    await page.waitForLoadState("networkidle");
+
     await page.goto("/bits-auctions/login");
     await page.locator("#auth-form-title").waitFor({ state: "visible" });
 
@@ -12,6 +15,9 @@ test.describe("Login", () => {
   test("User can log in", async ({ page }) => {
     const email = process.env.TEST_USER_EMAIL;
     const password = process.env.TEST_USER_PASSWORD;
+
+    await page.goto("/bits-auctions/");
+    await page.waitForLoadState("networkidle");
 
     await page.goto("/bits-auctions/login");
     await page.locator('input[name="email"]').waitFor({ state: "visible" });
@@ -26,6 +32,9 @@ test.describe("Login", () => {
 
   test("Invalid user cannot log in", async ({ page }) => {
     const email = process.env.TEST_USER_EMAIL;
+
+    await page.goto("/bits-auctions/");
+    await page.waitForLoadState("networkidle");
 
     await page.goto("/bits-auctions/login");
     await page.locator('input[name="email"]').waitFor({ state: "visible" });

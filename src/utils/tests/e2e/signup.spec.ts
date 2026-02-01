@@ -6,6 +6,9 @@ const uniqueId = () => {
 
 test.describe("Signup", () => {
   test("Signup form displays", async ({ page }) => {
+    await page.goto("/bits-auctions/");
+    await page.waitForLoadState("networkidle");
+
     await page.goto("/bits-auctions/signup");
     await page.locator("#auth-form-title").waitFor({ state: "visible" });
 
@@ -21,6 +24,9 @@ test.describe("Signup", () => {
     const username = `user_${uniqueId()}`;
     const email = `user_${uniqueId()}@stud.noroff.no`;
     const password = process.env.TEST_SIGNUP_PASSWORD || "TestPass123!";
+
+    await page.goto("/bits-auctions/");
+    await page.waitForLoadState("networkidle");
 
     await page.goto("/bits-auctions/signup");
     await page.locator('input[name="username"]').waitFor({ state: "visible" });
@@ -38,6 +44,9 @@ test.describe("Signup", () => {
   test("User cannot sign up with invalid email", async ({ page }) => {
     const username = `user_${uniqueId()}`;
     const password = process.env.TEST_SIGNUP_PASSWORD || "TestPass123!";
+
+    await page.goto("/bits-auctions/");
+    await page.waitForLoadState("networkidle");
 
     await page.goto("/bits-auctions/signup");
     await page.locator('input[name="username"]').waitFor({ state: "visible" });
