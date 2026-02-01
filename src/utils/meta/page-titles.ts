@@ -3,11 +3,17 @@ import { getCurrentListing } from "@/services/helpers/get-current-listing";
 import { getCurrentUser } from "@/services/helpers/get-current-user";
 
 export const setPageTitle = async () => {
-  const base = import.meta.env.BASE_URL || "/bits-auctions/";
+  const base = "/bits-auctions/";
   let relativePath = window.location.pathname;
 
   if (relativePath.startsWith(base)) {
     relativePath = relativePath.slice(base.length);
+  }
+
+  if (relativePath === "/") {
+    relativePath = "";
+  } else if (relativePath.startsWith("/")) {
+    relativePath = relativePath.slice(1);
   }
 
   if (relativePath === "") {
