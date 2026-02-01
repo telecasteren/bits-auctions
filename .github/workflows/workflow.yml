@@ -19,6 +19,9 @@ jobs:
         with:
           node-version: 20
       - run: npm ci
+      - run: |
+          echo "EMAIL length: ${#TEST_USER_EMAIL}"
+          echo "PASSWORD length: ${#TEST_USER_PASSWORD}"
       - run: npx prettier --check .
       - run: npx eslint .
       - run: npx tsc -p tsconfig.json --noEmit

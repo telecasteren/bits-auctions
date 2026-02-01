@@ -23,7 +23,6 @@ export default defineConfig({
 
   use: {
     // Base URL to use in actions like `await page.goto('/')`.
-    // baseURL: "http://localhost:5173/bits-auctions/",
     baseURL: "http://localhost:5173/bits-auctions/",
 
     // Collect trace when retrying the failed test.
