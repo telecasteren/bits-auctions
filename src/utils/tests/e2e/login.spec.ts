@@ -1,20 +1,21 @@
 import { test, expect } from "@playwright/test";
 
 test.describe("Login", () => {
-  // test("Login form displays", async ({ page }) => {
-  //   await page.goto("/bits-auctions/login");
+  test("Login form displays", async ({ page }) => {
+    await page.goto("/bits-auctions/login");
 
-  //   const h2 = page.locator("#auth-form-title");
-  //   await expect(h2).toHaveText(/Log in to your account/i);
-  // });
+    const h2 = page.locator("#auth-form-title");
+    await expect(h2).toHaveText(/Log in to your account/i);
+  });
 
   test("User can log in", async ({ page }) => {
     const email = process.env.TEST_USER_EMAIL;
     const password = process.env.TEST_USER_PASSWORD;
 
-    await page.goto("/login");
-    const h2 = page.locator("#auth-form-title");
-    await expect(h2).toHaveText(/Log in to your account/i);
+    await page.goto("/bits-auctions/login");
+
+    // const h2 = page.locator("#auth-form-title");
+    // await expect(h2).toHaveText(/Log in to your account/i);
 
     // Then we fill out the form with valid data
     await page.locator('input[name="email"]').fill(email!);
@@ -27,9 +28,10 @@ test.describe("Login", () => {
   test("Invalid user cannot log in", async ({ page }) => {
     const email = process.env.TEST_USER_EMAIL;
 
-    await page.goto("/login");
-    const h2 = page.locator("#auth-form-title");
-    await expect(h2).toHaveText(/Log in to your account/i);
+    await page.goto("/bits-auctions/login");
+
+    // const h2 = page.locator("#auth-form-title");
+    // await expect(h2).toHaveText(/Log in to your account/i);
 
     // Then we fill out the form with invalid data
     await page.locator('input[name="email"]').fill(email!);

@@ -5,28 +5,29 @@ const uniqueId = () => {
 };
 
 test.describe("Signup", () => {
-  // test("Signup form displays", async ({ page }) => {
-  //   await page.goto("/bits-auctions/signup");
+  test("Signup form displays", async ({ page }) => {
+    await page.goto("/bits-auctions/signup");
 
-  //   const h2 = page.locator("#auth-form-title");
-  //   await expect(page.locator("#auth-form-title")).toBeVisible({
-  //     timeout: 15000,
-  //   });
+    const h2 = page.locator("#auth-form-title");
+    await expect(page.locator("#auth-form-title")).toBeVisible({
+      timeout: 15000,
+    });
 
-  //   await expect(h2).toHaveText(/Create your account/i);
-  // });
+    await expect(h2).toHaveText(/Create your account/i);
+  });
 
   test("User can sign up", async ({ page }) => {
     const username = `user_${uniqueId()}`;
     const email = `user_${uniqueId()}@stud.noroff.no`;
     const password = process.env.TEST_SIGNUP_PASSWORD || "TestPass123!";
 
-    await page.goto("/signup");
-    const h2 = page.locator("#auth-form-title");
-    await expect(page.locator("#auth-form-title")).toBeVisible({
-      timeout: 15000,
-    });
-    await expect(h2).toHaveText(/Create your account/i);
+    await page.goto("/bits-auctions/signup");
+
+    // const h2 = page.locator("#auth-form-title");
+    // await expect(page.locator("#auth-form-title")).toBeVisible({
+    //   timeout: 15000,
+    // });
+    // await expect(h2).toHaveText(/Create your account/i);
 
     // Then we fill out the form with valid data
     await page.locator('input[name="username"]').fill(username!);
@@ -41,12 +42,14 @@ test.describe("Signup", () => {
   test("User cannot sign up with invalid email", async ({ page }) => {
     const password = process.env.TEST_SIGNUP_PASSWORD || "TestPass123!";
 
-    await page.goto("/signup");
-    const h2 = page.locator("#auth-form-title");
-    await expect(page.locator("#auth-form-title")).toBeVisible({
-      timeout: 15000,
-    });
-    await expect(h2).toHaveText(/Create your account/i);
+    await page.goto("/bits-auctions/signup");
+
+    // const h2 = page.locator("#auth-form-title");
+    // await expect(page.locator("#auth-form-title"))
+    //   .toBeVisible
+    //   // {timeout: 15000,}
+    //   ();
+    // await expect(h2).toHaveText(/Create your account/i);
 
     // Then we fill out the form with invalid email
     await page.locator('input[name="email"]').fill("testuser@example.com");
