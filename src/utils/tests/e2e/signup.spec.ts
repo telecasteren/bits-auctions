@@ -7,15 +7,10 @@ const uniqueId = () => {
 test.describe("Signup", () => {
   test("Signup form displays", async ({ page }) => {
     await page.goto("/bits-auctions/signup");
-    // await page.goto("/signup");
-    await page.locator("#auth-form-title").waitFor({ state: "visible" });
+    await expect(page.locator("#auth-form-title")).toBeVisible();
 
     const h2 = page.locator("#auth-form-title");
-    await expect(page.locator("#auth-form-title")).toBeVisible({
-      timeout: 15000,
-    });
-
-    await expect(h2).toHaveText(/Create your account/i);
+    await expect(h2).toHaveText("Create your account");
   });
 
   test("User can sign up", async ({ page }) => {
@@ -24,8 +19,7 @@ test.describe("Signup", () => {
     const password = process.env.TEST_SIGNUP_PASSWORD || "TestPass123!";
 
     await page.goto("/bits-auctions/signup");
-    // await page.goto("/signup");
-    await page.locator('input[name="username"]').waitFor({ state: "visible" });
+    await expect(page.locator('input[name="username"]')).toBeVisible();
 
     // Then we fill out the form with valid data
     await page.locator('input[name="username"]').fill(username!);
@@ -34,7 +28,7 @@ test.describe("Signup", () => {
     await page.locator('input[name="confirm-password"]').fill(password!);
     await page.locator('button[type="submit"]').click();
 
-    await expect(page.getByRole("button", { name: /log out/i })).toBeVisible();
+    await expect(page.getByRole("button", { name: "Log out" })).toBeVisible();
   });
 
   test("User cannot sign up with invalid email", async ({ page }) => {
@@ -42,8 +36,7 @@ test.describe("Signup", () => {
     const password = process.env.TEST_SIGNUP_PASSWORD || "TestPass123!";
 
     await page.goto("/bits-auctions/signup");
-    // await page.goto("/signup");
-    await page.locator('input[name="username"]').waitFor({ state: "visible" });
+    await expect(page.locator('input[name="username"]')).toBeVisible();
 
     // Then we fill out the form with invalid email
     await page.locator('input[name="username"]').fill(username!);
