@@ -1,5 +1,11 @@
 import { test, expect } from "@playwright/test";
 
+const mockedEnv = {
+  TEST_SIGNUP_PASSWORD: "TestPass123!",
+  TEST_USER_EMAIL: "tele@stud.noroff.no",
+  TEST_USER_PASSWORD: "pppppppp",
+};
+
 test.describe("Login", () => {
   test("Login form displays", async ({ page }) => {
     await page.goto("/bits-auctions/login");
@@ -10,8 +16,8 @@ test.describe("Login", () => {
   });
 
   test("User can log in", async ({ page }) => {
-    const email = process.env.TEST_USER_EMAIL;
-    const password = process.env.TEST_USER_PASSWORD;
+    const email = mockedEnv.TEST_USER_EMAIL;
+    const password = mockedEnv.TEST_USER_PASSWORD;
 
     await page.goto("/bits-auctions/login");
     await expect(page.locator('input[name="email"]')).toBeVisible();
@@ -25,7 +31,7 @@ test.describe("Login", () => {
   });
 
   test("Invalid user cannot log in", async ({ page }) => {
-    const email = process.env.TEST_USER_EMAIL;
+    const email = mockedEnv.TEST_USER_EMAIL;
 
     await page.goto("/bits-auctions/login");
     await expect(page.locator('input[name="email"]')).toBeVisible();

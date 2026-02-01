@@ -2,26 +2,19 @@ name: CI
 
 on:
   push:
-    branches: [main, dev]
+    branches: [dev]
   pull_request:
-    branches: [main]
+    branches: [dev]
 
 jobs:
   test:
     runs-on: ubuntu-latest
-    env:
-      TEST_USER_EMAIL: ${{ secrets.TEST_USER_EMAIL }}
-      TEST_USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD }}
-      TEST_SIGNUP_PASSWORD: ${{ secrets.TEST_SIGNUP_PASSWORD }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 20
       - run: npm ci
-      - run: |
-          echo "EMAIL length: ${#TEST_USER_EMAIL}"
-          echo "PASSWORD length: ${#TEST_USER_PASSWORD}"
       - run: npx prettier --check .
       - run: npx eslint .
       - run: npx tsc -p tsconfig.json --noEmit

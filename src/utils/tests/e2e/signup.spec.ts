@@ -4,6 +4,12 @@ const uniqueId = () => {
   return Math.random().toString(36).substring(2, 10);
 };
 
+const mockedEnv = {
+  TEST_SIGNUP_PASSWORD: "TestPass123!",
+  TEST_USER_EMAIL: "tele@stud.noroff.no",
+  TEST_USER_PASSWORD: "pppppppp",
+};
+
 test.describe("Signup", () => {
   test("Signup form displays", async ({ page }) => {
     await page.goto("/bits-auctions/signup");
@@ -16,7 +22,7 @@ test.describe("Signup", () => {
   test("User can sign up", async ({ page }) => {
     const username = `user_${uniqueId()}`;
     const email = `user_${uniqueId()}@stud.noroff.no`;
-    const password = process.env.TEST_SIGNUP_PASSWORD || "TestPass123!";
+    const password = mockedEnv.TEST_SIGNUP_PASSWORD || "TestPass123!";
 
     await page.goto("/bits-auctions/signup");
     await expect(page.locator('input[name="username"]')).toBeVisible();
@@ -33,7 +39,7 @@ test.describe("Signup", () => {
 
   test("User cannot sign up with invalid email", async ({ page }) => {
     const username = `user_${uniqueId()}`;
-    const password = process.env.TEST_SIGNUP_PASSWORD || "TestPass123!";
+    const password = mockedEnv.TEST_SIGNUP_PASSWORD || "TestPass123!";
 
     await page.goto("/bits-auctions/signup");
     await expect(page.locator('input[name="username"]')).toBeVisible();
