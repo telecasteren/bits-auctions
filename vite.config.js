@@ -14,4 +14,18 @@ export default defineConfig({
   build: {
     outDir: "dist",
   },
+  server: {
+    historyApiFallback: {
+      rewrites: [
+        { from: /^\/bits-auctions\/.*$/, to: "/bits-auctions/index.html" },
+      ],
+    },
+  },
+  preview: {
+    historyApiFallback: {
+      rewrites: [
+        { from: /^\/bits-auctions\/.*$/, to: "/bits-auctions/index.html" },
+      ],
+    },
+  },
 });

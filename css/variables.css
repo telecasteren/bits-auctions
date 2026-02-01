@@ -69,6 +69,13 @@
   --selector-background: #90a900;
   --selector-foreground: #daf53f;
 
+  --btn-logout-bg: bg-red-600; /* oklch(57.7% 0.245 27.325) */
+  --btn-logout-hover: bg-red-700; /* oklch(50.5% 0.213 27.518) */
+  --btn-close: text-[var(--accent-strong)];
+  --btn-close-hover: text-red-800; /* oklch(44.4% 0.177 26.899) */
+  --btn-base: bg-gray-100 dark: bg-[hsl(var(--accent))]; /* oklch(96.7% 0.003 264.542) */
+  --btn-base-hover: bg-gray-200 dark: bg-[hsl(var(--accent))]/60; /* oklch(92.8% 0.006 264.531) */
+
   /* ============ */
 
   --foreground: 210 40% 98%;
