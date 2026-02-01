@@ -12,7 +12,7 @@ test.describe("Login", () => {
     const email = process.env.TEST_USER_EMAIL;
     const password = process.env.TEST_USER_PASSWORD;
 
-    await page.goto("/bits-auctions/login");
+    await page.goto("/login");
     const h2 = page.locator("#auth-form-title");
     await expect(h2).toHaveText(/Log in to your account/i);
 
@@ -27,7 +27,7 @@ test.describe("Login", () => {
   test("Invalid user cannot log in", async ({ page }) => {
     const email = process.env.TEST_USER_EMAIL;
 
-    await page.goto("/bits-auctions/login");
+    await page.goto("/login");
     const h2 = page.locator("#auth-form-title");
     await expect(h2).toHaveText(/Log in to your account/i);
 

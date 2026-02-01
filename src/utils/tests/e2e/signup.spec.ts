@@ -21,7 +21,7 @@ test.describe("Signup", () => {
     const email = `user_${uniqueId()}@stud.noroff.no`;
     const password = process.env.TEST_SIGNUP_PASSWORD || "TestPass123!";
 
-    await page.goto("/bits-auctions/signup");
+    await page.goto("/signup");
     const h2 = page.locator("#auth-form-title");
     await expect(page.locator("#auth-form-title")).toBeVisible({
       timeout: 15000,
@@ -41,8 +41,7 @@ test.describe("Signup", () => {
   test("User cannot sign up with invalid email", async ({ page }) => {
     const password = process.env.TEST_SIGNUP_PASSWORD || "TestPass123!";
 
-    await page.goto("/bits-auctions/signup");
-    await page.goto("/bits-auctions/signup");
+    await page.goto("/signup");
     const h2 = page.locator("#auth-form-title");
     await expect(page.locator("#auth-form-title")).toBeVisible({
       timeout: 15000,
