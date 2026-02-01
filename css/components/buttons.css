@@ -9,7 +9,7 @@
   }
 
   .btn-auth {
-    @apply flex h-10 w-full items-center justify-center rounded-md bg-[var(--accent-strong)] px-3 py-2 text-sm font-semibold
+    @apply flex h-10 w-full items-center justify-center rounded-sm bg-[var(--accent-strong)] px-3 py-2 text-sm font-semibold
   text-[var(--text-buttons)] shadow-sm hover:shadow-lg hover:brightness-110 cursor-pointer disabled:cursor-not-allowed disabled:opacity-50;
   }
 
@@ -19,7 +19,7 @@
   .btn-load-more,
   .btn-modal-trigger,
   .btn-add-media-input {
-    @apply mt-8 mb-12 px-4 py-2 border dark:border-none bg-gray-100 hover:bg-gray-200 dark:bg-[hsl(var(--accent))] dark:text-[var(--text-buttons)] rounded
+    @apply mt-8 mb-12 px-4 py-2 border dark:border-none bg-gray-100 hover:bg-gray-200 dark:bg-[hsl(var(--accent))] dark:text-[var(--text-buttons)] rounded-sm
     dark:hover:bg-[hsl(var(--accent))]/60 transition cursor-pointer disabled:cursor-not-allowed disabled:opacity-50;
   }
 
