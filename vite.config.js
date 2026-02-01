@@ -16,16 +16,12 @@ export default defineConfig({
   },
   server: {
     historyApiFallback: {
-      rewrites: [
-        { from: /^\/bits-auctions\/.*$/, to: "/bits-auctions/index.html" },
-      ],
+      rewrites: [{ from: /^\/bits-auctions\/.*$/, to: "/index.html" }],
     },
   },
   preview: {
     historyApiFallback: {
-      rewrites: [
-        { from: /^\/bits-auctions\/.*$/, to: "/bits-auctions/index.html" },
-      ],
+      rewrites: [{ from: /^\/bits-auctions\/.*$/, to: "/index.html" }],
     },
   },
 });

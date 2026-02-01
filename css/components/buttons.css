@@ -1,7 +1,7 @@
 @layer components {
   .btn-action {
     @apply w-40 h-10 px-4 py-2 justify-center whitespace-nowrap rounded-sm text-sm font-medium transition-all duration-200 ease-in-out
-    shadow-[2px_5px_0_0_black] bg-[var(--accent-strong)] text-white disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer;
+    shadow-[2px_5px_0_0_black] bg-[var(--accent-strong)] text-[var(--text-buttons)] disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer;
   }
 
   .btn-action:hover {
@@ -19,12 +19,12 @@
   .btn-load-more,
   .btn-modal-trigger,
   .btn-add-media-input {
-    @apply mt-8 mb-12 px-4 py-2 border dark:border-none bg-gray-100 hover:bg-gray-200 dark:bg-[hsl(var(--accent))] dark:text-white rounded
+    @apply mt-8 mb-12 px-4 py-2 border dark:border-none bg-gray-100 hover:bg-gray-200 dark:bg-[hsl(var(--accent))] dark:text-[var(--text-buttons)] rounded
     dark:hover:bg-[hsl(var(--accent))]/60 transition cursor-pointer disabled:cursor-not-allowed disabled:opacity-50;
   }
 
   .btn-danger {
-    @apply bg-red-600 hover:bg-red-700 hover:brightness-90 text-white disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer;
+    @apply bg-red-600 hover:bg-red-700 hover:brightness-90 text-[var(--text-buttons)] disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer;
   }
 
   .btn-close {
@@ -36,7 +36,7 @@
   }
 
   .btn-cancel {
-    @apply border border-solid bg-[var(--background)] text-black dark:text-white hover:text-red-800;
+    @apply border border-solid bg-[var(--background)] text-black dark:text-[var(--text-buttons)] hover:text-red-800;
   }
 
   .btn-back {
@@ -44,6 +44,6 @@
   }
 
   .btn-logout {
-    @apply border-none bg-red-600 hover:bg-red-700 hover:brightness-90 text-white flex mt-6 px-4 py-2;
+    @apply border-none bg-red-600 hover:bg-red-700 hover:brightness-90 text-[var(--text-buttons)] flex mt-6 px-4 py-2;
   }
 }
