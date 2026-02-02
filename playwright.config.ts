@@ -22,8 +22,10 @@ export default defineConfig({
   reporter: "html",
 
   use: {
-    // Base URL to use in actions like `await page.goto('/')`.
-    baseURL: "http://localhost:5173/bits-auctions/",
+    // Base URL: use 127.0.0.1 in CI to avoid localhost IPv4/IPv6 mismatch on GitHub Actions.
+    baseURL: process.env.CI
+      ? "http://127.0.0.1:5173/bits-auctions/"
+      : "http://localhost:5173/bits-auctions/",
 
     // Collect trace when retrying the failed test.
     trace: "on-first-retry",
@@ -37,8 +39,10 @@ export default defineConfig({
   ],
   // Run your local dev server before starting the tests.
   webServer: {
-    command: "npm run dev",
-    url: "http://localhost:5173/bits-auctions/",
+    command: process.env.CI ? "npm run dev -- --host 127.0.0.1" : "npm run dev",
+    url: process.env.CI
+      ? "http://127.0.0.1:5173/bits-auctions/"
+      : "http://localhost:5173/bits-auctions/",
     reuseExistingServer: !process.env.CI,
   },
 });
