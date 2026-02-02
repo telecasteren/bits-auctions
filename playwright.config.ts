@@ -22,7 +22,6 @@ export default defineConfig({
   reporter: "html",
 
   use: {
-    // Base URL: use 127.0.0.1 in CI to avoid localhost IPv4/IPv6 mismatch on GitHub Actions.
     baseURL: "http://localhost:5173/bits-auctions/",
 
     // Collect trace when retrying the failed test.
