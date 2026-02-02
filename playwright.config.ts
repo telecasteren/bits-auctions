@@ -1,6 +1,6 @@
 import { defineConfig, devices } from "@playwright/test";
-// import { config as dotenvConfig } from "dotenv";
-// dotenvConfig();
+import { config as dotenvConfig } from "dotenv";
+dotenvConfig();
 
 export default defineConfig({
   // Look for test files in the "tests" directory, relative to this configuration file.
@@ -10,7 +10,7 @@ export default defineConfig({
   fullyParallel: false,
 
   // Fail the build on CI if you accidentally left test.only in the source code.
-  // forbidOnly: !!process.env.CI,
+  forbidOnly: !!process.env.CI,
 
   // Retry on CI only.
   retries: process.env.CI ? 2 : 0,
@@ -23,9 +23,7 @@ export default defineConfig({
 
   use: {
     // Base URL: use 127.0.0.1 in CI to avoid localhost IPv4/IPv6 mismatch on GitHub Actions.
-    baseURL: process.env.CI
-      ? "http://127.0.0.1:5173/bits-auctions/"
-      : "http://localhost:5173/bits-auctions/",
+    baseURL: "http://localhost:5173/bits-auctions/",
 
     // Collect trace when retrying the failed test.
     trace: "on-first-retry",
@@ -39,10 +37,8 @@ export default defineConfig({
   ],
   // Run your local dev server before starting the tests.
   webServer: {
-    command: process.env.CI ? "npm run dev -- --host 127.0.0.1" : "npm run dev",
-    url: process.env.CI
-      ? "http://127.0.0.1:5173/bits-auctions/"
-      : "http://localhost:5173/bits-auctions/",
+    command: "npm run dev",
+    url: "http://localhost:5173/bits-auctions/",
     reuseExistingServer: !process.env.CI,
   },
 });
