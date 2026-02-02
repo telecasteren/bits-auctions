@@ -53,7 +53,11 @@ const renderContent = async () => {
       Listings();
       break;
     case relativePath.startsWith(`listings/${listingId}`):
-      SingleListing(listing);
+      if (listing) {
+        SingleListing(listing);
+      } else {
+        PageNotFound();
+      }
       break;
     case relativePath.startsWith(`account/${username}`):
       Account();

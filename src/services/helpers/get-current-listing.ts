@@ -7,6 +7,10 @@ export const getCurrentListing = async () => {
   const singleListing = await fetchSingleListing(listingId);
   const listing = singleListing as Listing;
 
+  if (!listingId.trim()) {
+    return { listingId: "", listing: null };
+  }
+
   if (!listing) {
     window.location.pathname = "/bits-auctions/404.html";
     return;
