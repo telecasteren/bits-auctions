@@ -11,6 +11,8 @@ test.describe("Login", () => {
     await page.goto("/bits-auctions/login");
     await expect(page.locator("#page-title")).toBeVisible();
 
+    // PLease go through
+
     const h2 = page.locator("#auth-form-title");
     await expect(h2).toHaveText("Log in to your account");
   });
