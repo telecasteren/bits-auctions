@@ -39,7 +39,6 @@ const Listings = async () => {
     const query = target.value.trim();
 
     await renderSearchResults(query);
-    console.log("Searching for:", query);
   });
 
   const tabMenu = document.createElement("div");
