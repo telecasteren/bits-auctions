@@ -6,6 +6,7 @@ export const displayFormErrors = (field: HTMLElement, message: string) => {
     isExistingError.innerHTML = message;
   } else {
     const errorDiv = document.createElement("div");
+    errorDiv.id = `${field.id}-error`;
     errorDiv.className = "formError text-red-600 mt-2";
     errorDiv.innerText = message;
 

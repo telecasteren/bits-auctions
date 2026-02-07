@@ -43,6 +43,7 @@ export const userMessage = (
   const { text, bg, darkText } = alertTypes[key];
 
   const div = document.createElement("div");
+  div.id = "message-container";
   div.setAttribute("role", "alert");
   div.className = `user-message fixed top-0 left-1/2 transform -translate-x-1/2 w-96 p-4 mb-4
   text-sm ${text} text-center rounded-lg ${bg} dark:bg-gray-800 ${darkText} shadow-lg z-5000`;

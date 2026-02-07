@@ -35,7 +35,6 @@ const Account = async () => {
   hr.className = "mt-4 w-full border-gray-300 dark:border-gray-700";
 
   const logOutButton = logOutUser(false);
-  logOutButton.classList.add("mt-60", "justify-self-end");
 
   container.appendChild(backBtn);
   container.appendChild(header);
