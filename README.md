@@ -53,11 +53,11 @@ src/
 ### Technologies and tools
 
 - Typescript
+- Tailwind
 - Vite
+- Husky
 - Vitest
 - Playwright
-- Husky
-- Tailwind
 
 ### Get started
 
@@ -68,7 +68,7 @@ src/
    ```bash
    git clone https://github.com/telecasteren/bits-auctions.git
    cd bits-auctions
-   git switch dev
+   git switch dev # or stay at main branch if only viewing latest
    ```
 
    All work happens at the dev branch/feature branches, then gets pulled into main when approved.

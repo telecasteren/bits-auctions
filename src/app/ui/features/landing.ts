@@ -20,7 +20,6 @@ const Landing = async () => {
 
   const p = document.createElement("p");
   p.id = "page-tagline";
-  p.className = "mt-[-6%]";
   p.textContent = "Monitor your listings and bids in real-time.";
 
   const logo = logoImg();
