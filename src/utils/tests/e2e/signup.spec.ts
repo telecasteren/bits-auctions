@@ -1,13 +1,8 @@
 import { test, expect } from "@playwright/test";
+import { mockedEnv } from "@/utils/config/constants";
 
 const uniqueId = () => {
   return Math.random().toString(36).substring(2, 10);
-};
-
-const mockedEnv = {
-  TEST_SIGNUP_PASSWORD: "TestPass123!",
-  TEST_USER_EMAIL: "tele@stud.noroff.no",
-  TEST_USER_PASSWORD: "pppppppp",
 };
 
 test.describe("Signup", () => {

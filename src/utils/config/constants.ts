@@ -6,6 +6,13 @@ import logoDark from "@/assets/logo/house-logo-dark.png";
 // AUTH
 export const isAuthenticated = () => loadKey("token") !== null;
 
+// TESTS
+export const mockedEnv = {
+  TEST_SIGNUP_PASSWORD: "TestPass123!",
+  TEST_USER_EMAIL: "tele@stud.noroff.no",
+  TEST_USER_PASSWORD: "pppppppp",
+};
+
 // BRAND
 export const brandShortName = "Bits";
 export const brandFullName = "Bits AuctiOns";

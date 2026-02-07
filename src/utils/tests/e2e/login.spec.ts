@@ -1,10 +1,5 @@
 import { test, expect } from "@playwright/test";
-
-const mockedEnv = {
-  TEST_SIGNUP_PASSWORD: "TestPass123!",
-  TEST_USER_EMAIL: "tele@stud.noroff.no",
-  TEST_USER_PASSWORD: "pppppppp",
-};
+import { mockedEnv } from "@/utils/config/constants";
 
 test.describe("Login", () => {
   test("Login form displays", async ({ page }) => {
