@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { mockedEnv } from "@/utils/config/constants";
+import { mockedEnv } from "./tests-env";
 
 test.describe("Login", () => {
   test("Login form displays", async ({ page }) => {

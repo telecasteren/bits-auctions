@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { mockedEnv } from "@/utils/config/constants";
+import { mockedEnv } from "./tests-env";
 
 const uniqueId = () => {
   return Math.random().toString(36).substring(2, 10);
