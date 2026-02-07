@@ -2,8 +2,6 @@
 
 ## General
 
-- Mock API auth in tests
-
 - Push/pull all changes into main before delivery
   - Build and deploy to github pages
 

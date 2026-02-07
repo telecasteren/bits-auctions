@@ -20,3 +20,5 @@ jobs:
       - run: npx vitest run
       - run: npx playwright install --with-deps
       - run: npx playwright test
+        env:
+          VITE_NOROFF_API_KEY: ${{ secrets.VITE_NOROFF_API_KEY }}
