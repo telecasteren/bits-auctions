@@ -24,6 +24,43 @@ test.describe("Signup", () => {
     const email = `user_${uniqueId()}@stud.noroff.no`;
     const password = mockedEnv.TEST_SIGNUP_PASSWORD || "TestPass123!";
 
+    await page.route("**/auth/register", (route) => {
+      route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        json: { data: { username } },
+      });
+    });
+
+    await page.route("**/auth/login", (route) => {
+      route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        json: { data: { accessToken: "fake-token", name: username, email } },
+      });
+    });
+
+    await page.route("**/auction/profiles/**", (route) => {
+      route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        json: {
+          data: {
+            id: "mock-id",
+            name: username,
+            email,
+            bio: "",
+            banner: { url: "", alt: "" },
+            avatar: { url: "", alt: "" },
+            credits: 1000,
+            _count: { listings: 0, bids: 0 },
+            wins: [],
+            listings: [],
+          },
+        },
+      });
+    });
+
     await page.goto("/bits-auctions/signup");
     await expect(page.locator('input[name="username"]')).toBeVisible();
 
@@ -34,6 +71,9 @@ test.describe("Signup", () => {
     await page.locator('input[name="confirm-password"]').fill(password!);
     await page.locator('button[type="submit"]').click();
 
+    await expect(page).toHaveURL(
+      new RegExp(`/bits-auctions/account/${username}$`),
+    );
     await expect(page.getByRole("button", { name: "Log out" })).toBeVisible();
   });
 

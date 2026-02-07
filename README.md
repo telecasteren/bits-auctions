@@ -175,3 +175,4 @@ Lemon font by [Rajesh Rajput](https://rajputrajesh-448.gumroad.com/l/Lemon9)
 ### Resources
 
 [playwright config](https://playwright.dev/docs/test-configuration)<br/>
+[mock api in tests](https://content.noroff.dev/workflow/testing-with-api-mocking.html)
