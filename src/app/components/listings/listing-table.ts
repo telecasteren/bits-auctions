@@ -7,7 +7,8 @@ const ListingTable = async (listings: Listing[]) => {
     "mx-auto max-w-6xl overflow-x-auto rounded-lg border bg-card w-full";
 
   const table = document.createElement("table");
-  table.className = "w-full caption-bottom text-sm table-fixed";
+  table.className =
+    "mx-auto min-w-fit max-w-full caption-bottom text-sm table-fixed";
 
   const thead = document.createElement("thead");
   thead.className = "[&_tr]:border-b";
@@ -19,32 +20,32 @@ const ListingTable = async (listings: Listing[]) => {
     {
       text: "Item",
       className:
-        "h-12 px-4 text-center align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0",
+        "h-12 px-2 sm:px-4 text-center align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0",
     },
     {
       text: "Title",
       className:
-        "h-12 px-4 text-center align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0",
+        "h-12 px-2 sm:px-4 hidden md:table-cell text-center align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0",
     },
     {
       text: "Status",
       className:
-        "h-12 px-4 text-center align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 w-[120px]",
+        "h-12 px-2 sm:px-4 text-center align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 w-[120px]",
     },
     {
       text: "Last Call",
       className:
-        "h-12 px-4 text-center align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0",
+        "h-12 px-2 sm:px-4 hidden md:table-cell text-center align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0",
     },
     {
       text: "Description",
       className:
-        "h-12 px-4 text-center align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0",
+        "h-12 px-2 sm:px-4 hidden md:table-cell text-center align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0",
     },
     {
       text: "Seller",
       className:
-        "h-12 px-4 text-center align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 w-[180px]",
+        "h-12 px-2 sm:px-4 hidden md:table-cell text-center align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 w-[180px]",
     },
   ];
 
@@ -55,7 +56,7 @@ const ListingTable = async (listings: Listing[]) => {
     th.id = header.text.toLowerCase() + "-header";
     th.className = header.className;
     if (header.text === "Seller" && inAccountListings) {
-      th.classList.add("hidden");
+      th.classList.remove("md:table-cell");
     }
     th.textContent = header.text;
     headerRow.appendChild(th);

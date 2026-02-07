@@ -9,7 +9,7 @@ const Landing = async () => {
 
   const wrapper = document.createElement("div");
   wrapper.className =
-    "sm:grid sm:grid-cols-2 md:flex md:flex-row items-center justify-center lg:mt-[-8%] gap-4";
+    "sm:grid sm:grid-cols-2 md:flex md:flex-row items-center justify-center lg:mt-[-6%] gap-4";
 
   const header = document.createElement("header");
   header.className = "justify-self-center md:justify-self-start";
@@ -40,14 +40,16 @@ const Landing = async () => {
 
   const aboutText = document.createElement("p");
   aboutText.className = "text-md";
-  aboutText.innerHTML = `A modern online marketplace where anyone can browse listings and verified users can place their bids. Auctions are simple and transparent, when the timer ends ➡️ the highest bidder wins.
-  <span class="signup-link"><a href="/bits-auctions/signup">Create your account</a></span> to list your items and place bids. No fuzz, just bid, buy and sell.`;
+  aboutText.innerHTML = `A modern online marketplace where anyone can browse listings and verified users can place their bids.
+  Auctions are simple and transparent, when the timer ends ➡️ the highest bidder wins.
+  <span class="signup-link"><a href="/bits-auctions/signup">Create your account</a></span> to list your items and place bids.
+  No fuzz, just list, bid and sell.`;
 
   const listingsLink = document.createElement("a");
   listingsLink.href = "/bits-auctions/listings";
   listingsLink.textContent = "Go to listings";
   listingsLink.className =
-    "w-fit py-2 text-md font-semibold text-black dark:text-white hover:underline cursor-pointer";
+    "w-fit py-2 text-md font-semibold text-black dark:text-white underline hover:no-underline cursor-pointer";
 
   header.appendChild(h1);
   header.appendChild(p);
