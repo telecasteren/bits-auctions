@@ -23,6 +23,11 @@ export const createMediaInputs = (amount: number = 1, max: number = 10) => {
     urlInput.placeholder = `Image url ${index}`;
     urlInput.className = "INPUT_BASE";
 
+    if (urlInput.placeholder === "Image url 1") {
+      urlInput.required = true;
+      urlInput.placeholder = "Image url 1 *";
+    }
+
     inputWrapper.appendChild(urlInput);
     mediaInputGroup.appendChild(inputWrapper);
   };

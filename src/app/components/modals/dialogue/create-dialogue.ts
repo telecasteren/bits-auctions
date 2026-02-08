@@ -64,7 +64,7 @@ export const createDialogue = (
   const titleInput = document.createElement("input");
   titleInput.id = "title";
   titleInput.name = "title";
-  titleInput.placeholder = "Enter listing title";
+  titleInput.placeholder = "Enter listing title *";
   titleInput.className = "INPUT_BASE";
 
   const imageGalleryGroup = document.createElement("div");

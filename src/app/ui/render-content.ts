@@ -13,6 +13,7 @@ import {
 import { getCurrentListing } from "@/services/helpers/get-current-listing";
 import type { Profile } from "@/services/types/profile";
 import type { Listing } from "@/services/types/listing";
+import { StyleGuide } from "./utils/style-guide";
 
 const renderContent = async () => {
   const user = await getAuthenticatedUser();
@@ -73,6 +74,9 @@ const renderContent = async () => {
       break;
     case relativePath === "404.html":
       PageNotFound();
+      break;
+    case relativePath === "style-guide.html":
+      StyleGuide();
       break;
     default:
       PageNotFound();

@@ -1,0 +1,53 @@
+:root {
+  --background: #f9fffc;
+  --text-foreground: #0a1626;
+  --text-buttons: #f9fffc;
+
+  --navbar-background: #fafffccc;
+  --navbar-border: #ffffff33;
+
+  --accent: #f3f8fc;
+  --accent-strong: #f25a2b;
+  --accent-strong-hover: #e05227;
+
+  --selector-background: #7aed07e7;
+  --selector-foreground: #beff7ce7;
+
+  --foreground: 222.2 84% 4.9%;
+  --card-foreground: 222.2 84% 4.9%;
+  --popover: 0 0% 100%;
+
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --accent: 210 40% 96%;
+
+  --border: 0, 0%, 0%;
+
+  --chart-1: 150, 79%, 37%;
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: #0a1a2a;
+  --text-foreground: #f4f4f4;
+  --text-buttons: #f4f4f4;
+
+  --navbar-background: #0a1a2af8;
+  --navbar-border: #0a1a2ae4;
+
+  --accent: #f25a2b;
+  --accent-strong: #90a900;
+  --accent-strong-hover: #abc804;
+
+  --selector-background: #90a900;
+  --selector-foreground: #daf53f;
+
+  --foreground: 210 40% 98%;
+  --card-foreground: 210 40% 98%;
+  --popover: 222.2 84% 4.9%;
+
+  --muted-foreground: 215 20.2% 65.1%;
+  --accent: 217.2 32.6% 17.5%;
+
+  --border: 217.2 32.6% 17.5%;
+  --chart-1: 220 70% 50%;
+}

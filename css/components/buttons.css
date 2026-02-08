@@ -9,7 +9,7 @@
   }
 
   .btn-auth {
-    @apply flex h-10 w-full items-center justify-center rounded-sm bg-[var(--accent-strong)] px-3 py-2 text-sm font-semibold
+    @apply flex h-10 w-full items-center justify-center rounded-sm bg-[var(--accent-strong)] px-4 py-2 text-sm font-semibold
   text-[var(--text-buttons)] shadow-sm hover:shadow-lg hover:brightness-110 cursor-pointer disabled:cursor-not-allowed disabled:opacity-50;
   }
 
@@ -44,6 +44,6 @@
   }
 
   .btn-logout {
-    @apply border-none bg-red-600 hover:bg-red-700 hover:brightness-90 text-[var(--text-buttons)] flex px-4 py-2 justify-self-end;
+    @apply border-none bg-red-600 hover:bg-red-700 hover:brightness-90 text-[var(--text-buttons)] flex justify-self-end;
   }
 }

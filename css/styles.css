@@ -4,7 +4,7 @@
 @import url("../src/assets/Typography/Lemon/Web-TT/Lemon-BoldWide.css");
 @import url("../src/assets/Typography/Lemon/Web-TT/Lemon-ExtraBold.css");
 @import "tailwindcss";
-@import "./variables.css";
+@import "./utils/variables.css";
 @import "./components/chart.css";
 @import "./components/navbar.css";
 @import "./components/buttons.css";
@@ -13,11 +13,15 @@
 
 @layer base {
   body {
-    @apply font-sans m-0 p-10 bg-[var(--background)] text-[hsl(var(--foreground))] leading-normal;
+    @apply m-0 p-10 bg-[var(--background)] text-[hsl(var(--foreground))] leading-normal;
   }
 
   main {
     @apply mt-30;
+  }
+
+  footer {
+    @apply mt-20 text-center text-sm text-[hsl(var(--muted-foreground))];
   }
 
   ::selection {

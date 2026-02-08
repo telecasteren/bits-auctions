@@ -1,26 +1,29 @@
-@media (prefers-color-scheme: dark) {
-  input[type="date"]::-webkit-calendar-picker-indicator {
-    filter: invert(1) brightness(1.1) contrast(1.05);
-    opacity: 0.9;
+@layer components {
+  @media (prefers-color-scheme: dark) {
+    input[type="date"]::-webkit-calendar-picker-indicator {
+      filter: invert(1) brightness(1.1) contrast(1.05);
+      opacity: 0.9;
+    }
   }
-}
 
-.INPUT_BASE {
-  @apply flex w-full rounded-md border bg-[var(--background)] px-3 py-2 text-sm;
-}
+  .INPUT_BASE {
+    @apply flex w-full rounded-md border bg-[var(--background)] px-3 py-2 text-sm;
+  }
 
-.LABEL {
-  @apply block text-sm font-medium text-gray-400;
-}
+  .LABEL {
+    @apply block text-sm font-medium text-gray-400;
+  }
 
-.dialogue-overlay {
-  @apply fixed inset-0 z-[2000] bg-black/50;
-}
+  .dialogue-overlay {
+    @apply fixed inset-0 z-[2000] bg-black/50;
+  }
 
-.dialogue-content {
-  @apply fixed left-1/2 top-1/2 z-[2001] grid w-[90%] md:w-[60%] -translate-x-1/2 -translate-y-1/2 max-h-[calc(100vh-2rem)] overflow-y-auto gap-4 rounded-md border bg-[var(--background)] p-6 shadow-lg;
-}
+  .dialogue-content {
+    @apply fixed left-1/2 top-1/2 z-[2001] grid w-[90%] md:w-[60%] -translate-x-1/2 -translate-y-1/2 max-h-[calc(100vh-2rem)]
+  overflow-y-auto gap-4 rounded-md border bg-[var(--background)] p-6 shadow-lg;
+  }
 
-.dialogue-footer {
-  @apply mt-4 flex justify-end gap-2;
+  .dialogue-footer {
+    @apply mt-4 flex justify-end gap-2;
+  }
 }
