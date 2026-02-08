@@ -24,4 +24,4 @@ jobs:
         env:
           VITE_NOROFF_API_KEY: ${{ secrets.VITE_NOROFF_API_KEY }}
       - run: npm run deploy
-        if: github.event_name == "push" && github.ref == "refs/heads/main"
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
