@@ -17,8 +17,11 @@ jobs:
       - run: npm ci
       - run: npx prettier --check .
       - run: npx eslint .
+      - run: npm run build
       - run: npx vitest run
       - run: npx playwright install --with-deps
       - run: npx playwright test
         env:
           VITE_NOROFF_API_KEY: ${{ secrets.VITE_NOROFF_API_KEY }}
+      - run: npm run deploy
+        if: github.event_name == "push" && github.ref == "refs/heads/main"
