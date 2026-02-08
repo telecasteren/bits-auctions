@@ -13,5 +13,12 @@ export default defineConfig({
   },
   build: {
     outDir: "dist",
+    rollupOptions: {
+      input: {
+        main: "index.html",
+        styleGuide: "style-guide.html",
+        notFound: "404.html",
+      },
+    },
   },
 });
