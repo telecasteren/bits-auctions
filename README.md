@@ -108,6 +108,18 @@ When developing, use
 npm run dev
 ```
 
+---
+
+### GitHub Pages, SPA and deep links
+
+The single-page app is hosted on Github Pages, with client-side routing handled in the browser using history API "/bits-auctions/account/username". When you navigate via the app's own links, no full page reload happens and it just works.<br/>
+
+**!Note!**<br/>
+If you load a deep link directly/pasting in the URL in the browser address bar, like "/bits-auctions/account/username", or refresh, the server returns a 404 even though the fallback HTML and SPA renders correctly in the UI. My finding is that it's due to the limitations of Github Pages on history based SPA routing, and not a missing route in the app itself.<br/>
+In these cases, you may see a single 404 status error in the browser console. This does not affect the user experience or any of the in-app functions.
+
+---
+
 When building for production, use
 
 ```bash
@@ -115,8 +127,11 @@ npm run build
 npm run deploy # Deploys the build to Github Pages
 ```
 
-See [workflow file](.github/workflows/workflow.yml) for all automated jobs.<br/>
-See [here](package.json) for all available scripts.
+> Build and Deploy are integrated into the workflow CI.<br/>
+> See [workflow file](.github/workflows/workflow.yml) for all automated jobs.<br/>
+> See [here](package.json) for all available scripts.
+
+---
 
 #### Testing
 
