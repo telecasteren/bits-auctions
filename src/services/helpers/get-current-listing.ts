@@ -3,7 +3,7 @@ import type { Listing } from "@/services/types/listing";
 
 export const getCurrentListing = async () => {
   const listingId =
-    window.location.pathname.split("/bits-auctions/listings/")[1] || "";
+    window.location.pathname.split("/listings/")[1] || "";
 
   if (!listingId.trim()) {
     return { listingId: "", listing: null };
@@ -13,7 +13,7 @@ export const getCurrentListing = async () => {
   const listing = singleListing as Listing;
 
   if (!listing) {
-    window.location.pathname = "/bits-auctions/404.html";
+    window.location.pathname = "/404.html";
     return;
   }
 

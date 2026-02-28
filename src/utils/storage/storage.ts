@@ -8,7 +8,7 @@ export const loadKey = (key: string): unknown => {
 
 export const logoutFromStorage = () => {
   localStorage.clear();
-  window.location.href = "/bits-auctions/";
+  window.location.href = "/";
 };
 
 export const removeKey = (key: string) => {

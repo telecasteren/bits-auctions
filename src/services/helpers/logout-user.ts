@@ -17,7 +17,7 @@ export const logOutUser = (isLoading = false) => {
     logoutFromStorage();
 
     setTimeout(() => {
-      window.history.pushState({}, "", "/bits-auctions/");
+      window.history.pushState({}, "", "/");
       renderApp();
     }, 500);
   });

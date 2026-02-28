@@ -167,7 +167,7 @@ const SingleListing = async (listing: Listing) => {
   });
 
   seller.addEventListener("click", () => {
-    history.pushState({}, "", `/bits-auctions/profile/${listingSeller}`);
+    history.pushState({}, "", `/profile/${listingSeller}`);
     renderApp();
   });
 

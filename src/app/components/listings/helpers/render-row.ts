@@ -59,7 +59,7 @@ const renderRow = (listing: Listing, hideSeller: boolean = false) => {
   row.appendChild(sellerTd);
 
   row.addEventListener("click", async () => {
-    window.history.pushState({}, "", `/bits-auctions/listings/${listing.id}`);
+    window.history.pushState({}, "", `/listings/${listing.id}`);
     renderApp();
   });
 

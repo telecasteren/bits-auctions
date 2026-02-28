@@ -3,7 +3,7 @@ import { mockedEnv } from "./tests-env";
 
 test.describe("Login", () => {
   test("Login form displays", async ({ page }) => {
-    await page.goto("/bits-auctions/login");
+    await page.goto("/login");
     await expect(page.locator("#page-title")).toBeVisible();
 
     const h2 = page.locator("#auth-form-title");
@@ -14,7 +14,7 @@ test.describe("Login", () => {
     const email = mockedEnv.TEST_USER_EMAIL;
     const password = mockedEnv.TEST_USER_PASSWORD;
 
-    await page.goto("/bits-auctions/login");
+    await page.goto("/login");
     await expect(page.locator('input[name="email"]')).toBeVisible();
 
     // Then we fill out the form with valid data
@@ -28,7 +28,7 @@ test.describe("Login", () => {
   test("Invalid user cannot log in", async ({ page }) => {
     const email = mockedEnv.TEST_USER_EMAIL;
 
-    await page.goto("/bits-auctions/login");
+    await page.goto("/login");
     await expect(page.locator('input[name="email"]')).toBeVisible();
 
     // Then we fill out the form with invalid data

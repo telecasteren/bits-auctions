@@ -15,7 +15,7 @@ const PageNotFound = () => {
     "Sorry, the page you are looking for does not exist.";
 
   const goHomeButton = document.createElement("a");
-  goHomeButton.href = "/bits-auctions/overview";
+  goHomeButton.href = "/overview";
   goHomeButton.textContent = "Go to Overview";
   goHomeButton.className =
     "inline-flex items-center btn bg-[var(--accent-strong)] text-white hover:bg-[var(--accent-strong)] px-4 py-2 rounded";

@@ -69,12 +69,12 @@ const ListingCards = async (listings: Listing[]) => {
     seller.innerHTML = `<span style="font-weight: bold;">Seller:</span> ${sellerName}`;
 
     seller.addEventListener("click", () => {
-      window.history.pushState({}, "", `/bits-auctions/profile/${sellerName}`);
+      window.history.pushState({}, "", `/profile/${sellerName}`);
       renderApp();
     });
 
     image.addEventListener("click", async () => {
-      window.history.pushState({}, "", `/bits-auctions/listings/${listing.id}`);
+      window.history.pushState({}, "", `/listings/${listing.id}`);
       renderApp();
     });
 

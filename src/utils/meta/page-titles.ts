@@ -3,7 +3,7 @@ import { getCurrentListing } from "@/services/helpers/get-current-listing";
 import { getCurrentUser } from "@/services/helpers/get-current-user";
 
 export const setPageTitle = async () => {
-  const base = "/bits-auctions/";
+  const base = "/";
   let relativePath = window.location.pathname;
 
   if (relativePath.startsWith(base)) {

@@ -40,7 +40,7 @@ export const handleAuth = async (isSignup = false) => {
       window.history.pushState(
         {},
         "",
-        `/bits-auctions/account/${newUser.data.username || name}`,
+        `/account/${newUser.data.username || name}`,
       );
       renderApp();
     } catch (error) {
@@ -53,7 +53,7 @@ export const handleAuth = async (isSignup = false) => {
   } else {
     try {
       const { name } = await login(email, password);
-      window.history.pushState({}, "", `/bits-auctions/account/${name}`);
+      window.history.pushState({}, "", `/account/${name}`);
       renderApp();
     } catch (error) {
       displayFormErrors(emailInput, "Login failed. Invalid email or password.");

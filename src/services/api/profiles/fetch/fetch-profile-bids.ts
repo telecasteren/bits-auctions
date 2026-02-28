@@ -13,7 +13,7 @@ export const fetchBidsByProfile = async (username: string) => {
   }
 
   if (response.status === 404) {
-    window.location.pathname = "/bits-auctions/404.html";
+    window.location.pathname = "/404.html";
     throw new Error("Profile not found.");
   }
 

@@ -29,7 +29,7 @@ const renderContent = async () => {
   content.innerHTML = "";
   body.classList.remove("route-landing");
 
-  const base = "/bits-auctions/";
+  const base = "/";
   let relativePath = window.location.pathname;
 
   if (relativePath.startsWith(base)) {

@@ -4,11 +4,11 @@ import { loadKey } from "@/utils/storage/storage";
 
 export const getCurrentUser = async () => {
   const profileUserFromPath = window.location.pathname.split(
-    "/bits-auctions/profile/",
+    "/profile/",
   )[1];
 
   const accountUserFromPath = window.location.pathname.split(
-    "/bits-auctions/account/",
+    "/account/",
   )[1];
 
   if (profileUserFromPath) {
@@ -16,7 +16,7 @@ export const getCurrentUser = async () => {
     const profile = userProfile as Profile;
 
     if (!profile) {
-      window.location.pathname = "/bits-auctions/404.html";
+      window.location.pathname = "/404.html";
       return;
     }
 
@@ -26,7 +26,7 @@ export const getCurrentUser = async () => {
     const profile = userProfile as Profile;
 
     if (!profile) {
-      window.location.pathname = "/bits-auctions/404.html";
+      window.location.pathname = "/404.html";
       return;
     }
 

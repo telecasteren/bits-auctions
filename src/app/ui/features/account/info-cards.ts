@@ -19,9 +19,9 @@ export const profileCards = (user: Profile) => {
   ];
 
   const icons = {
-    account: "/bits-auctions/icons/Vector.svg",
-    bids: "/bits-auctions/icons/Shoppingmode.svg",
-    listings: "/bits-auctions/icons/BarChart.svg",
+    account: "/icons/Vector.svg",
+    bids: "/icons/Shoppingmode.svg",
+    listings: "/icons/BarChart.svg",
   };
 
   infoItems.forEach((item) => {

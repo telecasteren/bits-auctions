@@ -11,7 +11,7 @@ export const backButton = (user: Profile, preview: boolean = false) => {
 
   backButton.addEventListener("click", () => {
     if (preview && isAccount) {
-      window.history.pushState({}, "", `/bits-auctions/account/${username}`);
+      window.history.pushState({}, "", `/account/${username}`);
       renderApp();
     } else {
       window.history.back();

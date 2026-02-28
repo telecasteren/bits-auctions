@@ -5,7 +5,7 @@ import { spinner } from "@/app/components/loaders/spinner";
 
 export const AuthenticateUser = async (isSignup = false) => {
   if (isAuthenticated()) {
-    window.history.pushState({}, "", "/bits-auctions/");
+    window.history.pushState({}, "", "/");
     renderApp();
   }
 

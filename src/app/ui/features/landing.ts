@@ -42,11 +42,11 @@ const Landing = async () => {
   aboutText.className = "text-md";
   aboutText.innerHTML = `A modern online marketplace where anyone can browse listings and verified users can place their bids.
   Auctions are simple and transparent, when the timer ends ➡️ the highest bidder wins.
-  <span class="signup-link"><a href="/bits-auctions/signup">Create your account</a></span> to list your items and place bids.
+  <span class="signup-link"><a href="/signup">Create your account</a></span> to list your items and place bids.
   No fuzz, just list, bid and sell.`;
 
   const listingsLink = document.createElement("a");
-  listingsLink.href = "/bits-auctions/listings";
+  listingsLink.href = "/listings";
   listingsLink.textContent = "Go to listings";
   listingsLink.className =
     "w-fit py-2 text-md font-semibold text-black dark:text-white underline hover:no-underline cursor-pointer";

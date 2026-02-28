@@ -7,7 +7,7 @@ const uniqueId = () => {
 
 test.describe("Signup", () => {
   test("Signup form displays", async ({ page }) => {
-    await page.goto("/bits-auctions/signup");
+    await page.goto("/signup");
     await expect(page.locator("#auth-form-title")).toBeVisible();
 
     const h2 = page.locator("#auth-form-title");
@@ -56,7 +56,7 @@ test.describe("Signup", () => {
       });
     });
 
-    await page.goto("/bits-auctions/signup");
+    await page.goto("/signup");
     await expect(page.locator('input[name="username"]')).toBeVisible();
 
     // Then we fill out the form with valid data
@@ -67,7 +67,7 @@ test.describe("Signup", () => {
     await page.locator('button[type="submit"]').click();
 
     await expect(page).toHaveURL(
-      new RegExp(`/bits-auctions/account/${username}$`),
+      new RegExp(`/account/${username}$`),
     );
     await expect(page.getByRole("button", { name: "Log out" })).toBeVisible();
   });
@@ -76,7 +76,7 @@ test.describe("Signup", () => {
     const username = `user_${uniqueId()}`;
     const password = mockedEnv.TEST_SIGNUP_PASSWORD || "TestPass123!";
 
-    await page.goto("/bits-auctions/signup");
+    await page.goto("/signup");
     await expect(page.locator('input[name="username"]')).toBeVisible();
 
     // Then we fill out the form with invalid email

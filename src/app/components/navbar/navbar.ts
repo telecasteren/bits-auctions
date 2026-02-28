@@ -15,7 +15,7 @@ const navbar = async () => {
   nav.appendChild(logoLink);
 
   logoLink.addEventListener("click", () => {
-    history.pushState(null, "", "/bits-auctions/");
+    history.pushState(null, "", "/");
     renderApp();
   });
 

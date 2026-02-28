@@ -17,7 +17,7 @@ export const unAuthenticatedEvents = () => {
   }
 
   loginMessage.addEventListener("click", () => {
-    window.history.pushState({}, "", "/bits-auctions/login");
+    window.history.pushState({}, "", "/login");
     renderApp();
   });
 

@@ -17,7 +17,7 @@ const renderAuthForm = async (isSignup = false) => {
       );
 
       setTimeout(() => {
-        window.history.pushState({}, "", `/bits-auctions/account/${username}`);
+        window.history.pushState({}, "", `/account/${username}`);
         renderApp();
       }, 2500);
       return;

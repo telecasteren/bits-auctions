@@ -50,7 +50,7 @@ export const submitNewListingEvents = async (
     await submitNewListing(newListing);
     userMessage("success", "Listing created.", { duration: 3000 });
     close?.();
-    window.history.pushState({}, "", "/bits-auctions/listings");
+    window.history.pushState({}, "", "/listings");
     renderApp();
   } catch (error) {
     if (error instanceof Error) {

@@ -64,7 +64,7 @@ export const Carousel = async (options: Options = {}, listing?: Listing) => {
         window.history.pushState(
           {},
           "",
-          `/bits-auctions/listings/${images[index].listingId}`,
+          `/listings/${images[index].listingId}`,
         );
         renderApp();
       });
@@ -165,7 +165,7 @@ export const Carousel = async (options: Options = {}, listing?: Listing) => {
   if (!listing) root.appendChild(text);
 
   text.addEventListener("click", async () => {
-    history.pushState({}, "", "/bits-auctions/listings");
+    history.pushState({}, "", "/listings");
     renderApp();
   });
 

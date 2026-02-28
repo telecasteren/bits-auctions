@@ -17,39 +17,39 @@ const navigation = async () => {
 
       switch (selectedItem) {
         case "nav-landing":
-          window.history.pushState({}, "", "/bits-auctions/");
+          window.history.pushState({}, "", "/");
           renderApp();
           break;
         case "nav-overview":
-          window.history.pushState({}, "", "/bits-auctions/overview");
+          window.history.pushState({}, "", "/overview");
           renderApp();
           break;
         case "nav-new":
           if (!user) {
-            window.history.pushState({}, "", "/bits-auctions/login");
+            window.history.pushState({}, "", "/login");
             renderApp();
             break;
           }
           createDialogue(user);
           break;
         case "nav-listings":
-          window.history.pushState({}, "", "/bits-auctions/listings");
+          window.history.pushState({}, "", "/listings");
           renderApp();
           break;
         case "nav-account":
           window.history.pushState(
             {},
             "",
-            `/bits-auctions/account/${username}`,
+            `/account/${username}`,
           );
           renderApp();
           break;
         case "nav-login":
-          window.history.pushState({}, "", "/bits-auctions/login");
+          window.history.pushState({}, "", "/login");
           renderApp();
           break;
         case "nav-signup":
-          window.history.pushState({}, "", "/bits-auctions/signup");
+          window.history.pushState({}, "", "/signup");
           renderApp();
           break;
         default:
