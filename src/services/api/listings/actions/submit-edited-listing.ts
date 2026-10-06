@@ -1,13 +1,11 @@
-import { authFetch } from "@/services/api/auth/config/auth-fetch";
-import { BASE_URL, LISTINGS } from "@/services/api/auth/config/constants";
+import { withApiHelper } from "@/services/api/shared/withApiHelper";
+import { LISTINGS } from "@/services/api/shared/endpoints";
 import type { Listing } from "@/services/types/listing";
 
 export const submitEditedListing = async (listing: Listing) => {
-  const response = await authFetch(`${BASE_URL}${LISTINGS}/${listing.id}`, {
+  return await withApiHelper<Listing>({
+    endpoint: `${LISTINGS}/${listing.id}`,
     method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
     body: JSON.stringify({
       title: listing.title,
       description: listing.description,
@@ -17,11 +15,4 @@ export const submitEditedListing = async (listing: Listing) => {
       })),
     }),
   });
-
-  if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
-  }
-
-  const result = await response.json();
-  return result;
 };

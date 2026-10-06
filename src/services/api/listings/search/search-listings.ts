@@ -1,15 +1,15 @@
-import { authFetch } from "@/services/api/auth/config/auth-fetch";
-import { BASE_URL, LISTINGS } from "@/services/api/auth/config/constants";
+import { withApiHelper } from "@/services/api/shared/withApiHelper";
+import { LISTINGS } from "@/services/api/shared/endpoints";
+import type { Listing } from "@/services/types/listing";
 
 export const searchListings = async (query: string) => {
-  const q = encodeURIComponent(query);
-  const response = await authFetch(
-    `${BASE_URL}${LISTINGS}/search?q=${q}&_seller=true&_bids=true`,
-  );
-
-  if (!response.ok) {
-    throw new Error(`Search failed: ${response.status} ${response.statusText}`);
+  try {
+    const q = encodeURIComponent(query);
+    const { data } = await withApiHelper<Listing[]>({
+      endpoint: `${LISTINGS}/search?q=${q}&_seller=true&_bids=true`,
+    });
+    return data;
+  } catch (error) {
+    throw new Error("Deleting bio failed.", { cause: error });
   }
-
-  return await response.json();
 };

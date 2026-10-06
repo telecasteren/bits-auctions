@@ -1,20 +1,22 @@
 import { saveKey } from "@/utils/storage/storage";
-import { authFetch } from "@/services/api/auth/config/auth-fetch";
-import { BASE_URL, AUTH, LOGIN } from "@/services/api/auth/config/constants";
+import { withApiHelper } from "@/services/api/shared/withApiHelper";
+import { AUTH, LOGIN } from "@/services/api/shared/endpoints";
+import type { Profile } from "@/services/types/profile";
 
 export const login = async (email: string, password: string) => {
-  const response = await authFetch(BASE_URL + AUTH + LOGIN, {
-    method: "POST",
-    body: JSON.stringify({ email, password }),
-  });
+  try {
+    const { data } = await withApiHelper<Profile & { accessToken: string }>({
+      endpoint: `${AUTH}${LOGIN}`,
+      method: "POST",
+      body: JSON.stringify({ email, password }),
+    });
 
-  if (response.ok) {
-    const { accessToken, ...profile } = (await response.json()).data;
+    const { accessToken, ...profile } = data;
     saveKey("token", accessToken);
     saveKey("user", profile);
 
     return profile;
+  } catch (error) {
+    throw new Error("Login failed.", { cause: error });
   }
-
-  throw new Error("Login failed.");
 };

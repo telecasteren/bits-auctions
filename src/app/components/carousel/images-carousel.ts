@@ -20,7 +20,7 @@ export const Carousel = async (options: Options = {}, listing?: Listing) => {
       .filter((img) => img.src);
   } else {
     const response = await fetchAllListings(9, 1);
-    const listings = response.data as Listing[];
+    const listings = response as Listing[];
     images = listings
       .map((item) => ({
         src: item.media.length > 0 ? item.media[0].url : "",

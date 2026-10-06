@@ -1,3 +1,5 @@
+import { Listing } from "./listing";
+
 export interface Profile {
   id: string;
   name: string;
@@ -17,5 +19,5 @@ export interface Profile {
     bids: number;
   };
   _listings?: boolean;
-  _wins?: boolean;
+  wins?: Listing[];
 }

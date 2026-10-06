@@ -35,13 +35,10 @@ export const handleAuth = async (isSignup = false) => {
       }
 
       const newUser = await register(username, email, password);
-      const { name } = (await login(email, password)) || email.split("@")[0];
+      const profile = await login(email, password);
+      const name = profile?.name ?? email.split("@")[0];
 
-      window.history.pushState(
-        {},
-        "",
-        `/account/${newUser.data.username || name}`,
-      );
+      window.history.pushState({}, "", `/account/${newUser.data.name || name}`);
       renderApp();
     } catch (error) {
       displayFormErrors(

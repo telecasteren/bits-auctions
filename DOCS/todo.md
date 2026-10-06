@@ -1,7 +1,16 @@
 ## General
 
+> TODO: Improve CSS imports, fonts and Tailwind principles
+
+> DONE: created a reusable helper
+
 **REFACTOR API STRUCTURE**
-The same structure appears in all these files:
+
+These files all repeat the same things:
+
+- Repeated fetch pattern
+- Repeated error handling
+- Repeated JSON parsing pattern
 
 | File          | Function             |
 | ------------- | -------------------- |
@@ -12,11 +21,3 @@ The same structure appears in all these files:
 | listings      | fetchAllListings()   |
 | listings      | fetchSingleListing() |
 | bids          | placeBid()           |
-
-These files above all repeat the same things:
-
-- Repeated fetch pattern
-- Repeated error handling
-- Repeated JSON parsing pattern
-
-So I was basically trying to say that, you are repeating response handling, error handling, and JSON parsing logic in every API function instead of creating a reusable helper.
