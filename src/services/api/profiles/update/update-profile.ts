@@ -1,5 +1,6 @@
-import { BASE_URL, USERS } from "@/services/api/auth/config/constants";
-import { authFetch } from "@/services/api/auth/config/auth-fetch";
+import { withApiHelper } from "@/services/api/shared/withApiHelper";
+import { USERS } from "@/services/api/shared/endpoints";
+import type { Profile } from "@/services/types/profile";
 
 export const updateProfile = async (
   user: string,
@@ -9,21 +10,11 @@ export const updateProfile = async (
   }>,
 ) => {
   try {
-    const response = await authFetch(`${BASE_URL}${USERS}/${user}`, {
+    return await withApiHelper<Profile>({
+      endpoint: `${USERS}/${user}`,
       method: "PUT",
       body: JSON.stringify(newData),
     });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    if (response.status === 204) {
-      return null;
-    }
-
-    const result = await response.json();
-    return result;
   } catch (error) {
     throw new Error("Updating profile failed.", { cause: error });
   }

@@ -15,7 +15,7 @@ const Listings = async () => {
   container.appendChild(loader);
 
   const listingsResponse = await fetchAllListings(20, 1);
-  const listings = listingsResponse.data ?? [];
+  const listings = listingsResponse;
 
   container.innerHTML = "";
 
@@ -82,7 +82,7 @@ const Listings = async () => {
     try {
       currentPage += 1;
       const listingsResponse = await fetchAllListings(10, currentPage);
-      const next = listingsResponse.data ?? [];
+      const next = listingsResponse ?? [];
 
       if (next.length === 0) {
         nextPageButton.disabled = true;

@@ -2,8 +2,7 @@ import { fetchSingleListing } from "@/services/api/listings/fetch/fetch-single-l
 import type { Listing } from "@/services/types/listing";
 
 export const getCurrentListing = async () => {
-  const listingId =
-    window.location.pathname.split("/listings/")[1] || "";
+  const listingId = window.location.pathname.split("/listings/")[1] || "";
 
   if (!listingId.trim()) {
     return { listingId: "", listing: null };

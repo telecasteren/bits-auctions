@@ -42,7 +42,7 @@ export const getBidsPerMonth = async (
     }
   } else {
     const response = await fetchListingsForCharts();
-    const listings: Listing[] = response.data;
+    const listings: Listing[] = response;
 
     for (const listing of listings) {
       const bids: Bid[] = listing?.bids ?? [];

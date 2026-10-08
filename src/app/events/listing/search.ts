@@ -4,7 +4,7 @@ import ListingTable from "@/app/components/listings/listing-table";
 
 export const renderSearchResults = async (query: string) => {
   const listingsResponse = await searchListings(query);
-  const listings = listingsResponse.data ?? [];
+  const listings = listingsResponse;
 
   const table = await ListingTable(listings);
   const cards = await ListingCards(listings);

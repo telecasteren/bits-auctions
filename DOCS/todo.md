@@ -1,14 +1,23 @@
-## FIX
-
 ## General
 
-- Push/pull all changes into main before delivery
-  - Build and deploy to github pages
+> TODO: Improve CSS imports, fonts and Tailwind principles
 
-## Deliver
+> DONE: created a reusable helper
 
-- Link to live site
-- Link to Github repo
-- Link to Github projects
-- Link to Figma prototype
-- Style guide (pdf/figma)
+**REFACTOR API STRUCTURE**
+
+These files all repeat the same things:
+
+- Repeated fetch pattern
+- Repeated error handling
+- Repeated JSON parsing pattern
+
+| File          | Function             |
+| ------------- | -------------------- |
+| auth/login    | login()              |
+| auth/register | register()           |
+| profile       | fetchSingleProfile() |
+| profile       | fetchBidsByProfile() |
+| listings      | fetchAllListings()   |
+| listings      | fetchSingleListing() |
+| bids          | placeBid()           |

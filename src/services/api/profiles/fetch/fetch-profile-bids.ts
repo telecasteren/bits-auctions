@@ -1,26 +1,10 @@
-import { BASE_URL, USERS } from "@/services/api/auth/config/constants";
-import { authFetch } from "@/services/api/auth/config/auth-fetch";
-import { unAuthenticatedEvents } from "@/app/events/auth/unauthenticated";
+import { withApiHelper } from "@/services/api/shared/withApiHelper";
+import { USERS } from "@/services/api/shared/endpoints";
+import type { Bid } from "@/services/types/listing";
 
 export const fetchBidsByProfile = async (username: string) => {
-  const response = await authFetch(
-    `${BASE_URL}${USERS}/${username}/bids?_listings=true`,
-  );
-
-  if (response.status === 401) {
-    unAuthenticatedEvents();
-    throw new Error("Unauthorized.");
-  }
-
-  if (response.status === 404) {
-    window.location.pathname = "/404.html";
-    throw new Error("Profile not found.");
-  }
-
-  if (!response.ok) {
-    throw new Error(`Failed to fetch bids by profile: ${response.status}`);
-  }
-
-  const { data } = await response.json();
+  const { data } = await withApiHelper<Bid[]>({
+    endpoint: `${USERS}/${username}/bids?_listings=true`,
+  });
   return data;
 };

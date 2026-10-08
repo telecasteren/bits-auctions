@@ -1,19 +1,19 @@
-import { authFetch } from "@/services/api/auth/config/auth-fetch";
-import { BASE_URL, AUTH, REGISTER } from "@/services/api/auth/config/constants";
+import { withApiHelper } from "@/services/api/shared/withApiHelper";
+import { AUTH, REGISTER } from "@/services/api/shared/endpoints";
+import { Profile } from "@/services/types/profile";
 
 export const register = async (
   name: string,
   email: string,
   password: string,
 ) => {
-  const response = await authFetch(BASE_URL + AUTH + REGISTER, {
-    method: "POST",
-    body: JSON.stringify({ name, email, password }),
-  });
-
-  if (response.ok) {
-    return await response.json();
+  try {
+    return await withApiHelper<Profile>({
+      endpoint: `${AUTH}${REGISTER}`,
+      method: "POST",
+      body: JSON.stringify({ name, email, password }),
+    });
+  } catch (error) {
+    throw new Error("Registering account failed.", { cause: error });
   }
-
-  throw new Error("Registering account failed.");
 };

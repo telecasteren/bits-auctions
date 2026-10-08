@@ -12,14 +12,13 @@ const ListingCards = async (listings: Listing[]) => {
   container.className =
     "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mx-auto max-w-6xl w-full";
 
-  listings.forEach(async (listing) => {
-    const listingsSeller = listing.seller;
-    const listingSellerName =
-      listingsSeller?.name ||
-      ((await getAuthenticatedUser()) as Profile)["name"];
-    const sellerObject = (await getCurrentUser())?.profile as Profile;
+  const authUser = (await getAuthenticatedUser()) as Profile | null;
+  const sellerObject = (await getCurrentUser())?.profile as Profile | undefined;
 
-    const sellerName = sellerObject?.name || listingSellerName;
+  listings.forEach(async (listing) => {
+    const sellerName =
+      sellerObject?.name || listing.seller?.name || authUser?.name;
+
     const endingDate = new Date(listing.endsAt).toLocaleDateString();
     const listingTitle = listing.title || "Untitled listing";
     const listingDescription = listing.description || "No description";
