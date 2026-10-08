@@ -1,4 +1,5 @@
 import "/css/styles.css";
+import { removeKey } from "@/utils/storage/storage";
 import renderContent from "@/app/ui/render-content";
 import navbar from "@/app/components/navbar/navbar";
 import { setThemeListener } from "@/utils/config/theme";
@@ -8,6 +9,13 @@ import { Footer } from "./components/footer";
 
 setThemeListener((isDark) => {
   document.body.classList.toggle("dark", isDark);
+});
+
+window.addEventListener("auth:unauthorized", () => {
+  removeKey("token");
+  removeKey("user");
+  window.history.pushState({}, "", "/login");
+  renderApp();
 });
 
 document.addEventListener("DOMContentLoaded", async () => {

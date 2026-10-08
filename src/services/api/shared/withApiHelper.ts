@@ -1,7 +1,11 @@
-import { ApiError } from "@/services/api/shared/apiError";
+import {
+  ApiError,
+  parseErrorBody,
+  getErrorMessage,
+} from "@/services/api/shared/apiError";
 import { authFetch } from "@/services/api/shared/authFetch";
 import { BASE_URL } from "@/services/api/shared/endpoints";
-import { unAuthenticatedEvents } from "@/app/events/auth/unauthenticated";
+import { isAuthenticated } from "@/utils/config/constants";
 
 interface withApiHelperProps {
   endpoint: string;
@@ -27,31 +31,35 @@ export async function withApiHelper<T>({
   body,
   noContent = false,
 }: withApiHelperProps): Promise<ApiResponse<T> | void> {
-  const response = await authFetch(BASE_URL + endpoint, {
-    method,
-    body,
-  });
+  let response: Response;
+  try {
+    response = await authFetch(BASE_URL + endpoint, {
+      method,
+      body,
+    });
+  } catch (cause) {
+    throw new ApiError(`Network error: ${method} ${endpoint}`, 0, undefined, {
+      cause,
+    });
+  }
 
   if (response.ok) {
     if (noContent || response.status === 204) return;
 
-    const contentType = response.headers.get("content-type");
-    if (!contentType || !contentType.includes("application/json")) {
-      throw new Error("API did not return JSON");
+    try {
+      return await response.json();
+    } catch (cause) {
+      throw new ApiError("Invalid JSON response", response.status, { cause });
     }
-
-    return await response.json();
   }
 
-  if (response.status === 401) {
-    unAuthenticatedEvents();
-    const error = await response.json().catch(() => null);
-    throw new Error("Unauthorized request", { cause: error });
+  if (response.status === 401 && isAuthenticated()) {
+    window.dispatchEvent(new CustomEvent("auth:unauthorized"));
   }
 
-  const errorBody = await response.text().catch(() => "");
+  const errorBody = await parseErrorBody(response);
   throw new ApiError(
-    `Request failed (${response.status})`,
+    getErrorMessage(errorBody, response.status),
     response.status,
     errorBody,
   );

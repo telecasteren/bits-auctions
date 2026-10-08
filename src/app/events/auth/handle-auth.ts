@@ -4,6 +4,7 @@ import { register } from "@/services/api/auth/register";
 import { getAuthInputs } from "./get-auth-inputs.js";
 import { passwordValidation } from "./password-validation.js";
 import { renderApp } from "@/services/helpers/render-app.js";
+import { ApiError } from "@/services/api/shared/apiError.js";
 
 export const handleAuth = async (isSignup = false) => {
   const { usernameInput, emailInput, passwordInput, confirmPassInput } =
@@ -53,7 +54,12 @@ export const handleAuth = async (isSignup = false) => {
       window.history.pushState({}, "", `/account/${name}`);
       renderApp();
     } catch (error) {
-      displayFormErrors(emailInput, "Login failed. Invalid email or password.");
+      displayFormErrors(
+        emailInput,
+        error instanceof ApiError && error.status !== 0
+          ? error.message
+          : "Login failed. Invalid email or password.",
+      );
       throw error;
     }
   }
