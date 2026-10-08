@@ -3,13 +3,9 @@ import { Profile } from "@/services/types/profile";
 import { loadKey } from "@/utils/storage/storage";
 
 export const getCurrentUser = async () => {
-  const profileUserFromPath = window.location.pathname.split(
-    "/profile/",
-  )[1];
+  const profileUserFromPath = window.location.pathname.split("/profile/")[1];
 
-  const accountUserFromPath = window.location.pathname.split(
-    "/account/",
-  )[1];
+  const accountUserFromPath = window.location.pathname.split("/account/")[1];
 
   if (profileUserFromPath) {
     const userProfile = await fetchSingleProfile(profileUserFromPath);

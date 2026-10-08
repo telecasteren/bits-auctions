@@ -37,11 +37,7 @@ const navigation = async () => {
           renderApp();
           break;
         case "nav-account":
-          window.history.pushState(
-            {},
-            "",
-            `/account/${username}`,
-          );
+          window.history.pushState({}, "", `/account/${username}`);
           renderApp();
           break;
         case "nav-login":

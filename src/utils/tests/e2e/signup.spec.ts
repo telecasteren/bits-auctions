@@ -66,9 +66,7 @@ test.describe("Signup", () => {
     await page.locator('input[name="confirm-password"]').fill(password!);
     await page.locator('button[type="submit"]').click();
 
-    await expect(page).toHaveURL(
-      new RegExp(`/account/${username}$`),
-    );
+    await expect(page).toHaveURL(new RegExp(`/account/${username}$`));
     await expect(page.getByRole("button", { name: "Log out" })).toBeVisible();
   });
 
